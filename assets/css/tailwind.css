@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .markdown {
+        h1 { @apply text-7xl py-2; }
+        h2 { @apply text-5xl py-2; }
+        p { @apply py-2 text-4xl indent-8 font-serif leading-relaxed; }
+    }
+}
