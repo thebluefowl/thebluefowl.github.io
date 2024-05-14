@@ -1,6 +1,7 @@
 ---
 title: 'Title of the page'
 description: 'meta description of the page'
+cover: './images/about.jpg'
 ---
 # Foo 
 
