@@ -6,6 +6,6 @@
     .markdown {
         h1 { @apply text-3xl font-semibold; }
         h2 { @apply text-2xl font-semibold; }
-        p { @apply py-2 text-xl font-serif leading-relaxed; }
+        p { @apply mt-4 leading-relaxed text-2xl font-serif }
     }
 }

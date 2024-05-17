@@ -9,7 +9,12 @@ export default {
     './content/**/*.md'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'serif':'Lora',
+        'mal':'Noto Serif Malayalam'
+      },
+    },
   },
   plugins: [],
 }

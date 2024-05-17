@@ -4,9 +4,27 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
   ],
   css: [
     '~/assets/css/tailwind.css'
   ],
+  components: {
+    dirs: [
+      '~/components/content',
+      '~/components'
+    ],
+  },
+  googleFonts: {
+    families: {
+      'Lora':true,
+      'Noto Serif Malayalam':true,
+    },
+  },
+  content:{
+    highlight: {
+      theme: 'github-light'
+    },
+  }
 })
