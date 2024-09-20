@@ -6,15 +6,15 @@
       </nuxt-link>
     </h2>
     <ul class="pl-4">
-      <li v-for="post in postsInCategory" :key="post.slug" class="py-1 flex justify-between items-center">
+      <li v-for="post in postsInCategory" :key="post.slug" class="flex justify-between items-center">
         <nuxt-link :to="post._path" class="hover:text-slate-700 flex-grow">
           <div class="flex justify-between items-center">
-            <span class="max-w-72 text-ellipsis truncate font-serif text-sm">
+            <span class="max-w-32 xl:max-w-64 text-ellipsis truncate font-serif text-sm">
               {{ post.title }}
             </span>
-            <span class="flex-grow border-b border-dotted border-gray-300 mx-2"></span>
+            <span class="flex-grow border-b border-dotted border-gray-300 mx-4"></span>
             <span class="font-serif text-sm text-gray-600">
-              {{ formatDate(post.date) }}
+              {{ usePrettyDate(post.date) }}
             </span>
           </div>
         </nuxt-link>
@@ -42,12 +42,6 @@ if (props.filter) {
 }
 
 const { data: fetchedData } = useAsyncData('home', () => query.find());
-
-// Helper function to format dates
-const formatDate = (dateString: string): string => {
-  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString(undefined, options);
-};
 
 // Categorize posts using computed property
 const categorizedPosts = computed(() => {
