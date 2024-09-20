@@ -1,24 +1,28 @@
 <template>
     <NuxtLayout name="home">
-        
-        <div class="flex items-center justify-center h-screen p-24 gap-x-20">
-            <h1 class="text-right w-1/2">
-                <div class="uppercase text-xs font-bold tracking-widest">
-                    Vishnu Jayadevan
-                </div>
-                <div class="text-xs block my-8">
-                    Software Engineer | Gopher | Tinkerer
-                    <p>
-                        Staff Engineer @ <a href="https://deepsource.com" class="underline">DeepSource</a>
-                    </p>
-                </div>
-            </h1>
-            <div class="w-1/2 text-9xl font-garamond flex flex-col space-y-4">
-                <nuxt-link to="/about">About</nuxt-link>
-                <nuxt-link to="/blog">Blog</nuxt-link>
-                <nuxt-link to="/connect">Connect</nuxt-link>
+        <div class="flex h-screen flex-col items-center justify-center w-full font-garamond">
+            <div class="w-1/2">
+                <h1 class="text-center sm:text-left text-2xl sm:text-4xl">
+                    Personal website and blog of <div class="font-bold pl-1">Vishnu Jayadevan</div>
+                </h1>
+                <hr class="w-full my-16"/>
+                <nav class="text-lg sm:text-2xl flex gap-8 link">
+                    <nuxt-link to="/about" class="link">About</nuxt-link>
+                    <nuxt-link to="/blog" class="link">Blog</nuxt-link>
+                    <nuxt-link to="/connect" class="link">Connect</nuxt-link>
+                </nav>
             </div>
-            
         </div>
     </NuxtLayout>
 </template>
+<script setup lang="ts">
+    definePageMeta({
+        title: 'Home',
+        description: 'Personal website and blog of Vishnu Jayadevan',
+        documentDriven: {
+            page: false,
+            surround: false
+        },
+    })
+</script>
+
