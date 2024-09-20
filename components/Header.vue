@@ -9,7 +9,6 @@
             <div class="text-xs uppercase tracking-wider flex items-center gap-4">
                 <NuxtLink to="/about" class="hover:text-slate-500" exact-active-class="font-bold">About</NuxtLink>
                 <NuxtLink to="/blog" class="hover:text-slate-500" exact-active-class="font-bold">Blog</NuxtLink>
-                <NuxtLink to="/connect" class="hover:text-slate-500" exact-active-class="font-bold">Connect</NuxtLink>
             </div>
         </div>
     </header>
