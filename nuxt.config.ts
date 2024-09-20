@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
+  css: ['~/assets/css/tailwind.css'],
   modules: [
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
@@ -17,12 +17,20 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true
   },
+  nitro: {
+    prerender: {
+      crawlLinks: true
+    }
+  },
+  
 
   fonts: {
     google: {
       families: {
         'Source Sans 4': [300, 400, 700],
-        'EB Garamond': [300, 400, 700]
+        'EB Garamond': [300, 400, 700],
+        'Arima': [300, 400, 700],
+        'Noto Serif Malayalam': [300, 400, 700]
       }
     }
   },

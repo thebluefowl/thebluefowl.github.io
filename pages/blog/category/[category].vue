@@ -14,6 +14,15 @@
 
 import type { BreadCrumb } from '~/components/PageTitle.vue';
 
+definePageMeta({
+    title: 'Blog',
+    description: 'Blog posts by Vishnu Jayadevan',
+    documentDriven: {
+        page: false,
+        surround: false
+    },
+});
+
 const breadcrumbs = (): BreadCrumb[] => {
     const breadcrumbs: BreadCrumb[] = [
     { label: '~', to: '/' },

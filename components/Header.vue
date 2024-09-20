@@ -1,6 +1,6 @@
 <template>
     <header class="h-16 bg-white fixed top-0 w-full">  
-        <div class="w-full h-full border-b border-slate-200 flex items-center justify-between px-24">
+        <div class="w-full h-full flex items-center justify-between px-4 xl:px-24">
             <!-- Title -->
             <NuxtLink to="/" class="hover:text-slate-500" exact-active-class="font-bold">
                 <span class="font-sans text-xs tracking-widest font-bold uppercase">Vishnu Jayadevan</span>
@@ -9,7 +9,7 @@
             <div class="text-xs uppercase tracking-wider flex items-center gap-4">
                 <NuxtLink to="/about" class="hover:text-slate-500" exact-active-class="font-bold">About</NuxtLink>
                 <NuxtLink to="/blog" class="hover:text-slate-500" exact-active-class="font-bold">Blog</NuxtLink>
-                <NuxtLink to="/context" class="hover:text-slate-500" exact-active-class="font-bold">Connect</NuxtLink>
+                <NuxtLink to="/connect" class="hover:text-slate-500" exact-active-class="font-bold">Connect</NuxtLink>
             </div>
         </div>
     </header>

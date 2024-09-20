@@ -10,6 +10,7 @@
         <div class="text-6xl leading-normal">
             {{ props.title }}
         </div>
+        <span>{{props.date}}</span>
     </h1>
 </template>
 
@@ -21,6 +22,7 @@ export interface BreadCrumb {
 const props = defineProps<{ 
     title?: string
     breadcrumbs: BreadCrumb[]
+    date?: string
 }>();
 
 </script>
