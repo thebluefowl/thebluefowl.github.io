@@ -9,7 +9,6 @@
                 <nav class="text-lg sm:text-2xl flex gap-8 link">
                     <nuxt-link to="/about" class="link">About</nuxt-link>
                     <nuxt-link to="/blog" class="link">Blog</nuxt-link>
-                    <nuxt-link to="/connect" class="link">Connect</nuxt-link>
                 </nav>
             </div>
         </div>
