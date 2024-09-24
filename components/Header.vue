@@ -1,6 +1,6 @@
 <template>
-    <header class="h-16 bg-white fixed top-0 w-full">  
-        <div class="w-full h-full flex items-center justify-between px-4 xl:px-24">
+    <header class="h-16 bg-white fixed top-0 w-full min-w-96">  
+        <div class="w-full h-full flex items-center justify-between px-8">
             <!-- Title -->
             <NuxtLink to="/" class="hover:text-slate-500" exact-active-class="font-bold">
                 <span class="font-sans text-xs tracking-widest font-bold uppercase">Vishnu Jayadevan</span>
