@@ -5,12 +5,11 @@
         </template>
         <template #body>
             <div class="font-sans tracking-wider mb-2">
-                <span v-on:click="lang = 'en'" class="cursor-pointer">EN</span>
+                <nuxt-link class="cursor-pointer" to="/about">EN</nuxt-link>
                 <span class="mx-2">|</span>
-                <span v-on:click="lang = 'ml'" class="cursor-pointer">ML</span>
+                <nuxt-link class="cursor-pointer" to="/about/malayalam">ML</nuxt-link>
             </div>
-            <AboutEnglish v-if="lang === 'en'"/>
-            <AboutMalayalam v-else/>
+            <AboutEnglish/>
         </template>
     </NuxtLayout>   
 </template>
@@ -26,8 +25,6 @@ definePageMeta({
         surround: false
     },
 })
-
-const lang = ref('en');
 
 const computedBreadcrumbs = computed((): BreadCrumb[] => {
     return [
