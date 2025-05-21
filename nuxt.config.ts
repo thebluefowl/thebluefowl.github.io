@@ -9,7 +9,9 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/icon",
   ],
-
+  icon: {
+    serverBundle: "local",
+  },
   routeRules: {
     "/": { prerender: true },
   },
