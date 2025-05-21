@@ -6,8 +6,6 @@
 ::
 ::book{title="നീർമാതളം പൂത്ത കാലം" author="മാധവിക്കുട്ടി" status="in-progress"}
 ::
-::book{title="പ്രായം പ്രായം" author="മാധവിക്കുട്ടി" status="shelf"}
-::
 ::book{title="The Covenant of Water" author="Abraham Verghese" status="shelf"}
 ::
 ::book{title="On Earth We're Briefly Gorgeous" author="Ocean Vuong" status="shelf"}
