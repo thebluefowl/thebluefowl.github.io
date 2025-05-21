@@ -1,6 +1,6 @@
 <template>
-  <h1 class="py-48 font-garamond">
-    <div class="text-lg">
+  <h1 class="py-16 md:py-32 lg:py-48 font-garamond">
+    <div class="text-base md:text-lg">
       <span v-for="(breadcrumb, index) in props.breadcrumbs" :key="index">
         <NuxtLink :to="breadcrumb.to" class="">
           <span>{{ breadcrumb.label }}</span>
@@ -8,7 +8,7 @@
         /
       </span>
     </div>
-    <div class="text-6xl leading-normal">
+    <div class="text-4xl md:text-5xl lg:text-6xl leading-normal">
       {{ props.title }}
     </div>
     <span>{{ props.date }}</span>
