@@ -10,8 +10,9 @@
           <div class="text-xl font-light font-garamond leading-relaxed">
             I am <span class="font-bold">Vishnu Jayadevan</span>, a software
             engineer based in Bangalore, India. I am currently at
-            <a link href="https://deepsource.com" class="font-bold">DeepSource</a>, building tools to help developers
-            write better code. This is my
+            <a link href="https://deepsource.com" class="font-bold"
+              >DeepSource</a
+            >, building tools to help developers write better code. This is my
             little corner of the internet where I write about distributed
             systems, software architecture and leadership in tech. You'll
             occasionally find posts in other topics like biochemistry,
@@ -28,8 +29,16 @@
               <div>(2024-Present)</div>
             </div>
             <span class="flex-grow hidden lg:block">
-              <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" class="w-full h-2">
-                <path d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5" stroke="black" fill="transparent" />
+              <svg
+                viewBox="0 0 100 10"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-full h-2"
+              >
+                <path
+                  d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5"
+                  stroke="black"
+                  fill="transparent"
+                />
               </svg>
             </span>
           </div>
@@ -69,8 +78,16 @@
               <div>(2015-2019)</div>
             </div>
             <span class="flex-grow hidden lg:block">
-              <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" class="w-full h-2">
-                <path d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5" stroke="black" fill="transparent" />
+              <svg
+                viewBox="0 0 100 10"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-full h-2"
+              >
+                <path
+                  d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5"
+                  stroke="black"
+                  fill="transparent"
+                />
               </svg>
             </span>
           </div>
