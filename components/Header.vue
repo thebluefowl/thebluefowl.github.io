@@ -1,47 +1,100 @@
 <template>
-  <header class="h-16 bg-white fixed top-0 w-full border-b border-gray-200 z-50">
+  <header
+    class="h-16 bg-white fixed top-0 w-full border-b border-gray-200 z-50"
+  >
     <div class="w-full h-full flex items-center justify-between px-4 md:px-8">
       <!-- Title -->
-      <NuxtLink to="/" class="hover:text-slate-500 nav-link" exact-active-class="font-bold">
-        <span class="font-sans text-xs tracking-widest font-bold uppercase">Vishnu Jayadevan</span>
+      <NuxtLink
+        to="/"
+        class="hover:text-slate-500 nav-link"
+        exact-active-class="font-bold"
+      >
+        <span class="font-sans text-xs tracking-widest font-bold uppercase"
+          >Vishnu Jayadevan</span
+        >
       </NuxtLink>
 
       <!-- Mobile Menu Button -->
-      <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2" aria-label="Toggle menu">
+      <button
+        @click="isMenuOpen = !isMenuOpen"
+        class="md:hidden p-2"
+        aria-label="Toggle menu"
+      >
         <div class="w-6 h-5 flex flex-col justify-between">
-          <span class="w-full h-0.5 bg-black transform transition-all duration-300"
-            :class="{ 'rotate-45 translate-y-2': isMenuOpen }"></span>
-          <span class="w-full h-0.5 bg-black transition-all duration-300" :class="{ 'opacity-0': isMenuOpen }"></span>
-          <span class="w-full h-0.5 bg-black transform transition-all duration-300"
-            :class="{ '-rotate-45 -translate-y-2': isMenuOpen }"></span>
+          <span
+            class="w-full h-0.5 bg-black transform transition-all duration-300"
+            :class="{ 'rotate-45 translate-y-2': isMenuOpen }"
+          ></span>
+          <span
+            class="w-full h-0.5 bg-black transition-all duration-300"
+            :class="{ 'opacity-0': isMenuOpen }"
+          ></span>
+          <span
+            class="w-full h-0.5 bg-black transform transition-all duration-300"
+            :class="{ '-rotate-45 -translate-y-2': isMenuOpen }"
+          ></span>
         </div>
       </button>
 
       <!-- Desktop Links -->
-      <div class="hidden md:flex text-xs uppercase tracking-wider items-center gap-4">
-        <NuxtLink to="/about" class="hover:text-[#64748b] nav-link" exact-active-class="font-bold">About</NuxtLink>
-        <NuxtLink to="/blog" class="hover:text-[#64748b] nav-link" exact-active-class="font-bold">Blog</NuxtLink>
-        <NuxtLink to="/book-shelf" class="hover:text-[#64748b] nav-link" exact-active-class="font-bold">Book Shelf
+      <div
+        class="hidden md:flex text-xs uppercase tracking-wider items-center gap-4"
+      >
+        <NuxtLink
+          to="/about"
+          class="hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          >About</NuxtLink
+        >
+        <NuxtLink
+          to="/blog"
+          class="hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          >Blog</NuxtLink
+        >
+        <NuxtLink
+          to="/book-shelf"
+          class="hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          >Book Shelf
         </NuxtLink>
       </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div v-show="isMenuOpen" class="md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200">
+    <div
+      v-show="isMenuOpen"
+      class="md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200"
+    >
       <div class="flex flex-col py-4 px-4 space-y-4">
-        <NuxtLink to="/about" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          exact-active-class="font-bold" @click="isMenuOpen = false">About</NuxtLink>
-        <NuxtLink to="/blog" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          exact-active-class="font-bold" @click="isMenuOpen = false">Blog</NuxtLink>
-        <NuxtLink to="/book-shelf" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          exact-active-class="font-bold" @click="isMenuOpen = false">Book Shelf</NuxtLink>
+        <NuxtLink
+          to="/about"
+          class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          @click="isMenuOpen = false"
+          >About</NuxtLink
+        >
+        <NuxtLink
+          to="/blog"
+          class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          @click="isMenuOpen = false"
+          >Blog</NuxtLink
+        >
+        <NuxtLink
+          to="/book-shelf"
+          class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          @click="isMenuOpen = false"
+          >Book Shelf</NuxtLink
+        >
       </div>
     </div>
   </header>
 </template>
 
 <script setup>
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false);
 </script>
 
 <style scoped>
