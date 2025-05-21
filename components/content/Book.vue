@@ -12,16 +12,16 @@
         <Icon name="ph:books" color="gray" />
         <span class="text-sm text-gray-500 whitespace-nowrap">On Shelf</span>
       </template>
-      <template v-else>
+      <template v-else-if="stars">
         <div class="flex gap-1">
           <template v-for="i in 5" :key="i">
             <Icon
-              v-if="i <= Math.floor(stars)"
+              v-if="i <= Math.floor(Number(stars))"
               name="ph:star-fill"
               color="yellow"
             />
             <Icon
-              v-else-if="i - 0.5 <= stars && stars % 1 !== 0"
+              v-else-if="i - 0.5 <= Number(stars) && Number(stars) % 1 !== 0"
               name="ph:star-half-fill"
               color="yellow"
             />
@@ -34,19 +34,10 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  title: "Book Shelf | Vishnu Jayadevan's Reading List",
-  description:
-    "Discover my book recommendations and reading journey. Explore contemporary novels, literary fiction, and classic works with personal reviews and ratings. Updated reading list featuring completed books, current reads, and future picks.",
-  documentDriven: {
-    page: false,
-    surround: false,
-  },
-});
 const props = defineProps<{
   title: string;
   author: string;
-  stars: number;
+  stars?: string;
   status?: "completed" | "in-progress" | "shelf";
 }>();
 </script>
