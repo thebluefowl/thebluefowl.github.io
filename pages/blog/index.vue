@@ -23,7 +23,7 @@ definePageMeta({
 });
 
 const breadcrumbs = (): BreadCrumb[] => {
-  const breadcrumbs: BreadCrumb[] = [{ label: "~", to: "/" }];
+  const breadcrumbs: BreadCrumb[] = [{ label: "Home", to: "/" }];
   return breadcrumbs;
 };
 </script>
