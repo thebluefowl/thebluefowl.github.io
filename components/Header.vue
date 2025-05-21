@@ -27,6 +27,12 @@
           exact-active-class="font-bold"
           >Blog</NuxtLink
         >
+        <NuxtLink
+          to="/book-shelf"
+          class="hover:text-[#64748b] nav-link"
+          exact-active-class="font-bold"
+          >Book Shelf</NuxtLink
+        >
       </div>
     </div>
   </header>

@@ -5,7 +5,7 @@
     </template>
     <template #body>
       {{ usePrettyDate(page.date) }}
-      <ContentDoc class="text-2xl font-light font-garamond leading-relaxed" />
+      <ContentDoc class="text-xl font-light font-garamond leading-relaxed" />
       <hr class="my-8" />
     </template>
   </NuxtLayout>

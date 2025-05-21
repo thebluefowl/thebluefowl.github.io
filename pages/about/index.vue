@@ -45,17 +45,30 @@
           <div>
             <h4 class="text-lg font-semibold">Staff Engineer</h4>
             <p>
-              Building the next generation of developer tools at DeepSource.
+              Returned to a Staff Engineer role to help shape the next
+              generation of products at DeepSource. I currently wear multiple
+              hats—driving development across our Software Composition Analysis
+              (SCA) and AI initiatives, while also tackling core performance and
+              scalability challenges within the platform.
             </p>
             <hr class="my-2" />
             <h4 class="text-lg font-semibold">Engineering Manager</h4>
             <p>
               Built and led the product, platform and security engineering teams
-              at DeepSource.
+              at DeepSource. I was primarily involved in building up a rockstar
+              team of engineers, while contributing to the overall technical
+              strategy and architecture.
             </p>
             <hr class="my-2" />
             <h4 class="text-lg font-semibold">Technical Lead</h4>
-            <p>Led the development of the core product at DeepSource.</p>
+            <p>
+              Led the development of DeepSource's core product and platform
+              through its formative zero-to-one phase. This included a full
+              rewrite of the frontend UI to improve usability and performance,
+              building foundational features like reporting, a public API, and
+              the DeepSource CLI, and setting up support for on-premise
+              deployments to serve enterprise customers.
+            </p>
           </div>
           <hr />
           <hr class="hidden lg:block" />
@@ -107,8 +120,9 @@
 import type { BreadCrumb } from "~/components/PageTitle.vue";
 
 definePageMeta({
-  title: "About",
-  description: "About Vishnu Jayadevan",
+  title: "About | Vishnu Jayadevan",
+  description:
+    "Software engineer and technology leader with experience in distributed systems and software architecture. Currently leading engineering at DeepSource, previously at Exotel. Writing about tech, travel, and personal experiences.",
   documentDriven: {
     page: false,
     surround: false,
