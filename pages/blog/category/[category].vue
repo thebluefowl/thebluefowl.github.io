@@ -13,8 +13,9 @@
 import type { BreadCrumb } from "~/components/PageTitle.vue";
 
 definePageMeta({
-  title: "Blog",
-  description: "Blog posts by Vishnu Jayadevan",
+  title: "Blog Category | Vishnu Jayadevan",
+  description:
+    "Browse articles by category on software engineering, distributed systems, technology leadership, and personal experiences. Find in-depth technical content and insights from a software engineer's perspective.",
   documentDriven: {
     page: false,
     surround: false,
