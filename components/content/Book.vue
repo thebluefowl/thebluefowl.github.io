@@ -1,25 +1,25 @@
 <template>
   <!-- Desktop View -->
-  <div class="hidden md:flex items-center gap-2 w-full overflow-hidden">
+  <div class="hidden md:flex items-center gap-2 2xl:gap-8 w-full overflow-hidden py-2">
     <div class="min-w-[100px] max-w-[35%] truncate" :title="title">{{ title }}</div>
     <div class="flex-grow border-b border-dotted border-gray-300 mx-1"></div>
-    <div class="min-w-[100px] max-w-[25%] truncate" :title="author">{{ author }}</div>
+    <div class="min-w-[100px] max-w-[25%] text-right truncate" :title="author">{{ author }}</div>
     <div class="flex items-center gap-1 w-[100px] shrink-0">
       <template v-if="status === 'in-progress'">
-        <Icon name="ph:book-open" color="blue" />
+        <Icon name="mdi:book-open-page-variant-outline" color="blue" />
         <span class="text-sm text-gray-500 whitespace-nowrap">In Progress</span>
       </template>
       <template v-else-if="status === 'shelf'">
-        <Icon name="ph:books" color="gray" />
+        <Icon name="mdi:bookshelf" color="gray" />
         <span class="text-sm text-gray-500 whitespace-nowrap">On Shelf</span>
       </template>
       <template v-else-if="stars">
         <div class="flex gap-0.5">
           <template v-for="i in 5" :key="i">
-            <Icon v-if="i <= Math.floor(Number(stars))" name="ph:star-fill" color="yellow" />
-            <Icon v-else-if="i - 0.5 <= Number(stars) && Number(stars) % 1 !== 0" name="ph:star-half-fill"
+            <Icon v-if="i <= Math.floor(Number(stars))" name="mdi:star" color="yellow" />
+            <Icon v-else-if="i - 0.5 <= Number(stars) && Number(stars) % 1 !== 0" name="mdi:star-half-full"
               color="yellow" />
-            <Icon v-else name="ph:star" color="yellow" />
+            <Icon v-else name="mdi:star-outline" color="yellow" />
           </template>
         </div>
       </template>
@@ -34,7 +34,7 @@
           <div class="font-medium text-gray-900">{{ title }}</div>
           <div class="text-sm text-gray-500">{{ author }}</div>
         </div>
-        <Icon name="ph:caret-right" class="text-gray-400 w-5 h-5" :class="{ 'rotate-90': isDetailsOpen }" />
+        <Icon name="mdi:chevron-right" class="text-gray-400 w-5 h-5" :class="{ 'rotate-90': isDetailsOpen }" />
       </div>
     </button>
   </div>
@@ -53,28 +53,28 @@
               <p class="text-gray-500">{{ author }}</p>
             </div>
             <button @click="closeDetails" class="p-2 -m-2 active:bg-gray-100 rounded-full">
-              <Icon name="ph:x" class="w-6 h-6 text-gray-500" />
+              <Icon name="mdi:close" class="w-6 h-6 text-gray-500" />
             </button>
           </div>
 
           <div class="space-y-4">
             <div class="flex items-center gap-3 bg-gray-50 rounded-lg">
               <template v-if="status === 'in-progress'">
-                <Icon name="ph:book-open" color="blue" class="w-6 h-6" />
+                <Icon name="mdi:book-open-page-variant-outline" color="blue" class="w-6 h-6" />
                 <span class="text-base text-gray-700">Currently Reading</span>
               </template>
               <template v-else-if="status === 'shelf'">
-                <Icon name="ph:books" color="gray" class="w-6 h-6" />
+                <Icon name="mdi:bookshelf" color="gray" class="w-6 h-6" />
                 <span class="text-base text-gray-700">On My Shelf</span>
               </template>
               <template v-else-if="stars">
                 <div class="flex items-center gap-3">
                   <div class="flex gap-1">
                     <template v-for="i in 5" :key="i">
-                      <Icon v-if="i <= Math.floor(Number(stars))" name="ph:star-fill" color="yellow" class="w-6 h-6" />
-                      <Icon v-else-if="i - 0.5 <= Number(stars) && Number(stars) % 1 !== 0" name="ph:star-half-fill"
+                      <Icon v-if="i <= Math.floor(Number(stars))" name="mdi:star" color="yellow" class="w-6 h-6" />
+                      <Icon v-else-if="i - 0.5 <= Number(stars) && Number(stars) % 1 !== 0" name="mdi:star-half-full"
                         color="yellow" class="w-6 h-6" />
-                      <Icon v-else name="ph:star" color="yellow" class="w-6 h-6" />
+                      <Icon v-else name="mdi:star-outline" color="yellow" class="w-6 h-6" />
                     </template>
                   </div>
                   <span class="text-base text-gray-700">{{ stars }} / 5</span>

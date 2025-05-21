@@ -16,6 +16,6 @@ import type { BreadCrumb } from "~/components/PageTitle.vue";
 const { page } = useContent();
 
 const computedBreadcrumbs = computed((): BreadCrumb[] => {
-  return [{ label: "~", to: "/" }];
+  return [{ label: "Home", to: "/" }];
 });
 </script>

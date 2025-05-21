@@ -25,16 +25,8 @@
               <div>(2024-ഇന്നുവരെ)</div>
             </div>
             <span class="flex-grow hidden lg:block">
-              <svg
-                viewBox="0 0 100 10"
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-full h-2"
-              >
-                <path
-                  d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5"
-                  stroke="black"
-                  fill="transparent"
-                />
+              <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" class="w-full h-2">
+                <path d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5" stroke="black" fill="transparent" />
               </svg>
             </span>
           </div>
@@ -78,16 +70,8 @@
               <div>(2015-2019)</div>
             </div>
             <span class="flex-grow hidden lg:block">
-              <svg
-                viewBox="0 0 100 10"
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-full h-2"
-              >
-                <path
-                  d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5"
-                  stroke="black"
-                  fill="transparent"
-                />
+              <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" class="w-full h-2">
+                <path d="M0,5 C10,0 20,10 30,5 C40,0 50,10 60,5 C70,0 80,10 90,5" stroke="black" fill="transparent" />
               </svg>
             </span>
           </div>
@@ -134,6 +118,6 @@ definePageMeta({
 });
 
 const computedBreadcrumbs = computed((): BreadCrumb[] => {
-  return [{ label: "~", to: "/" }];
+  return [{ label: "Home", to: "/" }];
 });
 </script>

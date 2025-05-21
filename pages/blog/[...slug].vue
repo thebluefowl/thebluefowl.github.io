@@ -31,7 +31,7 @@ const computedBreadcrumbs = computed((): BreadCrumb[] => {
   if (!page.value) return [];
 
   return [
-    { label: "~", to: "/" },
+    { label: "Home", to: "/" },
     { label: "Blog", to: "/blog" },
     {
       label: page.value.category || "Uncategorized",
