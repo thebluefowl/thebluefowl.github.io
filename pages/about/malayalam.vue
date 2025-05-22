@@ -20,7 +20,7 @@
           <div class="flex items-center">
             <div>
               <h3>ഡീപ്പ്‌സോഴ്‌സ്</h3>
-              <div>(2024-ഇന്നുവരെ)</div>
+              <div>(2020-ഇന്നുവരെ)</div>
             </div>
             <span class="flex-grow hidden lg:block">
               <svg
