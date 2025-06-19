@@ -2,6 +2,8 @@
 ::
 ::book{title="A Man Called Ove" author="Fredrik Backman" stars=4.5}
 ::
+::book{title="The Great Railway Bazaar" author="Paul Theroux" status="in-progress"}
+::
 ::book{title="Anxious People" author="Fredrik Backman" status="in-progress"}
 ::
 ::book{title="നീർമാതളം പൂത്ത കാലം" author="മാധവിക്കുട്ടി" status="in-progress"}
