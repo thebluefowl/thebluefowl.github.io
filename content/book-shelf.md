@@ -8,6 +8,8 @@
 ::
 ::book{title="നീർമാതളം പൂത്ത കാലം" author="മാധവിക്കുട്ടി" status="in-progress"}
 ::
+::book{title="On the Road" author="Jack Kerouac" status="in-progress"}
+::
 ::book{title="The Covenant of Water" author="Abraham Verghese" status="shelf"}
 ::
 ::book{title="On Earth We're Briefly Gorgeous" author="Ocean Vuong" status="shelf"}
