@@ -4,8 +4,10 @@
       <p v-if="error.statusCode === 404">Sorry, the page you are looking for does not exist.</p>
   
       <!-- Handle other types of errors -->
-      <h1 v-else>Oops! Something went wrong.</h1>
-      <p v-else>{{ error.message }}</p>
+      <template v-else>
+        <h1>Oops! Something went wrong.</h1>
+        <p>{{ error.message }}</p>
+      </template>
   
       <nuxt-link to="/">Go back to Home</nuxt-link>
     </div>
