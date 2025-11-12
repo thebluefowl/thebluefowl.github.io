@@ -6,11 +6,11 @@
 ::
 ::book{title="A Month in Siena" author="Hisham Matar" status="in-progress"}
 ::
+::book{title="The Sea" author="John Banville" status="in-progress"}
+::
 ::book{title="Hotel du Lac" author="Anita Brookner" status="shelf"}
 ::
 ::book{title="The Art of Travel" author="Alain de Botton" status="shelf"}
-::
-::book{title="The Sea" author="John Banville" status="in-progress"}
 ::
 ::book{title="Anxious People" author="Fredrik Backman" status="shelf"}
 ::

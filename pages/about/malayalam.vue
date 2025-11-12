@@ -5,7 +5,7 @@
     </template>
     <template #body>
       <AboutLanguageSwitcher />
-      <div class="pb-8">
+      <div class="pb-48">
         <div class="mb-8 font-malayalam">
           <div class="text-xl font-light leading-relaxed">
             ഞാൻ <span class="font-bold">വിഷ്ണു ജയദേവൻ</span>. ബെംഗളൂരുവിൽ ഒരു
