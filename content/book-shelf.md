@@ -4,6 +4,8 @@
 ::
 ::book{title="The Great Railway Bazaar" author="Paul Theroux" stars=4}
 ::
+::book{title="A Month in Siena" author="Hisham Matar" status="in-progress"}
+::
 ::book{title="The Sea" author="John Banville" status="in-progress"}
 ::
 ::book{title="Anxious People" author="Fredrik Backman" status="shelf"}
