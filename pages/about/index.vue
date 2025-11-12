@@ -5,7 +5,7 @@
     </template>
     <template #body>
       <AboutLanguageSwitcher />
-      <div class="pb-8">
+      <div class="pb-48">
         <div class="mb-8">
           <div class="text-xl font-light font-garamond leading-relaxed">
             I'm <span class="font-bold">Vishnu Jayadevan</span>, a software
