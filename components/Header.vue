@@ -23,8 +23,31 @@
         </NuxtLink>
         <NuxtLink to="/blog" class="hover:text-[#64748b] nav-link" :class="{ 'font-bold': isActive('/blog') }">Blog
         </NuxtLink>
-        <NuxtLink to="/book-shelf" class="hover:text-[#64748b] nav-link"
-          :class="{ 'font-bold': isActive('/book-shelf') }">Book Shelf</NuxtLink>
+
+        <!-- Lists Dropdown -->
+        <div class="relative" @mouseenter="isListsDropdownOpen = true" @mouseleave="isListsDropdownOpen = false">
+          <button class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link flex items-center gap-1"
+            :class="{ 'font-bold': isActive('/reading') }">
+            Lists
+            <svg class="w-3 h-3 transition-transform" :class="{ 'rotate-180': isListsDropdownOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <Transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 -translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-1">
+            <div v-show="isListsDropdownOpen" class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg min-w-[120px] z-[60]">
+              <NuxtLink to="/reading" class="block px-4 py-2 text-xs uppercase tracking-wider hover:bg-gray-50 hover:text-[#64748b]"
+                :class="{ 'font-bold': isActive('/reading') }">Reading</NuxtLink>
+            </div>
+          </Transition>
+        </div>
       </div>
     </div>
 
@@ -35,8 +58,29 @@
           :class="{ 'font-bold': isActive('/about') }" @click="isMenuOpen = false">About</NuxtLink>
         <NuxtLink to="/blog" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
           :class="{ 'font-bold': isActive('/blog') }" @click="isMenuOpen = false">Blog</NuxtLink>
-        <NuxtLink to="/book-shelf" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          :class="{ 'font-bold': isActive('/book-shelf') }" @click="isMenuOpen = false">Book Shelf</NuxtLink>
+
+        <!-- Lists with submenu -->
+        <div>
+          <button @click="toggleListsDropdown" class="text-xs uppercase tracking-wider hover:text-[#64748b] flex items-center gap-1 w-full text-left"
+            :class="{ 'font-bold': isActive('/reading') }">
+            Lists
+            <svg class="w-3 h-3 transition-transform" :class="{ 'rotate-180': isListsDropdownOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <Transition
+            enter-active-class="transition ease-out duration-200"
+            enter-from-class="opacity-0 -translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition ease-in duration-150"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-1">
+            <div v-show="isListsDropdownOpen" class="pl-4 mt-2 space-y-2">
+              <NuxtLink to="/reading" class="block text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+                :class="{ 'font-bold': isActive('/reading') }" @click="isMenuOpen = false">Reading</NuxtLink>
+            </div>
+          </Transition>
+        </div>
       </div>
     </div>
   </header>
@@ -44,10 +88,19 @@
 
 <script setup>
 const isMenuOpen = ref(false)
+const isListsDropdownOpen = ref(false)
 const route = useRoute()
 
 const isActive = (path) => {
   return route.path.startsWith(path)
+}
+
+const toggleListsDropdown = () => {
+  isListsDropdownOpen.value = !isListsDropdownOpen.value
+}
+
+const closeListsDropdown = () => {
+  isListsDropdownOpen.value = false
 }
 </script>
 
