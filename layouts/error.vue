@@ -11,7 +11,6 @@
   
       <nuxt-link to="/">Go back to Home</nuxt-link>
     </div>
-    <Footer/>
   </template>
   
   <script setup>

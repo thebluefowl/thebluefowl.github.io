@@ -2,6 +2,28 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/tailwind.css"],
+
+  app: {
+    head: {
+      htmlAttrs: { lang: "en" },
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "author", content: "Vishnu Jayadevan" },
+        {
+          name: "description",
+          content:
+            "Vishnu Jayadevan - Software engineer based in Bangalore, India. Writing about software engineering, distributed systems, and more.",
+        },
+        { property: "og:site_name", content: "Vishnu Jayadevan" },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary" },
+        { name: "twitter:creator", content: "@vishnujayadevan" },
+      ],
+      link: [{ rel: "canonical", href: "https://vishnujayadevan.com" }],
+    },
+  },
+
   modules: [
     "@nuxt/content",
     "@nuxtjs/tailwindcss",
@@ -31,9 +53,7 @@ export default defineNuxtConfig({
   fonts: {
     google: {
       families: {
-        "Source Sans 4": [300, 400, 700],
         "EB Garamond": [300, 400, 700],
-        Arima: [300, 400, 700],
         "Noto Serif Malayalam": [300, 400, 700],
         "IBM Plex Sans": [300, 400, 500, 600, 700],
       },

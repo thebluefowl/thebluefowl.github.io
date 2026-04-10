@@ -30,10 +30,10 @@ useHead({
   meta: [
     { name: "description", content: page?.value?.description || "Blog Post" },
     { property: "og:title", content: page?.value?.title || "Blog Post" },
-    {
-      property: "og:description",
-      content: page?.value?.description || "Blog Post",
-    },
+    { property: "og:description", content: page?.value?.description || "Blog Post" },
+    { property: "og:type", content: "article" },
+    { name: "twitter:title", content: page?.value?.title || "Blog Post" },
+    { name: "twitter:description", content: page?.value?.description || "Blog Post" },
   ],
 });
 

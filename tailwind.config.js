@@ -11,7 +11,6 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'custom-serif': ['"Source Sans 4"', 'serif'],
         'garamond' : ['"EB Garamond"', 'serif'],
         'malayalam': ['"Noto Serif Malayalam"', 'sans-serif'],
         'plex': ['"IBM Plex Sans"', 'sans-serif'],

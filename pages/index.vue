@@ -43,12 +43,18 @@
 
 <script setup lang="ts">
 definePageMeta({
-  title: "Vishnu Jayadevan | Software Engineer & Writer",
-  description:
-    "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource, building tools for better code. Writing about technology, distributed systems, and software architecture.",
   documentDriven: {
     page: false,
     surround: false,
   },
+});
+
+useSeoMeta({
+  title: "Vishnu Jayadevan | Software Engineer & Writer",
+  description:
+    "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource, building tools for better code. Writing about technology, distributed systems, and software architecture.",
+  ogTitle: "Vishnu Jayadevan | Software Engineer & Writer",
+  ogDescription:
+    "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource.",
 });
 </script>

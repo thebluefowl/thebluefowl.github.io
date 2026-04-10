@@ -112,13 +112,19 @@
 import type { BreadCrumb } from "~/components/PageTitle.vue";
 
 definePageMeta({
-  title: "About | Vishnu Jayadevan",
-  description:
-    "Software engineer and technology leader with experience in distributed systems and software architecture. Currently leading engineering at DeepSource, previously at Exotel. Writing about tech, travel, and personal experiences.",
   documentDriven: {
     page: false,
     surround: false,
   },
+});
+
+useSeoMeta({
+  title: "About | Vishnu Jayadevan",
+  description:
+    "Software engineer and technology leader with experience in distributed systems and software architecture. Currently leading engineering at DeepSource, previously at Exotel.",
+  ogTitle: "About | Vishnu Jayadevan",
+  ogDescription:
+    "Software engineer and technology leader. Currently leading engineering at DeepSource, previously at Exotel.",
 });
 
 const computedBreadcrumbs = computed((): BreadCrumb[] => {

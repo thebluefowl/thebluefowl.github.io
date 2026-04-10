@@ -19,9 +19,9 @@
 
       <!-- Desktop Links -->
       <div class="hidden md:flex text-xs uppercase tracking-wider items-center gap-4">
-        <NuxtLink to="/about" class="hover:text-[#64748b] nav-link" :class="{ 'font-bold': isActive('/about') }">About
+        <NuxtLink to="/about" class="hover:text-[#64748b] nav-link" :class="{ 'font-bold': isActive('/about') }" :aria-current="isActive('/about') ? 'page' : undefined">About
         </NuxtLink>
-        <NuxtLink to="/blog" class="hover:text-[#64748b] nav-link" :class="{ 'font-bold': isActive('/blog') }">Blog
+        <NuxtLink to="/blog" class="hover:text-[#64748b] nav-link" :class="{ 'font-bold': isActive('/blog') }" :aria-current="isActive('/blog') ? 'page' : undefined">Blog
         </NuxtLink>
 
         <!-- Lists Dropdown -->
@@ -55,9 +55,9 @@
     <div v-show="isMenuOpen" class="md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200">
       <div class="flex flex-col py-4 px-4 space-y-4">
         <NuxtLink to="/about" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          :class="{ 'font-bold': isActive('/about') }" @click="isMenuOpen = false">About</NuxtLink>
+          :class="{ 'font-bold': isActive('/about') }" :aria-current="isActive('/about') ? 'page' : undefined" @click="isMenuOpen = false">About</NuxtLink>
         <NuxtLink to="/blog" class="text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
-          :class="{ 'font-bold': isActive('/blog') }" @click="isMenuOpen = false">Blog</NuxtLink>
+          :class="{ 'font-bold': isActive('/blog') }" :aria-current="isActive('/blog') ? 'page' : undefined" @click="isMenuOpen = false">Blog</NuxtLink>
 
         <!-- Lists with submenu -->
         <div>
@@ -99,9 +99,6 @@ const toggleListsDropdown = () => {
   isListsDropdownOpen.value = !isListsDropdownOpen.value
 }
 
-const closeListsDropdown = () => {
-  isListsDropdownOpen.value = false
-}
 </script>
 
 <style scoped>
