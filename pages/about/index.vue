@@ -12,12 +12,10 @@
             engineer based in Bangalore, India. I work at
             <a link href="https://deepsource.com" class="font-bold"
               >DeepSource</a
-            >, where I work on the latest generation of code quality and
-            security tools. This site is my little corner of the internet, where
-            I share thoughts on distributed systems, software architecture, and
-            leadership in tech. From time to time, I also write about other
-            interests—like biochemistry, aquascaping, and travel. You might even
-            come across the occasional post in Malayalam, for folks back home.
+            >, where I build code quality and security tools. I write here
+            about distributed systems, software architecture, and occasionally
+            about other things I find interesting: biochemistry, aquascaping,
+            travel. Some posts are in Malayalam, for folks back home.
           </div>
         </div>
         <h2 class="text-4xl mb-4">Career</h2>
@@ -44,29 +42,22 @@
           <div>
             <h4 class="text-lg font-semibold">Staff Engineer</h4>
             <p>
-              Returned to a Staff Engineer role to help shape the next
-              generation of products at DeepSource. I currently wear multiple
-              hats—driving development across our Software Composition Analysis
-              (SCA) and AI initiatives, while also tackling core performance and
-              scalability challenges within the platform.
+              Back in an IC role, splitting time between our SCA and AI
+              products and working on platform performance and scalability.
             </p>
             <hr class="my-2" />
             <h4 class="text-lg font-semibold">Engineering Manager</h4>
             <p>
-              Built and led the product, platform and security engineering teams
-              at DeepSource. I was primarily involved in building up a rockstar
-              team of engineers, while contributing to the overall technical
-              strategy and architecture.
+              Built and led the product, platform and security engineering
+              teams. Spent most of my time hiring, setting technical direction,
+              and trying to stay out of the way.
             </p>
             <hr class="my-2" />
             <h4 class="text-lg font-semibold">Technical Lead</h4>
             <p>
-              Led the development of DeepSource's core product and platform
-              through its formative zero-to-one phase. This included a full
-              rewrite of the frontend UI to improve usability and performance,
-              building foundational features like reporting, a public API, and
-              the DeepSource CLI, and setting up support for on-premise
-              deployments to serve enterprise customers.
+              The zero-to-one phase. Rewrote the frontend, built reporting,
+              the public API, the CLI, and set up on-premise deployments for
+              enterprise customers.
             </p>
           </div>
           <hr />
@@ -93,13 +84,9 @@
           <div>
             <h4 class="text-lg font-semibold">Senior Software Engineer</h4>
             <p>
-              This was my first job after college. At 21, I joined a small team
-              of engineers and had the privilege of working with some of the
-              best minds in the industry. I wore many hats, ranging from
-              building internal tools to developing a new telephony platform for
-              the enterprise market that powered billions of phone
-              conversations. This work resulted in my first granted patent for
-              innovations in telephony infrastructure.
+              First job out of college. Joined at 21, built internal tools,
+              then helped build a telephony platform that ended up handling
+              billions of calls. Got a patent out of it.
             </p>
           </div>
         </div>
