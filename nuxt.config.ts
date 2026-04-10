@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
     },
-    preset: "github",
+    preset: process.env.NODE_ENV === "production" ? "github" : undefined,
   },
 
   fonts: {
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
         "EB Garamond": [300, 400, 700],
         Arima: [300, 400, 700],
         "Noto Serif Malayalam": [300, 400, 700],
+        "IBM Plex Sans": [300, 400, 500, 600, 700],
       },
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <h1 class="py-16 md:py-32 lg:py-48 font-garamond">
+  <h1 :class="['py-16 md:py-32 lg:py-48', props.fontClass || 'font-garamond']">
     <div class="text-base md:text-lg">
       <span v-for="(breadcrumb, index) in props.breadcrumbs" :key="index"
         class="inline-flex items-center uppercase text-xs font-sans">
@@ -25,5 +25,6 @@ const props = defineProps<{
   title?: string;
   breadcrumbs: BreadCrumb[];
   date?: string;
+  fontClass?: string;
 }>();
 </script>
