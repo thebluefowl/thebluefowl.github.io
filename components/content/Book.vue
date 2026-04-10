@@ -15,6 +15,10 @@
         <Icon name="mdi:book-open-page-variant-outline" color="blue" />
         <span class="text-sm text-gray-500 whitespace-nowrap">In Progress</span>
       </template>
+      <template v-else-if="status === 'dnf'">
+        <Icon name="mdi:book-remove" color="gray" />
+        <span class="text-sm text-gray-500 whitespace-nowrap">Did Not Finish</span>
+      </template>
       <template v-else-if="status === 'shelf'">
         <Icon name="mdi:bookshelf" color="gray" />
         <span class="text-sm text-gray-500 whitespace-nowrap">On Shelf</span>
@@ -101,6 +105,10 @@
                 />
                 <span class="text-base text-gray-700">Currently Reading</span>
               </template>
+              <template v-else-if="status === 'dnf'">
+                <Icon name="mdi:book-remove" color="gray" class="w-6 h-6" />
+                <span class="text-base text-gray-700">Did Not Finish</span>
+              </template>
               <template v-else-if="status === 'shelf'">
                 <Icon name="mdi:bookshelf" color="gray" class="w-6 h-6" />
                 <span class="text-base text-gray-700">On My Shelf</span>
@@ -147,7 +155,7 @@ const props = defineProps<{
   title: string;
   author: string;
   stars?: string;
-  status?: "completed" | "in-progress" | "shelf";
+  status?: "completed" | "in-progress" | "shelf" | "dnf";
 }>();
 
 const isDetailsOpen = ref(false);
