@@ -42,8 +42,9 @@
           <div>
             <h4 class="text-lg font-semibold">Staff Engineer</h4>
             <p>
-              Back in an IC role, splitting time between our SCA and AI
-              products and working on platform performance and scalability.
+              Went back to IC. Turns out I have more impact with a keyboard
+              than a calendar. Working on product and platform engineering
+              problems across the stack.
             </p>
             <hr class="my-2" />
             <h4 class="text-lg font-semibold">Engineering Manager</h4>
