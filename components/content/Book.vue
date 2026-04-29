@@ -15,7 +15,10 @@
         </span>
       </template>
       <template v-else-if="trailText">
-        <span :class="trailItalic ? 'italic' : 'not-italic'">{{ trailText }}</span>
+        <span class="inline-flex items-center gap-1.5 not-italic text-gray-600">
+          <Icon :name="statusIcon" class="w-[14px] h-[14px]" />
+          <span :class="trailItalic ? 'italic' : ''">{{ trailText }}</span>
+        </span>
       </template>
     </span>
   </li>
@@ -37,6 +40,13 @@ const trailText = computed(() => {
 });
 
 const trailItalic = computed(() => props.status === "in-progress" || props.status === "dnf");
+
+const statusIcon = computed(() => {
+  if (props.status === "in-progress") return "mdi:book-open-page-variant-outline";
+  if (props.status === "dnf") return "mdi:book-remove-outline";
+  if (props.status === "shelf") return "mdi:bookshelf";
+  return "";
+});
 
 const starsNum = computed(() => {
   const n = Number(props.stars);
