@@ -1,5 +1,5 @@
 <template>
-  <ManuscriptShell>
+  <ManuscriptShell wide>
     <div class="mb-14">
       <div class="flex items-center font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 gap-4 pb-[18px]">
         <span>Vishnu Jayadevan</span>
@@ -35,8 +35,8 @@ useHead({
 
 <style>
 .prose-post {
-  margin: 48px auto 0;
-  max-width: 64ch;
+  margin: 48px 0 0;
+  max-width: none;
   font-family: "EB Garamond", Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
