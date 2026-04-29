@@ -111,4 +111,47 @@ useHead({
   height: auto;
   margin: 1.5em 0;
 }
+.prose-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.prose-post thead {
+  border-bottom: 1px solid #000;
+}
+.prose-post th {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #6b7280;
+  text-align: left;
+  padding: 10px 12px;
+}
+.prose-post tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+.prose-post td {
+  padding: 12px;
+  vertical-align: top;
+  color: #1f2937;
+}
+.prose-post th:first-child,
+.prose-post td:first-child {
+  padding-left: 0;
+}
+.prose-post th:last-child,
+.prose-post td:last-child {
+  padding-right: 0;
+}
+.prose-post td code {
+  font-size: 0.88em;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
 </style>
