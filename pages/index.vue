@@ -1,97 +1,91 @@
 <template>
-  <div class="min-h-screen flex flex-col font-garamond">
+  <div class="min-h-screen flex flex-col font-garamond bg-white text-black">
     <Header />
     <main class="flex-grow w-full pt-16 px-6 sm:px-10 md:px-16 lg:px-20 flex justify-center">
-      <div class="w-full max-w-[1280px] flex flex-col justify-center min-h-[calc(100vh-12rem)] py-10 md:py-14">
-        <h1
-          class="border-y border-black flex items-center justify-center overflow-hidden py-6 m-0"
-          aria-label="Vishnu Jayadevan"
-        >
-          <span class="font-garamond font-semibold whitespace-nowrap inline-block max-w-full text-[clamp(48px,9.5vw,132px)] leading-[0.95] tracking-[-0.04em]">
-            Vishnu&nbsp;Jayadevan
-          </span>
-        </h1>
-
-        <div class="mt-4 flex items-center w-full font-sans text-[12px] uppercase tracking-[0.18em] text-gray-500">
-          <span>Software engineer</span>
-          <span class="flex-1 border-b border-dotted border-gray-300 mx-4"></span>
-          <span>Bangalore, IN</span>
-          <span class="flex-1 border-b border-dotted border-gray-300 mx-4"></span>
-          <span>{{ year }} ed.</span>
-          <span class="flex-1 border-b border-dotted border-gray-300 mx-4"></span>
-          <span>vishnujayadevan.com</span>
+      <article class="w-full max-w-[920px] py-14 md:py-20 flex flex-col">
+        <div class="flex items-center font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 mb-6">
+          <span>Vishnu Jayadevan</span>
+          <span class="flex-1 border-b border-solid border-gray-200 mx-4 h-px"></span>
+          <span>Page i</span>
         </div>
 
-        <div class="mt-12 pt-12 grid grid-cols-1 xl:grid-cols-[1fr_1.4fr_1fr] gap-10 xl:gap-14">
-          <section class="flex flex-col gap-3.5">
-            <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium">Currently</div>
-            <ul class="list-none m-0 p-0 flex flex-col gap-1.5">
-              <li class="flex items-baseline">
-                <span class="font-sans text-[11px] uppercase tracking-[0.14em] text-gray-500 shrink-0">Working on</span>
-                <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-                <b class="font-garamond font-medium text-[17px] text-black shrink-0">
-                  <a href="https://deepsource.com" class="text-inherit no-underline hover:text-slate-500 transition-colors">DeepSource</a>
-                </b>
-              </li>
-              <li class="flex items-baseline">
-                <span class="font-sans text-[11px] uppercase tracking-[0.14em] text-gray-500 shrink-0">Reading</span>
-                <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-                <b class="font-garamond font-medium text-[17px] text-black shrink-0"><em>Eurotrash</em></b>
-              </li>
-              <li class="flex items-baseline">
-                <span class="font-sans text-[11px] uppercase tracking-[0.14em] text-gray-500 shrink-0">Writing</span>
-                <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-                <b class="font-garamond font-medium text-[17px] text-black shrink-0">Distributed systems</b>
-              </li>
-              <li class="flex items-baseline">
-                <span class="font-sans text-[11px] uppercase tracking-[0.14em] text-gray-500 shrink-0">Living in</span>
-                <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-                <b class="font-garamond font-medium text-[17px] text-black shrink-0">Bangalore</b>
-              </li>
-            </ul>
-          </section>
-
-          <section class="flex flex-col gap-3.5">
-            <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium">Latest writing</div>
-            <NuxtLink
-              v-if="latestPost"
-              :to="latestPost._path"
-              class="group block no-underline text-black mb-3.5 flex flex-col gap-1.5"
-            >
-              <span class="font-garamond text-[22px] leading-[1.25] font-medium transition-colors group-hover:text-slate-500">
-                {{ latestPost.title }}
-              </span>
-              <span class="font-sans text-[11px] uppercase tracking-[0.14em] text-gray-500">
-                {{ usePrettyDate(latestPost.date) }} &middot; {{ latestPost.category }}
-              </span>
-            </NuxtLink>
-            <NuxtLink
-              to="/blog"
-              class="font-sans text-[12px] tracking-[0.04em] text-black no-underline border-b border-black pb-0.5 inline-block w-max transition-colors hover:text-slate-500 hover:border-slate-500"
-            >
-              All writing &rarr;
-            </NuxtLink>
-          </section>
-
-          <section class="flex flex-col gap-3.5">
-            <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium">Elsewhere</div>
-            <ul class="list-none m-0 p-0 flex flex-col gap-2">
-              <li>
-                <a href="https://github.com/thebluefowl" target="_blank" rel="noopener" class="font-garamond text-[22px] text-black no-underline border-b border-transparent hover:border-black transition-colors w-max inline-block">GitHub</a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/vishnujayadevan/" target="_blank" rel="noopener" class="font-garamond text-[22px] text-black no-underline border-b border-transparent hover:border-black transition-colors w-max inline-block">LinkedIn</a>
-              </li>
-              <li>
-                <a href="mailto:hi@vishnujayadevan.com" class="font-garamond text-[22px] text-black no-underline border-b border-transparent hover:border-black transition-colors w-max inline-block">Email</a>
-              </li>
-              <li>
-                <a href="/rss.xml" class="font-garamond text-[22px] text-black no-underline border-b border-transparent hover:border-black transition-colors w-max inline-block">RSS</a>
-              </li>
-            </ul>
-          </section>
+        <div class="font-garamond italic text-[18px] text-gray-600 mb-7">
+          Ch. I. A short introduction
         </div>
-      </div>
+
+        <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
+          <span
+            class="font-garamond font-medium text-[160px] md:text-[200px] lg:text-[240px] leading-[0.78] tracking-[-0.04em] text-black -mt-2 select-none"
+            aria-hidden="true"
+          >H</span>
+          <p class="font-garamond text-[24px] md:text-[28px] leading-[1.35] text-black m-0">
+            <span class="italic">i, I am</span>
+            <span class="font-semibold">Vishnu Jayadevan</span><span class="font-semibold">.</span>
+            A software engineer based out of Bangalore, India. I lead product engineering at
+            <a href="https://deepsource.com" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">DeepSource</a>,
+            where we build tools for code quality and security. Previously at
+            <a href="https://exotel.com" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">Exotel</a>,
+            building enterprise telephony.
+          </p>
+        </div>
+
+        <p class="font-garamond text-[18px] md:text-[19px] leading-[1.6] text-gray-800 mt-8 max-w-[560px] md:pl-[228px]">
+          I write here about distributed systems, software architecture, and the occasional
+          detour into biochemistry, aquascaping, or travel. Some posts are in Malayalam,
+          for folks back home.
+        </p>
+
+        <div class="relative my-10 md:my-12 h-px bg-gray-200">
+          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-gray-500 text-sm">❦</span>
+        </div>
+
+        <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-4">
+          Contents of this site
+        </div>
+
+        <ol class="list-none m-0 p-0 flex flex-col gap-3.5">
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">i.</span>
+            <NuxtLink to="/about" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">About</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">A longer version of the above.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">ii.</span>
+            <NuxtLink to="/blog" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Writing</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Notes on systems, software, and the rest.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">iii.</span>
+            <NuxtLink to="/reading" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Reading</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">A running list, with stars.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">iv.</span>
+            <NuxtLink to="/now" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Now</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">What I&rsquo;m up to this month.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">v.</span>
+            <NuxtLink to="/projects" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Projects</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Work, side projects, patents.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">vi.</span>
+            <NuxtLink to="/uses" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Uses</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Tools, software, hardware.</span>
+          </li>
+        </ol>
+
+        <div class="mt-auto pt-10 text-right font-garamond italic text-gray-600 text-[16px]">
+          V.J., Bangalore
+        </div>
+      </article>
     </main>
     <Footer />
   </div>
@@ -110,10 +104,4 @@ useSeoMeta({
   ogDescription:
     "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource.",
 });
-
-const { data: latestPost } = await useAsyncData("home-latest-post", () =>
-  queryContent("/blog").sort({ date: -1 }).limit(1).findOne()
-);
-
-const year = new Date().getFullYear();
 </script>
