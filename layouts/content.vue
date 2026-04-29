@@ -1,20 +1,14 @@
 <template>
-  <div class="relative h-screen overflow-auto stable">
+  <div class="min-h-screen flex flex-col">
     <Header />
-    <div class="w-full p-4 sm:p-8 md:p-12 lg:p-16 flex justify-center font-garamond">
-      <div class="w-full sm:w-full sm:px-4 md:px-6 lg:px-8 xl:w-1/2 2xl:w-1/2">
+    <main class="flex-grow w-full pt-16 px-4 sm:px-8 md:px-12 lg:px-16 flex justify-center font-garamond">
+      <div class="w-full sm:w-full sm:px-4 md:px-6 lg:px-8 xl:w-1/2 2xl:w-1/2 pb-12">
         <slot name="header" />
         <div class="animate-fade-in">
           <slot name="body" />
         </div>
       </div>
-    </div>
+    </main>
     <Footer />
   </div>
 </template>
-
-<style lang="css" scoped>
-.stable {
-  scrollbar-gutter: stable;
-}
-</style>

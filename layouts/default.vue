@@ -1,11 +1,5 @@
 <template>
-  <div class="relative h-screen overflow-auto stable">
+  <div class="min-h-screen flex flex-col">
     <slot />
   </div>
 </template>
-
-<style lang="css" scoped>
-.stable {
-  scrollbar-gutter: stable;
-}
-</style>
