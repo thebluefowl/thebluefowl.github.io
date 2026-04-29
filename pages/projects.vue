@@ -20,9 +20,11 @@
     <SectionHead num="II" title="Patents" />
     <ul class="list-none m-0 p-0 flex flex-col gap-3.5">
       <li class="flex items-baseline">
-        <span class="font-garamond text-[22px] font-medium text-black shrink-0">Telephony routing system</span>
+        <a href="https://patents.google.com/patent/US20170289354A1/en" target="_blank" rel="noopener" class="font-garamond text-[20px] md:text-[22px] font-medium text-black shrink-0 no-underline hover:text-slate-500 transition-colors">
+          Allocation and Management of Shared Virtual Numbers
+        </a>
         <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-        <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Filed at Exotel, around the call platform we built</span>
+        <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">US20170289354A1, filed March 2017</span>
       </li>
     </ul>
 

@@ -103,7 +103,7 @@ const jobs = [
       {
         title: "Senior Software Engineer",
         tag: "2015 to 2019",
-        body: "First job out of college. Joined at 21, built internal tools, then helped build a telephony platform that ended up handling billions of calls. Got a patent out of it.",
+        body: "First job out of college. Joined at 21, built internal tools, then helped build a telephony platform that ended up handling billions of calls. A patent fell out of that work, on shared virtual number allocation.",
       },
     ],
   },
