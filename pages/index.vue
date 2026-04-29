@@ -1,100 +1,82 @@
 <template>
-  <NuxtLayout name="content">
-    <template #body>
-      <div class="w-full pt-16 md:pt-24 pb-16">
-        <section class="mb-20">
-          <h1 class="text-3xl md:text-4xl font-garamond leading-relaxed">
-            Hi, I am <span class="font-semibold">Vishnu Jayadevan</span>.
-          </h1>
-          <p class="mt-6 text-lg md:text-xl font-garamond leading-relaxed text-gray-800">
-            Software engineer based out of Bangalore, India. I lead product engineering at
-            <a
-              href="https://deepsource.com"
-              class="underline hover:text-gray-600 transition-colors"
-              >DeepSource</a
-            >, where we build tools for code quality and security. Previously at
-            <a
-              href="https://exotel.com"
-              class="underline hover:text-gray-600 transition-colors"
-              >Exotel</a
-            >, building enterprise telephony.
-          </p>
-          <p class="mt-4 text-lg md:text-xl font-garamond leading-relaxed text-gray-800">
-            I write here about distributed systems, software architecture, and the occasional detour into
-            biochemistry, aquascaping, or travel. Some posts are in Malayalam.
-          </p>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-grow w-full pt-16 px-6 sm:px-10 md:px-16 lg:px-20 flex justify-center">
+      <div class="monolith w-full max-w-[1280px] flex flex-col justify-center min-h-[calc(100vh-12rem)] py-10 md:py-14">
+        <h1
+          class="wordmark border-y border-black flex items-center justify-center overflow-hidden py-6"
+          aria-label="Vishnu Jayadevan"
+        >
+          <span class="wordmark__name">Vishnu&nbsp;Jayadevan</span>
+        </h1>
 
-          <div class="mt-8 flex items-center gap-5">
-            <a href="https://github.com/thebluefowl" target="_blank" rel="noopener" aria-label="GitHub" class="hover:text-slate-700 inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wider">
-              <Icon name="mdi:github" class="w-5 h-5" /> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/vishnujayadevan/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-slate-700 inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wider">
-              <Icon name="mdi:linkedin" class="w-5 h-5" /> LinkedIn
-            </a>
-            <a href="/rss.xml" aria-label="RSS" class="hover:text-slate-700 inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wider">
-              <Icon name="mdi:rss" class="w-5 h-5" /> RSS
-            </a>
-          </div>
-        </section>
+        <div class="strip mt-4 flex items-center w-full font-sans text-[12px] uppercase tracking-[0.18em] text-gray-500">
+          <span>Software engineer</span>
+          <span class="bar"></span>
+          <span>Bangalore, IN</span>
+          <span class="bar"></span>
+          <span>{{ year }} ed.</span>
+          <span class="bar"></span>
+          <span>vishnujayadevan.com</span>
+        </div>
 
-        <section class="mb-20">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-4">Currently</h2>
-          <ul class="font-garamond text-lg leading-relaxed space-y-1.5">
-            <li><span class="text-gray-500 inline-block w-28">Working on</span> product and platform engineering at DeepSource</li>
-            <li><span class="text-gray-500 inline-block w-28">Reading</span> <em>Eurotrash</em> by Christian Kracht</li>
-            <li><span class="text-gray-500 inline-block w-28">Writing</span> about distributed systems and the math underneath them</li>
-            <li><span class="text-gray-500 inline-block w-28">Living in</span> Bangalore</li>
-          </ul>
-          <p class="mt-3 text-sm text-gray-500 font-garamond">
-            More on the <NuxtLink to="/now" class="underline hover:text-gray-700">/now page</NuxtLink>.
-          </p>
-        </section>
+        <div class="grid mt-12 pt-12 grid-cols-1 xl:grid-cols-[1fr_1.4fr_1fr] gap-10 xl:gap-14">
+          <section class="col">
+            <div class="eyebrow">Currently</div>
+            <ul class="mono-list">
+              <li>
+                <span class="key">Working on</span>
+                <i class="leader"></i>
+                <b><a href="https://deepsource.com" class="hover-slate">DeepSource</a></b>
+              </li>
+              <li>
+                <span class="key">Reading</span>
+                <i class="leader"></i>
+                <b><em>Eurotrash</em></b>
+              </li>
+              <li>
+                <span class="key">Writing</span>
+                <i class="leader"></i>
+                <b>Distributed systems</b>
+              </li>
+              <li>
+                <span class="key">Living in</span>
+                <i class="leader"></i>
+                <b>Bangalore</b>
+              </li>
+            </ul>
+          </section>
 
-        <section class="mb-20" v-if="latestPost">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-4">Latest writing</h2>
-          <NuxtLink :to="latestPost._path" class="block group">
-            <div class="font-garamond text-2xl md:text-3xl group-hover:text-slate-700">
-              {{ latestPost.title }}
-            </div>
-            <div class="font-garamond text-base text-gray-600 mt-2">
-              {{ latestPost.description }}
-            </div>
-            <div class="font-sans text-xs uppercase tracking-wider text-gray-500 mt-3">
-              {{ usePrettyDate(latestPost.date) }} &middot; {{ latestPost.category }}
-            </div>
-          </NuxtLink>
-          <div class="mt-6">
-            <NuxtLink to="/blog" class="font-sans text-xs uppercase tracking-wider hover:text-slate-700 inline-flex items-center gap-1">
-              All writing <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
+          <section class="col">
+            <div class="eyebrow">Latest writing</div>
+            <NuxtLink v-if="latestPost" :to="latestPost._path" class="post-link block">
+              <span class="post-title">{{ latestPost.title }}</span>
+              <span class="post-meta">
+                {{ usePrettyDate(latestPost.date) }} &middot; {{ latestPost.category }}
+              </span>
             </NuxtLink>
-          </div>
-        </section>
+            <NuxtLink to="/blog" class="arrow">All writing &rarr;</NuxtLink>
+          </section>
 
-        <section class="mb-8">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-4">On the shelf</h2>
-          <ul class="font-garamond text-lg space-y-1">
-            <li v-for="b in shelfPreview" :key="b.title" class="flex items-baseline gap-2">
-              <span>{{ b.title }}</span>
-              <span class="text-gray-500 text-base">by {{ b.author }}</span>
-            </li>
-          </ul>
-          <div class="mt-6">
-            <NuxtLink to="/reading" class="font-sans text-xs uppercase tracking-wider hover:text-slate-700 inline-flex items-center gap-1">
-              Full reading list <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
-            </NuxtLink>
-          </div>
-        </section>
+          <section class="col">
+            <div class="eyebrow">Elsewhere</div>
+            <ul class="elsewhere">
+              <li><a href="https://github.com/thebluefowl" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/vishnujayadevan/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="mailto:hi@vishnujayadevan.com">Email</a></li>
+              <li><a href="/rss.xml">RSS</a></li>
+            </ul>
+          </section>
+        </div>
       </div>
-    </template>
-  </NuxtLayout>
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  documentDriven: {
-    page: false,
-    surround: false,
-  },
+  documentDriven: { page: false, surround: false },
 });
 
 useSeoMeta({
@@ -110,10 +92,140 @@ const { data: latestPost } = await useAsyncData("home-latest-post", () =>
   queryContent("/blog").sort({ date: -1 }).limit(1).findOne()
 );
 
-const shelfPreview = [
-  { title: "Hotel du Lac", author: "Anita Brookner" },
-  { title: "The Art of Travel", author: "Alain de Botton" },
-  { title: "On Earth We're Briefly Gorgeous", author: "Ocean Vuong" },
-  { title: "The Covenant of Water", author: "Abraham Verghese" },
-];
+const year = new Date().getFullYear();
 </script>
+
+<style scoped>
+.monolith {
+  font-family: "EB Garamond", Georgia, serif;
+}
+
+.wordmark {
+  margin: 0;
+}
+.wordmark__name {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(48px, 9.5vw, 132px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.strip .bar {
+  flex: 1;
+  border-bottom: 1px dotted #d1d5db;
+  margin: 0 16px;
+  height: 1px;
+}
+
+.eyebrow {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.mono-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mono-list li {
+  display: flex;
+  align-items: baseline;
+}
+.mono-list .key {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+.mono-list .leader {
+  flex: 1;
+  border-bottom: 1px dotted #d1d5db;
+  margin: 0 12px;
+  align-self: center;
+  height: 1px;
+  display: inline-block;
+}
+.mono-list b {
+  font-family: "EB Garamond", serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: #000;
+  flex-shrink: 0;
+}
+.mono-list b a { color: inherit; text-decoration: none; }
+.mono-list b a:hover { color: #64748b; }
+
+.post-link {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.post-link:hover .post-title { color: #64748b; }
+.post-title {
+  font-family: "EB Garamond", serif;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 500;
+  transition: color 0.15s ease-out;
+}
+.post-meta {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6b7280;
+}
+
+.arrow {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  display: inline-block;
+  width: max-content;
+  transition: color 0.15s ease-out, border-color 0.15s ease-out;
+}
+.arrow:hover { color: #64748b; border-color: #64748b; }
+
+.elsewhere {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.elsewhere a {
+  font-family: "EB Garamond", serif;
+  font-size: 22px;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease-out;
+  width: max-content;
+}
+.elsewhere a:hover { border-bottom-color: #000; }
+
+.hover-slate { transition: color 0.15s ease-out; }
+.hover-slate:hover { color: #64748b; }
+</style>
