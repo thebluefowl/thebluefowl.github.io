@@ -9,12 +9,7 @@ date: "2026-04-09"
 ## The problem
 
 You have N cache nodes and a bunch of keys. You need to decide which node handles which key. The obvious approach:
-
-```
-node = hash(key) % N
-```
-
-This works great until you scale. Go from 3 pods to 4, and `hash % 3` vs `hash % 4` gives a completely different answer for almost every key. ~75% of your keys get remapped to a different node. Every remapped key is a cache miss. The new node has to fetch the data from scratch.
+`node = hash(key) % N`. This works great until you scale. Go from 3 pods to 4, and `hash % 3` vs `hash % 4` gives a completely different answer for almost every key. ~75% of your keys get remapped to a different node. Every remapped key is a cache miss. The new node has to fetch the data from scratch.
 
 Jump consistent hashing solves this. When you go from 3 pods to 4, only ~25% of keys move (1/N). The rest stay put.
 
@@ -170,13 +165,13 @@ Breaking it down:
 
 ## The comparison
 
-|                          | `hash % N` | Jump hash   |
-|--------------------------|------------|-------------|
-| **3 to 4 nodes**          | ~75% remap | ~25% remap  |
-| **5 to 4 nodes**          | ~80% remap | ~20% remap  |
-| **Same node count**       | 0% remap   | 0% remap    |
-| **Time complexity**      | O(1)       | O(ln N)     |
-| **Space**                | O(1)       | O(1)        |
+|                     | `hash % N` | Jump hash  |
+| ------------------- | ---------- | ---------- |
+| **3 to 4 nodes**    | ~75% remap | ~25% remap |
+| **5 to 4 nodes**    | ~80% remap | ~20% remap |
+| **Same node count** | 0% remap   | 0% remap   |
+| **Time complexity** | O(1)       | O(ln N)    |
+| **Space**           | O(1)       | O(1)       |
 
 ## The trade-off
 

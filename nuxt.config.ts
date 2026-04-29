@@ -50,6 +50,25 @@ export default defineNuxtConfig({
 
   content: {
     documentDriven: true,
+    highlight: {
+      theme: "min-light",
+      preload: [
+        "go",
+        "python",
+        "typescript",
+        "javascript",
+        "bash",
+        "shell",
+        "json",
+        "yaml",
+        "rust",
+        "sql",
+        "html",
+        "css",
+        "vue",
+        "diff",
+      ],
+    },
   },
   nitro: {
     prerender: {

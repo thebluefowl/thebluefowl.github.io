@@ -72,7 +72,8 @@ useHead({
 
 <style>
 .prose-post {
-  margin: 24px 0 0;
+  margin: 24px auto 0;
+  max-width: 88ch;
   font-family: "EB Garamond", Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
@@ -91,16 +92,6 @@ useHead({
 .prose-post h3 a:hover,
 .prose-post h4 a:hover {
   color: #64748b;
-}
-/* Text elements stay readable. Block elements that earn it (code, tables, images) break out wider. */
-.prose-post > p,
-.prose-post > h2,
-.prose-post > h3,
-.prose-post > h4,
-.prose-post > ul,
-.prose-post > ol,
-.prose-post > blockquote {
-  max-width: 72ch;
 }
 .prose-post > * + * { margin-top: 0.7em; }
 .prose-post > p:first-of-type::first-letter {
@@ -145,7 +136,6 @@ useHead({
 }
 .prose-post a:hover { color: #64748b; }
 .prose-post pre {
-  background: #f9fafb;
   border: 1px solid #e5e7eb;
   padding: 16px 18px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -153,16 +143,19 @@ useHead({
   line-height: 1.55;
   margin: 1.4em 0;
   overflow: auto;
-  max-width: 100%;
+}
+/* Shiki applies a background via inline style on <pre>; if it's missing fall back to ours */
+.prose-post pre:not([style*="background"]) {
+  background: #f9fafb;
 }
 .prose-post :not(pre) > code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85em;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: #fdf6f0;
+  border: 1px solid #ead9c8;
   padding: 1px 6px;
   border-radius: 3px;
-  color: #1f2937;
+  color: #6b3f2a;
   white-space: nowrap;
 }
 .prose-post pre {

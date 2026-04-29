@@ -13,8 +13,8 @@
       <span>Read in</span>
       <span class="flex-1 border-b border-dotted border-gray-300 h-px"></span>
       <div class="flex gap-1">
-        <NuxtLink to="/about" class="px-2 py-1 hover:border hover:border-gray-200 hover:text-black transition-colors">EN</NuxtLink>
-        <NuxtLink to="/about/malayalam" class="px-2 py-1 bg-black text-white">ML</NuxtLink>
+        <NuxtLink to="/about" class="px-2 py-1 border border-transparent hover:border-gray-300 hover:text-black transition-colors">EN</NuxtLink>
+        <NuxtLink to="/about/malayalam" class="px-2 py-1 border border-black bg-black text-white">ML</NuxtLink>
       </div>
     </div>
 
