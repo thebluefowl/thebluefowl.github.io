@@ -91,6 +91,66 @@
             </p>
           </div>
         </div>
+
+        <h2 class="text-4xl mb-4 mt-12">Beyond work</h2>
+        <div class="mb-8 pl-8 grid lg:grid-cols-2 gap-y-6 gap-x-8 font-garamond">
+          <div>
+            <h3 class="text-lg font-semibold">Reading &amp; writing</h3>
+            <p>
+              I keep a running <NuxtLink to="/reading" class="underline hover:text-gray-700">reading list</NuxtLink>,
+              mostly fiction these days. I write a bit of Malayalam too, slowly.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Aquascaping</h3>
+            <p>
+              Tending a planted aquarium at home. There is more biology and chemistry in a glass box of
+              water than I expected, and somehow the algae always wins eventually.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Biochemistry, casually</h3>
+            <p>
+              I read papers and textbooks for fun, mostly molecular biology and metabolism.
+              Adjacent to nothing I do at work, which is part of the appeal.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Travel</h3>
+            <p>
+              Slow trains over fast flights. I write down what I notice. Sometimes it makes
+              its way <NuxtLink to="/blog" class="underline hover:text-gray-700">here</NuxtLink>.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-4xl mb-4 mt-12">Patents &amp; recognition</h2>
+        <div class="mb-8 pl-8 font-garamond">
+          <ul class="list-disc space-y-2">
+            <li>
+              <span class="font-semibold">Telephony routing system</span>
+              <span class="text-gray-600">. Filed during my time at Exotel, around the call platform we built.</span>
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="text-4xl mb-4 mt-12">Elsewhere</h2>
+        <div class="mb-8 pl-8 font-garamond">
+          <ul class="space-y-2 text-base">
+            <li>
+              <a href="https://github.com/thebluefowl" target="_blank" rel="noopener" class="underline hover:text-gray-700">GitHub</a>
+              for code.
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/vishnujayadevan/" target="_blank" rel="noopener" class="underline hover:text-gray-700">LinkedIn</a>
+              for the long form CV.
+            </li>
+            <li>
+              <a href="mailto:hi@vishnujayadevan.com" class="underline hover:text-gray-700">Email</a>
+              if you want to say hi.
+            </li>
+          </ul>
+        </div>
       </div>
     </template>
   </NuxtLayout>

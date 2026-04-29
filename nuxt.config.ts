@@ -20,7 +20,15 @@ export default defineNuxtConfig({
         { name: "twitter:card", content: "summary" },
         { name: "twitter:creator", content: "@vishnujayadevan" },
       ],
-      link: [{ rel: "canonical", href: "https://vishnujayadevan.com" }],
+      link: [
+        { rel: "canonical", href: "https://vishnujayadevan.com" },
+        {
+          rel: "alternate",
+          type: "application/rss+xml",
+          title: "Vishnu Jayadevan",
+          href: "https://vishnujayadevan.com/rss.xml",
+        },
+      ],
     },
   },
 
@@ -46,6 +54,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
+      routes: ["/rss.xml"],
     },
     preset: process.env.NODE_ENV === "production" ? "github" : undefined,
   },

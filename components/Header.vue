@@ -42,9 +42,15 @@
             leave-active-class="transition ease-in duration-150"
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 -translate-y-1">
-            <div v-show="isListsDropdownOpen" class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg min-w-[120px] z-[60]">
+            <div v-show="isListsDropdownOpen" class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg min-w-[140px] z-[60]">
               <NuxtLink to="/reading" class="block px-4 py-2 text-xs uppercase tracking-wider hover:bg-gray-50 hover:text-[#64748b]"
                 :class="{ 'font-bold': isActive('/reading') }">Reading</NuxtLink>
+              <NuxtLink to="/projects" class="block px-4 py-2 text-xs uppercase tracking-wider hover:bg-gray-50 hover:text-[#64748b]"
+                :class="{ 'font-bold': isActive('/projects') }">Projects</NuxtLink>
+              <NuxtLink to="/uses" class="block px-4 py-2 text-xs uppercase tracking-wider hover:bg-gray-50 hover:text-[#64748b]"
+                :class="{ 'font-bold': isActive('/uses') }">Uses</NuxtLink>
+              <NuxtLink to="/now" class="block px-4 py-2 text-xs uppercase tracking-wider hover:bg-gray-50 hover:text-[#64748b]"
+                :class="{ 'font-bold': isActive('/now') }">Now</NuxtLink>
             </div>
           </Transition>
         </div>
@@ -78,6 +84,12 @@
             <div v-show="isListsDropdownOpen" class="pl-4 mt-2 space-y-2">
               <NuxtLink to="/reading" class="block text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
                 :class="{ 'font-bold': isActive('/reading') }" @click="isMenuOpen = false">Reading</NuxtLink>
+              <NuxtLink to="/projects" class="block text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+                :class="{ 'font-bold': isActive('/projects') }" @click="isMenuOpen = false">Projects</NuxtLink>
+              <NuxtLink to="/uses" class="block text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+                :class="{ 'font-bold': isActive('/uses') }" @click="isMenuOpen = false">Uses</NuxtLink>
+              <NuxtLink to="/now" class="block text-xs uppercase tracking-wider hover:text-[#64748b] nav-link"
+                :class="{ 'font-bold': isActive('/now') }" @click="isMenuOpen = false">Now</NuxtLink>
             </div>
           </Transition>
         </div>
