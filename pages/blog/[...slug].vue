@@ -72,11 +72,25 @@ useHead({
 
 <style>
 .prose-post {
-  margin: 48px 0 0;
+  margin: 24px 0 0;
   font-family: "EB Garamond", Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
   color: #1f2937;
+}
+.prose-post h1 a,
+.prose-post h2 a,
+.prose-post h3 a,
+.prose-post h4 a {
+  text-decoration: none;
+  color: inherit;
+  border: 0;
+}
+.prose-post h1 a:hover,
+.prose-post h2 a:hover,
+.prose-post h3 a:hover,
+.prose-post h4 a:hover {
+  color: #64748b;
 }
 /* Text elements stay readable. Block elements that earn it (code, tables, images) break out wider. */
 .prose-post > p,
@@ -98,6 +112,10 @@ useHead({
   padding: 4px 12px 0 0;
   margin-top: 6px;
   color: #000;
+}
+.prose-post > h2:first-child,
+.prose-post > h3:first-child {
+  margin-top: 0;
 }
 .prose-post h2 {
   font-family: "EB Garamond", Georgia, serif;
@@ -137,12 +155,26 @@ useHead({
   overflow: auto;
   max-width: 100%;
 }
-.prose-post code {
+.prose-post :not(pre) > code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.92em;
+  font-size: 0.85em;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: #1f2937;
+  white-space: nowrap;
+}
+.prose-post pre {
+  /* reset for nested pre code */
 }
 .prose-post pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  white-space: pre;
 }
 .prose-post blockquote {
   margin: 1.2em 0;
