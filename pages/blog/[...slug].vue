@@ -1,5 +1,5 @@
 <template>
-  <ManuscriptShell wide>
+  <ManuscriptShell>
     <div class="mb-14">
       <div class="flex items-center font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 gap-4 pb-[18px]">
         <span>Vishnu Jayadevan</span>
@@ -9,9 +9,31 @@
       <h1 class="font-garamond font-normal text-[clamp(48px,7.5vw,112px)] leading-[0.96] tracking-[-0.03em] m-0 pb-7 border-b border-black">
         {{ page.title }}
       </h1>
+      <p
+        v-if="page.description"
+        class="font-garamond italic text-[22px] md:text-[26px] leading-[1.4] text-gray-600 m-0 mt-10 max-w-[60ch] mx-auto text-center"
+      >
+        {{ page.description }}
+      </p>
     </div>
 
-    <ContentDoc class="prose-post max-w-none" />
+    <ContentDoc class="prose-post" />
+
+    <section v-if="related && related.length" class="mt-16 pt-10 border-t border-black">
+      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">Continued in</div>
+      <ol class="list-none m-0 p-0 flex flex-col gap-3">
+        <li v-for="(p, i) in related" :key="p._path" class="flex items-baseline">
+          <span class="font-garamond italic text-[18px] text-gray-500 w-9 shrink-0">{{ romans[i] }}.</span>
+          <NuxtLink :to="p._path" class="font-garamond text-[20px] md:text-[22px] font-medium leading-tight text-black shrink-0 no-underline hover:italic hover:text-slate-500 transition-colors">
+            {{ p.title }}
+          </NuxtLink>
+          <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+          <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0">
+            {{ usePrettyDate(p.date) }} . {{ p.category }}
+          </span>
+        </li>
+      </ol>
+    </section>
 
     <Signoff><em>V.J., {{ usePrettyDate(page.date) }}</em></Signoff>
   </ManuscriptShell>
@@ -19,6 +41,21 @@
 
 <script setup lang="ts">
 const { page } = useContent();
+
+const route = useRoute();
+
+const { data: related } = await useAsyncData(
+  () => `blog-related-${route.path}`,
+  () =>
+    queryContent("/blog")
+      .where({ category: page.value?.category, _path: { $ne: route.path } })
+      .sort({ date: -1 })
+      .limit(3)
+      .find(),
+  { watch: [() => route.path] }
+);
+
+const romans = ["i", "ii", "iii", "iv", "v"];
 
 useHead({
   title: page?.value?.title || "Blog Post",
@@ -36,13 +73,32 @@ useHead({
 <style>
 .prose-post {
   margin: 48px 0 0;
-  max-width: none;
   font-family: "EB Garamond", Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
   color: #1f2937;
 }
+/* Text elements stay readable. Block elements that earn it (code, tables, images) break out wider. */
+.prose-post > p,
+.prose-post > h2,
+.prose-post > h3,
+.prose-post > h4,
+.prose-post > ul,
+.prose-post > ol,
+.prose-post > blockquote {
+  max-width: 72ch;
+}
 .prose-post > * + * { margin-top: 0.7em; }
+.prose-post > p:first-of-type::first-letter {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 5.4em;
+  line-height: 0.86;
+  float: left;
+  padding: 4px 12px 0 0;
+  margin-top: 6px;
+  color: #000;
+}
 .prose-post h2 {
   font-family: "EB Garamond", Georgia, serif;
   font-weight: 500;
@@ -77,8 +133,9 @@ useHead({
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px;
   line-height: 1.55;
-  margin: 1.2em 0;
+  margin: 1.4em 0;
   overflow: auto;
+  max-width: 100%;
 }
 .prose-post code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -113,6 +170,7 @@ useHead({
 }
 .prose-post table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.4em 0;
   font-size: 16px;
