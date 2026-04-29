@@ -14,6 +14,7 @@
             <NuxtLink to="/now" class="hover:text-slate-700">Now</NuxtLink>
             <NuxtLink to="/projects" class="hover:text-slate-700">Projects</NuxtLink>
             <NuxtLink to="/uses" class="hover:text-slate-700">Uses</NuxtLink>
+            <NuxtLink to="/elsewhere" class="hover:text-slate-700">Elsewhere</NuxtLink>
             <a href="/rss.xml" class="hover:text-slate-700 inline-flex items-center gap-1">
               <Icon name="mdi:rss" class="w-3.5 h-3.5" /> RSS
             </a>

@@ -1,66 +1,78 @@
 <template>
-  <NuxtLayout name="content">
-    <template #header>
-      <PageTitle title="Now" :breadcrumbs="[{ label: 'Home', to: '/' }]" />
-    </template>
-    <template #body>
-      <div class="pb-24 font-garamond">
-        <p class="text-base text-gray-500 mb-8">
-          What I'm focused on right now. Updated {{ updated }}.
-          Inspired by <a href="https://nownownow.com/about" target="_blank" rel="noopener" class="underline hover:text-gray-700">Derek Sivers' /now movement</a>.
-        </p>
+  <ManuscriptShell>
+    <Folio page-label="Now" subtitle="What I'm up to, this month" />
 
-        <section class="mb-12">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-3">Work</h2>
-          <p class="text-lg leading-relaxed">
-            Back in the IC seat at <a href="https://deepsource.com" class="underline hover:text-gray-700">DeepSource</a> as a Staff Engineer.
-            Working across product and platform problems: making analysis faster, the experience tighter, and the
-            internals easier to extend.
-          </p>
-        </section>
+    <div class="flex items-center gap-4 mt-2 font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500">
+      <span>Bangalore</span>
+      <span class="flex-1 border-b border-dotted border-gray-300 h-px"></span>
+      <span>Updated {{ updated }}</span>
+    </div>
 
-        <section class="mb-12">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-3">Writing</h2>
-          <p class="text-lg leading-relaxed">
-            Slowly building up a series on the math and trade-offs behind distributed systems primitives.
-            The most recent post is on
-            <NuxtLink to="/blog" class="underline hover:text-gray-700">jump consistent hashing</NuxtLink>.
-            Next up: probabilistic data structures.
-          </p>
-        </section>
+    <p class="font-garamond text-[22px] md:text-[24px] leading-[1.5] text-black m-0 max-w-[56ch] mt-7">
+      A snapshot of the present tense. Inspired by
+      <a href="https://nownownow.com/about" target="_blank" rel="noopener" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">Derek Sivers'</a>
+      /now page. What I'd tell a friend I bumped into on the street, if they asked what I'd been up to.
+    </p>
 
-        <section class="mb-12">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-3">Reading</h2>
-          <p class="text-lg leading-relaxed">
-            Currently in the middle of <em>Eurotrash</em> by Christian Kracht. The
-            <NuxtLink to="/reading" class="underline hover:text-gray-700">full list is here</NuxtLink>.
-          </p>
-        </section>
+    <SectionHead num="I" title="Currently" />
+    <ul class="list-none m-0 p-0 flex flex-col gap-3.5">
+      <li v-for="row in currently" :key="row.k" class="flex items-baseline">
+        <span class="font-garamond text-[24px] font-medium text-black no-underline shrink-0">{{ row.k }}</span>
+        <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+        <span class="font-garamond text-[18px] text-gray-800 text-right shrink-0" v-html="row.v"></span>
+      </li>
+    </ul>
 
-        <section class="mb-12">
-          <h2 class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-3">Outside the keyboard</h2>
-          <ul class="text-lg leading-relaxed list-disc pl-6 space-y-1">
-            <li>Tending a planted aquarium. Mostly losing the fight with algae.</li>
-            <li>Picking Malayalam back up as a writing language, slowly.</li>
-            <li>Walking a lot. Bangalore is best at 6am.</li>
-          </ul>
-        </section>
-      </div>
-    </template>
-  </NuxtLayout>
+    <SectionHead num="II">
+      This <em class="italic font-normal">week</em>
+    </SectionHead>
+    <p class="font-garamond text-[18px] md:text-[19px] leading-[1.55] text-gray-800 m-0 max-w-[62ch]">
+      Mostly heads-down on a scheduler rewrite, figuring out how to make work distribution stable
+      when nodes come and go. Some afternoons spent rereading the Raft paper. The monsoon's late
+      this year, and the tank water is the wrong shade of green; both of those are getting more
+      attention than they deserve.
+    </p>
+
+    <SectionHead num="III" title="Recently" />
+    <ol class="list-none m-0 p-0 flex flex-col gap-3.5">
+      <li v-for="row in recently" :key="row.d" class="flex items-baseline">
+        <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 w-16 shrink-0">{{ row.d }}</span>
+        <span class="font-garamond italic font-medium text-[19px] text-black shrink-0">{{ row.k }}</span>
+        <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+        <span class="font-garamond italic text-[16px] text-gray-600 shrink-0" v-html="row.v"></span>
+      </li>
+    </ol>
+
+    <Signoff><em>refreshed roughly once a month</em></Signoff>
+  </ManuscriptShell>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  documentDriven: { page: false, surround: false },
-});
+definePageMeta({ documentDriven: { page: false, surround: false } });
 
 useSeoMeta({
   title: "Now | Vishnu Jayadevan",
-  description: "What I'm focused on right now: work, writing, reading, and life outside the keyboard.",
+  description: "What I'm up to right now: work, writing, reading, and life outside the keyboard.",
   ogTitle: "Now | Vishnu Jayadevan",
-  ogDescription: "What I'm focused on right now.",
+  ogDescription: "What I'm up to right now.",
 });
 
-const updated = "April 2026";
+const updated = "24 April 2026";
+
+const currently = [
+  { k: "Working on", v: "Distributed scheduling at DeepSource" },
+  { k: "Reading", v: "<em>Eurotrash</em> by Christian Kracht" },
+  { k: "Writing", v: "A long post on jump consistent hashing" },
+  { k: "Listening to", v: "Khruangbin, Brian Eno, Carnatic instrumentals" },
+  { k: "Tinkering with", v: "A 60-litre planted tank. Algae winning again" },
+  { k: "Living in", v: "Bangalore, Indiranagar mostly" },
+];
+
+const recently = [
+  { d: "Apr 22", k: "Shipped", v: "v0.18 of the CLI. Incremental scans across monorepos." },
+  { d: "Apr 18", k: "Wrote", v: "Notes on jump hash, pinned to the front page." },
+  { d: "Apr 11", k: "Finished", v: "<em>The Covenant of Water</em>. A long, slow read." },
+  { d: "Apr 04", k: "Visited", v: "Hosur Junction. Three hours of trains and filter coffee." },
+  { d: "Mar 28", k: "Replanted", v: "The 60-litre tank. Cryptocoryne, Anubias, and patience." },
+];
 </script>

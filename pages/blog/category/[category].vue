@@ -1,36 +1,49 @@
 <template>
-  <NuxtLayout name="content">
-    <template #header>
-      <PageTitle :title="category" :breadcrumbs="breadcrumbs()" />
-    </template>
-    <template #body>
-      <Toc :filter="category" :showCategory="false" />
-    </template>
-  </NuxtLayout>
+  <ManuscriptShell>
+    <Folio page-label="Writing" :subtitle="`Filed under ${category}`" />
+
+    <ol class="list-none m-0 p-0 border-t border-gray-200 mt-6">
+      <li v-for="(p, i) in posts" :key="p._path" class="grid grid-cols-[56px_1fr] items-baseline border-b border-gray-200 group">
+        <span class="font-garamond italic text-[18px] text-gray-500 py-5">{{ romans[i] }}.</span>
+        <NuxtLink :to="p._path" class="flex flex-col gap-2 py-5 no-underline text-inherit transition-transform duration-200 group-hover:translate-x-1.5">
+          <span class="font-garamond text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.005em] text-black transition-colors group-hover:italic group-hover:text-slate-500">
+            {{ p.title }}
+          </span>
+          <span class="flex flex-wrap gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500">
+            <span>{{ usePrettyDate(p.date) }}</span>
+            <span class="text-gray-300">&middot;</span>
+            <span>{{ p.category }}</span>
+          </span>
+        </NuxtLink>
+      </li>
+    </ol>
+
+    <div class="mt-8">
+      <NuxtLink to="/blog" class="font-sans text-[12px] tracking-[0.04em] text-black no-underline border-b border-black pb-0.5 inline-block hover:text-slate-500 hover:border-slate-500 transition-colors">
+        &larr; All writing
+      </NuxtLink>
+    </div>
+
+    <Signoff><em>filed under <span class="not-italic">{{ category }}</span></em></Signoff>
+  </ManuscriptShell>
 </template>
 
 <script setup lang="ts">
-import type { BreadCrumb } from "~/components/PageTitle.vue";
+definePageMeta({ documentDriven: { page: false, surround: false } });
 
-definePageMeta({
-  title: "Blog Category | Vishnu Jayadevan",
-  description:
-    "Browse articles by category on software engineering, distributed systems, technology leadership, and personal experiences. Find in-depth technical content and insights from a software engineer's perspective.",
-  documentDriven: {
-    page: false,
-    surround: false,
-  },
-});
-
-const breadcrumbs = (): BreadCrumb[] => {
-  const breadcrumbs: BreadCrumb[] = [
-    { label: "Home", to: "/" },
-    { label: "Blog", to: "/blog" },
-  ];
-  return breadcrumbs;
-};
 const route = useRoute();
 const category = Array.isArray(route.params.category)
   ? route.params.category.join(",")
-  : route.params.category;
+  : (route.params.category as string);
+
+useSeoMeta({
+  title: `${category} | Vishnu Jayadevan`,
+  description: `Posts filed under ${category}.`,
+});
+
+const { data: posts } = await useAsyncData(`blog-cat-${category}`, () =>
+  queryContent("/blog").where({ category: { $icontains: category } }).sort({ date: -1 }).find()
+);
+
+const romans = ["i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii","xiii","xiv","xv"];
 </script>
