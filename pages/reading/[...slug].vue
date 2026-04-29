@@ -17,7 +17,7 @@
       <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
         2026
       </div>
-      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-3.5">
+      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
         <ContentDoc />
       </ol>
     </div>
@@ -28,7 +28,7 @@
       <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
         2025
       </div>
-      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-3.5">
+      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
         <ContentRenderer :value="reading2025" />
       </ol>
     </div>
