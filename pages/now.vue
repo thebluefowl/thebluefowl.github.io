@@ -32,8 +32,8 @@
 
     <SectionHead num="III" title="Recently" />
     <ol class="list-none m-0 p-0 flex flex-col gap-3.5">
-      <li v-for="row in now?.recently" :key="row.d" class="flex items-baseline">
-        <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 w-16 shrink-0">{{ row.d }}</span>
+      <li v-for="(row, i) in now?.recently" :key="i" class="flex items-baseline">
+        <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0 whitespace-nowrap pr-4 min-w-[4rem]">{{ formatDate(row) }}</span>
         <span class="font-garamond italic font-medium text-[19px] text-black shrink-0">{{ row.k }}</span>
         <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
         <span class="font-garamond italic text-[16px] text-gray-600 shrink-0" v-html="row.v"></span>
@@ -59,6 +59,9 @@ useSeoMeta({
 });
 
 const ledeHtml = computed(() => useInlineMd((now.value as any)?.lede));
+
+const formatDate = (row: { d: string; to?: string }) =>
+  row.to ? `${row.d} – ${row.to}` : row.d;
 </script>
 
 <style scoped>

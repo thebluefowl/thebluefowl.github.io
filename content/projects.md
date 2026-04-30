@@ -15,7 +15,7 @@ work:
     years: 2015 to 2019
     href: https://exotel.com
     body: |
-      Joined at 21. Built internal tooling, then helped build a telephony platform that ended up handling billions of calls.
+      Built core telephony infrastructure that powered conversations for millions of people.
 patents:
   - title: Allocation and Management of Shared Virtual Numbers
     href: https://patents.google.com/patent/US20170289354A1/en

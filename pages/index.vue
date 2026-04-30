@@ -70,12 +70,6 @@
           </li>
           <li class="group flex items-baseline">
             <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">v.</span>
-            <NuxtLink to="/projects" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Projects</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Work, side projects, patents.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">vi.</span>
             <NuxtLink to="/uses" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Uses</NuxtLink>
             <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
             <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Tools, software, hardware.</span>

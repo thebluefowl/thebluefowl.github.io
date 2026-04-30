@@ -39,7 +39,6 @@ const navLinks = [
   { to: "/blog", label: "Writing" },
   { to: "/reading", label: "Reading" },
   { to: "/now", label: "Now" },
-  { to: "/projects", label: "Projects" },
   { to: "/elsewhere", label: "Elsewhere" },
 ];
 

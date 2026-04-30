@@ -21,7 +21,8 @@ recently:
   - d: Apr 18
     k: Wrote
     v: Notes on jump hash, pinned to the front page.
-  - d: Apr 1-20
+  - d: Mar 30
+    to: Apr 20
     k: Visited
     v: San Francisco.  Finally made the trip to Silicon Valley.
 ---
