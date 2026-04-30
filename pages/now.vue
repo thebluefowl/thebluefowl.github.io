@@ -58,17 +58,7 @@ useSeoMeta({
   ogDescription: () => now.value?.description ?? "What I'm up to right now.",
 });
 
-// Render the lede markdown (links etc.) into HTML
-const ledeHtml = computed(() => {
-  const md = (now.value as any)?.lede || "";
-  // Simple inline markdown for links: [text](url)
-  return md
-    .replace(/\n/g, " ")
-    .replace(
-      /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">$1</a>'
-    );
-});
+const ledeHtml = computed(() => useInlineMd((now.value as any)?.lede));
 </script>
 
 <style scoped>

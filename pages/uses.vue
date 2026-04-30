@@ -2,13 +2,13 @@
   <ManuscriptShell>
     <Folio page-label="Uses" subtitle="Tools, software, and bits of hardware I reach for" />
 
-    <p class="font-garamond text-[22px] md:text-[24px] leading-[1.5] text-black m-0 max-w-[56ch]">
-      A
-      <a href="https://uses.tech" target="_blank" rel="noopener" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">/uses</a>
-      page. The setup behind everything else on this site.
-    </p>
+    <p
+      v-if="page?.lede"
+      class="font-garamond text-[22px] md:text-[24px] leading-[1.5] text-black m-0 max-w-[56ch]"
+      v-html="ledeHtml"
+    ></p>
 
-    <template v-for="(g, gi) in groups" :key="g.title">
+    <template v-for="g in page?.groups" :key="g.title">
       <SectionHead :num="g.num" :title="g.title" />
       <ul class="list-none m-0 p-0 flex flex-col gap-3.5">
         <li v-for="row in g.rows" :key="row.k" class="flex items-baseline">
@@ -19,58 +19,23 @@
       </ul>
     </template>
 
-    <Signoff><em>last updated April 2026</em></Signoff>
+    <Signoff><em>last updated {{ page?.updated }}</em></Signoff>
   </ManuscriptShell>
 </template>
 
 <script setup lang="ts">
 definePageMeta({ documentDriven: { page: false, surround: false } });
 
+const { data: page } = await useAsyncData("uses-page", () =>
+  queryContent("/uses").findOne()
+);
+
 useSeoMeta({
-  title: "Uses | Vishnu Jayadevan",
-  description: "Tools, software, and hardware I reach for every day.",
-  ogTitle: "Uses | Vishnu Jayadevan",
-  ogDescription: "Tools, software, and hardware I reach for every day.",
+  title: () => `${page.value?.title ?? "Uses"} | Vishnu Jayadevan`,
+  description: () => page.value?.description ?? "Tools, software, and hardware I reach for.",
+  ogTitle: () => `${page.value?.title ?? "Uses"} | Vishnu Jayadevan`,
+  ogDescription: () => page.value?.description ?? "Tools, software, and hardware I reach for.",
 });
 
-const groups = [
-  {
-    num: "I",
-    title: "Editor & terminal",
-    rows: [
-      { k: "Editor", v: "Neovim. VS Code in someone else's repo." },
-      { k: "Terminal", v: "Ghostty" },
-      { k: "Shell", v: "Fish" },
-      { k: "Multiplexer", v: "Tmux, when I have to" },
-    ],
-  },
-  {
-    num: "II",
-    title: "Languages",
-    rows: [
-      { k: "At work", v: "Go and Python" },
-      { k: "On the frontend", v: "TypeScript" },
-      { k: "Glue", v: "Bash, when avoiding it would take longer" },
-    ],
-  },
-  {
-    num: "III",
-    title: "This website",
-    rows: [
-      { k: "Framework", v: "Nuxt 3 with @nuxt/content" },
-      { k: "Styling", v: "Tailwind, no UI kit" },
-      { k: "Type", v: "EB Garamond, Noto Serif Malayalam, IBM Plex Sans" },
-      { k: "Hosting", v: "GitHub Pages" },
-    ],
-  },
-  {
-    num: "IV",
-    title: "Hardware",
-    rows: [
-      { k: "Laptop", v: "MacBook Pro, Apple silicon" },
-      { k: "Display", v: '27" 4K external' },
-      { k: "Keyboard", v: "Mechanical with tactile switches" },
-    ],
-  },
-];
+const ledeHtml = computed(() => useInlineMd((page.value as any)?.lede));
 </script>
