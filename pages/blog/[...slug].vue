@@ -40,9 +40,15 @@
 </template>
 
 <script setup lang="ts">
-const { page } = useContent();
+definePageMeta({ documentDriven: { page: false, surround: false } });
 
 const route = useRoute();
+
+const { data: page } = await useAsyncData(
+  () => `blog-page-${route.path}`,
+  () => queryContent(route.path).findOne(),
+  { watch: [() => route.path] }
+);
 
 const { data: related } = await useAsyncData(
   () => `blog-related-${route.path}`,
@@ -58,14 +64,14 @@ const { data: related } = await useAsyncData(
 const romans = ["i", "ii", "iii", "iv", "v"];
 
 useHead({
-  title: page?.value?.title || "Blog Post",
+  title: () => page.value?.title || "Blog Post",
   meta: [
-    { name: "description", content: page?.value?.description || "Blog Post" },
-    { property: "og:title", content: page?.value?.title || "Blog Post" },
-    { property: "og:description", content: page?.value?.description || "Blog Post" },
+    { name: "description", content: () => page.value?.description || "Blog Post" },
+    { property: "og:title", content: () => page.value?.title || "Blog Post" },
+    { property: "og:description", content: () => page.value?.description || "Blog Post" },
     { property: "og:type", content: "article" },
-    { name: "twitter:title", content: page?.value?.title || "Blog Post" },
-    { name: "twitter:description", content: page?.value?.description || "Blog Post" },
+    { name: "twitter:title", content: () => page.value?.title || "Blog Post" },
+    { name: "twitter:description", content: () => page.value?.description || "Blog Post" },
   ],
 });
 </script>
