@@ -1,6 +1,6 @@
 <template>
   <ManuscriptShell>
-    <Folio page-label="Writing" subtitle="All posts, in chronological order" />
+    <Folio page-label="Blog" subtitle="All posts, in chronological order" />
 
     <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
       <span
@@ -8,7 +8,7 @@
         aria-hidden="true"
       >F</span>
       <p class="font-garamond text-[22px] md:text-[26px] leading-[1.4] text-black m-0">
-        <span class="italic">orty-odd posts</span> since 2018. Long-form when the topic earns it,
+        <span class="italic">ragments</span> collected since 2018. Long-form when the topic earns it,
         short when it doesn't. Distributed systems mostly, with the occasional detour into
         <em class="italic">biology</em>, <em class="italic">aquariums</em>, or <em class="italic">trains</em>.
       </p>
@@ -47,9 +47,9 @@ import type { ParsedContent } from "@nuxt/content";
 definePageMeta({ documentDriven: { page: false, surround: false } });
 
 useSeoMeta({
-  title: "Writing | Vishnu Jayadevan",
+  title: "Blog | Vishnu Jayadevan",
   description: "Articles on software engineering, distributed systems, and technology leadership.",
-  ogTitle: "Writing | Vishnu Jayadevan",
+  ogTitle: "Blog | Vishnu Jayadevan",
   ogDescription: "Articles on software engineering, distributed systems, and technology leadership.",
 });
 

@@ -1,20 +1,20 @@
 ---
 title: Now
 description: What I'm up to right now.
-updated: 24 April 2026
+updated: 15 May 2026
 location: Bangalore
 lede: |
   A snapshot of the present tense. Inspired by [Derek Sivers'](https://nownownow.com/about) /now page.
   What I'd tell a friend I bumped into on the street, if they asked what I'd been up to.
 currently:
   - k: Working on
-    v: A novel writing app
+    v: A novel-writing app
   - k: Reading
     v: "<em>Eurotrash</em> by Christian Kracht"
   - k: Writing
     v: A long post on jump consistent hashing
   - k: Listening to
-    v: Sepultra
+    v: Sepultura
   - k: Living in
     v: Bangalore, Indiranagar mostly
 recently:
@@ -27,4 +27,4 @@ recently:
     v: San Francisco.  Finally made the trip to Silicon Valley.
 ---
 
-Reading about cumulative distribution functions, etc. Refreshing the website, adding some new pages.
+Reading about cumulative distribution functions, etc. Giving the website a refresh and working on building something for novel writers.

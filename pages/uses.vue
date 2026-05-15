@@ -1,6 +1,6 @@
 <template>
   <ManuscriptShell>
-    <Folio page-label="Uses" subtitle="Tools, software, and bits of hardware I reach for" />
+    <Folio page-label="Uses" subtitle="Tools, software, and hardware I reach for every day" />
 
     <p
       v-if="page?.lede"

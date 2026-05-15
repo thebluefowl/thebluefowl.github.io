@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-family: "EB Garamond", serif;
+  }
+}
+
 .prose h2 a, .prose h3 a {
     text-decoration: none;
     color: inherit;

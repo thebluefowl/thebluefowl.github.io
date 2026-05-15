@@ -3,7 +3,7 @@ import { serverQueryContent } from "#content/server";
 const SITE_URL = "https://vishnujayadevan.com";
 const SITE_TITLE = "Vishnu Jayadevan";
 const SITE_DESC =
-  "Writing on software engineering, distributed systems, and the occasional detour.";
+  "Writing on distributed systems and software architecture, with occasional detours through aquariums and slow trains.";
 
 const escapeXml = (s: string) =>
   s

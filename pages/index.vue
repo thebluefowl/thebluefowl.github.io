@@ -1,19 +1,8 @@
 <template>
-  <div class="min-h-screen flex flex-col font-garamond bg-white text-black">
-    <Header />
-    <main class="flex-grow w-full pt-16 px-6 sm:px-10 md:px-16 lg:px-20 flex justify-center">
-      <article class="w-full max-w-[920px] py-14 md:py-20 flex flex-col">
-        <div class="flex items-center font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 mb-6">
-          <span>Vishnu Jayadevan</span>
-          <span class="flex-1 border-b border-solid border-gray-200 mx-4 h-px"></span>
-          <span>Page i</span>
-        </div>
+  <ManuscriptShell>
+    <Folio page-label="Page i" subtitle="Ch. I. A short introduction" />
 
-        <div class="font-garamond italic text-[18px] text-gray-600 mb-7">
-          Ch. I. A short introduction
-        </div>
-
-        <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
+    <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
           <span
             class="font-garamond font-medium text-[160px] md:text-[200px] lg:text-[240px] leading-[0.78] tracking-[-0.04em] text-black -mt-2 select-none"
             aria-hidden="true"
@@ -30,8 +19,8 @@
         </div>
 
         <p class="font-garamond text-[18px] md:text-[19px] leading-[1.6] text-gray-800 mt-8 max-w-[560px] md:pl-[228px]">
-          I write here about distributed systems, software architecture, and the occasional
-          detour into biochemistry, aquascaping, or travel. Some posts are in Malayalam,
+          I write here about distributed systems and software architecture, with the
+          occasional detour through aquariums and slow trains. Some posts are in Malayalam,
           for folks back home.
         </p>
 
@@ -52,7 +41,7 @@
           </li>
           <li class="group flex items-baseline">
             <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">ii.</span>
-            <NuxtLink to="/blog" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Writing</NuxtLink>
+            <NuxtLink to="/blog" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Blog</NuxtLink>
             <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
             <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Notes on systems, software, and the rest.</span>
           </li>
@@ -72,17 +61,18 @@
             <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">v.</span>
             <NuxtLink to="/uses" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Uses</NuxtLink>
             <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Tools, software, hardware.</span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Tools, software, and hardware I reach for every day.</span>
+          </li>
+          <li class="group flex items-baseline">
+            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">vi.</span>
+            <NuxtLink to="/elsewhere" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Elsewhere</NuxtLink>
+            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
+            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">The rest of the internet.</span>
           </li>
         </ol>
 
-        <div class="mt-auto pt-10 text-right font-garamond italic text-gray-600 text-[16px]">
-          V.J., Bangalore
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </div>
+    <Signoff><em>V.J., Bangalore</em></Signoff>
+  </ManuscriptShell>
 </template>
 
 <script setup lang="ts">
@@ -93,9 +83,9 @@ definePageMeta({
 useSeoMeta({
   title: "Vishnu Jayadevan | Software Engineer & Writer",
   description:
-    "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource, building tools for better code. Writing about distributed systems and software architecture.",
+    "Software engineer in Bangalore, India. Writing about distributed systems and software architecture, with occasional detours through aquariums and slow trains.",
   ogTitle: "Vishnu Jayadevan | Software Engineer & Writer",
   ogDescription:
-    "Software engineer and writer based in Bangalore, India. Leading engineering at DeepSource.",
+    "Software engineer in Bangalore, India. Writing about distributed systems and software architecture, with occasional detours through aquariums and slow trains.",
 });
 </script>

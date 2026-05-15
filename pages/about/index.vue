@@ -4,18 +4,8 @@
 
     <p
       class="font-garamond text-[22px] md:text-[24px] leading-[1.5] text-black m-0 max-w-[56ch]"
-    >
-      I'm <strong class="font-semibold">Vishnu Jayadevan</strong>, a software
-      engineer based in Bangalore, India. I work at
-      <a
-        href="https://deepsource.com"
-        class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors"
-        >DeepSource</a
-      >, where I build code-quality and security tools. I write here about
-      distributed systems, software architecture, and occasionally about other
-      things I find interesting: biochemistry, aquascaping, travel.
-      <em class="italic">Some posts are in Malayalam, for folks back home.</em>
-    </p>
+      v-html="introHtml"
+    ></p>
 
     <div
       class="flex items-center gap-4 mt-8 pt-4 border-t border-gray-200 font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500"
@@ -39,7 +29,7 @@
     <SectionHead num="I" title="Career" />
     <div class="flex flex-col gap-9">
       <div
-        v-for="job in jobs"
+        v-for="job in page?.jobs"
         :key="job.co"
         class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-14 items-start"
       >
@@ -86,7 +76,7 @@
 
     <SectionHead num="II" title="Beyond work" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
-      <div v-for="b in beyond" :key="b.h" class="flex flex-col gap-1.5">
+      <div v-for="b in page?.beyond" :key="b.h" class="flex flex-col gap-1.5">
         <div class="flex items-baseline">
           <h3 class="font-garamond font-semibold text-[22px] m-0 shrink-0">
             {{ b.h }}
@@ -107,7 +97,7 @@
     <ul
       class="list-none m-0 p-0 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-3.5"
     >
-      <li v-for="e in elsewhere" :key="e.label" class="flex items-baseline">
+      <li v-for="e in page?.elsewhere" :key="e.label" class="flex items-baseline">
         <a
           :href="e.href"
           :target="e.external ? '_blank' : undefined"
@@ -132,83 +122,16 @@
 <script setup lang="ts">
 definePageMeta({ documentDriven: { page: false, surround: false } });
 
+const { data: page } = await useAsyncData("about-page", () =>
+  queryContent("/about").findOne()
+);
+
 useSeoMeta({
-  title: "About | Vishnu Jayadevan",
-  description:
-    "A longer introduction. Software engineer at DeepSource, based in Bangalore.",
-  ogTitle: "About | Vishnu Jayadevan",
-  ogDescription:
-    "A longer introduction. Software engineer at DeepSource, based in Bangalore.",
+  title: () => `${page.value?.title ?? "About"} | Vishnu Jayadevan`,
+  description: () => page.value?.description ?? "A longer introduction.",
+  ogTitle: () => `${page.value?.title ?? "About"} | Vishnu Jayadevan`,
+  ogDescription: () => page.value?.description ?? "A longer introduction.",
 });
 
-const jobs = [
-  {
-    co: "DeepSource",
-    years: "2020 to present",
-    roles: [
-      {
-        title: "Staff Engineer",
-        tag: "2024 to present",
-        body: "Went back to IC after a stretch in management. Turns out I have more impact with a keyboard than a calendar. Working across product and platform engineering helping DeepSource transition into the AI era.",
-      },
-      {
-        title: "Engineering Manager",
-        tag: "2022 to 2024",
-        body: "Built the platform and security engineering teams from scratch, focusing on hiring strong engineers, setting up technical direction and in general trying to stay out of the way.",
-      },
-      {
-        title: "Technical Lead",
-        tag: "2020 to 2022",
-        body: "Zero-to-one. Operated as a technical lead building the foundations for the DeepSource product and infrastructure.",
-      },
-    ],
-  },
-  {
-    co: "Exotel",
-    years: "2015 to 2019",
-    roles: [
-      {
-        title: "Senior Software Engineer",
-        tag: "2015 to 2019",
-        body: "Worked on software infrastructure that power conversations for millions of people, operating at scale where reliability, performance and operational resilience were foundational requirements.",
-      },
-    ],
-  },
-];
-
-const beyond = [
-  {
-    h: "Reading & writing",
-    p: "I keep a running reading list, mostly fiction these days. I write a bit of Malayalam too, slowly.",
-  },
-  {
-    h: "Aquascaping",
-    p: "Deeply enjoys building planted ecosystem tanks.  It's an endlessly fascinating scientific challenge and a deeply meditative creative outlet.",
-  },
-  {
-    h: "Travel",
-    p: "Slow trains over fast flights.  Addicted to the romance and solitude of solo travel.",
-  },
-];
-
-const elsewhere = [
-  {
-    label: "GitHub",
-    hint: "@thebluefowl, for code",
-    href: "https://github.com/thebluefowl",
-    external: true,
-  },
-  {
-    label: "LinkedIn",
-    hint: "The long-form CV",
-    href: "https://www.linkedin.com/in/vishnujayadevan/",
-    external: true,
-  },
-  {
-    label: "Email",
-    hint: "If you want to say hi",
-    href: "mailto:hi@vishnujayadevan.com",
-    external: false,
-  },
-];
+const introHtml = computed(() => useInlineMd((page.value as any)?.intro));
 </script>

@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Vishnu Jayadevan - Software engineer based in Bangalore, India. Writing about software engineering, distributed systems, and more.",
+            "Vishnu Jayadevan. Software engineer in Bangalore, India. Writing about distributed systems and software architecture, with occasional detours through aquariums and slow trains.",
         },
         { property: "og:site_name", content: "Vishnu Jayadevan" },
         { property: "og:type", content: "website" },
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
   },
 
   content: {
-    documentDriven: true,
+    documentDriven: false,
     highlight: {
       theme: "min-light",
       preload: [
@@ -79,13 +79,11 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    google: {
-      families: {
-        "EB Garamond": [300, 400, 700],
-        "Noto Serif Malayalam": [300, 400, 700],
-        "IBM Plex Sans": [300, 400, 500, 600, 700],
-      },
-    },
+    families: [
+      { name: "EB Garamond", provider: "google", weights: [400, 500, 700], styles: ["normal", "italic"], preload: true },
+      { name: "Noto Serif Malayalam", provider: "google", weights: [400, 700], styles: ["normal"], preload: false },
+      { name: "IBM Plex Sans", provider: "google", weights: [500], styles: ["normal"], preload: false },
+    ],
   },
 
   compatibilityDate: "2024-09-05",

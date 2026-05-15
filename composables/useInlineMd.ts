@@ -1,9 +1,10 @@
 // Tiny inline-markdown renderer for short strings stored in YAML frontmatter
-// (ledes, blurbs). Handles *em* and [text](url). Not a real parser.
+// (ledes, blurbs). Handles **bold**, *em*, and [text](url). Not a real parser.
 export function useInlineMd(input: string | undefined | null): string {
   if (!input) return "";
   return input
     .replace(/\n/g, " ")
+    .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold">$1</strong>')
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,

@@ -1,6 +1,6 @@
 <template>
   <ManuscriptShell>
-    <Folio page-label="Writing" :subtitle="`Filed under ${category}`" />
+    <Folio page-label="Blog" :subtitle="`Filed under ${category}`" />
 
     <ol class="list-none m-0 p-0 border-t border-gray-200 mt-6">
       <li v-for="(p, i) in posts" :key="p._path" class="grid grid-cols-[56px_1fr] items-baseline border-b border-gray-200 group">
@@ -20,7 +20,7 @@
 
     <div class="mt-8">
       <NuxtLink to="/blog" class="font-sans text-[12px] tracking-[0.04em] text-black no-underline border-b border-black pb-0.5 inline-block hover:text-slate-500 hover:border-slate-500 transition-colors">
-        &larr; All writing
+        &larr; All posts
       </NuxtLink>
     </div>
 
