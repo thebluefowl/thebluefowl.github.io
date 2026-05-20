@@ -63,15 +63,47 @@ const { data: related } = await useAsyncData(
 
 const romans = ["i", "ii", "iii", "iv", "v"];
 
+const SITE = "https://vishnujayadevan.com";
+const absUrl = (path?: string) => {
+  if (!path) return `${SITE}/og.png`;
+  if (path.startsWith("http")) return path;
+  return `${SITE}${path.startsWith("/") ? "" : "/"}${path}`;
+};
+
+const slug = computed(() => route.path.replace(/^\/blog\//, "").replace(/\/$/, ""));
+const ogImage = computed(() =>
+  absUrl(page.value?.ogImage || (slug.value ? `/og/${slug.value}.png` : undefined)),
+);
+const ogUrl = computed(() => `${SITE}${route.path}`);
+const ogTitle = computed(() => page.value?.title || "Blog Post");
+const ogDescription = computed(
+  () => page.value?.description || "Blog Post"
+);
+
 useHead({
-  title: () => page.value?.title || "Blog Post",
+  title: ogTitle,
+  link: [{ rel: "canonical", href: ogUrl }],
   meta: [
-    { name: "description", content: () => page.value?.description || "Blog Post" },
-    { property: "og:title", content: () => page.value?.title || "Blog Post" },
-    { property: "og:description", content: () => page.value?.description || "Blog Post" },
+    { name: "description", content: ogDescription },
+    { property: "og:title", content: ogTitle },
+    { property: "og:description", content: ogDescription },
     { property: "og:type", content: "article" },
-    { name: "twitter:title", content: () => page.value?.title || "Blog Post" },
-    { name: "twitter:description", content: () => page.value?.description || "Blog Post" },
+    { property: "og:url", content: ogUrl },
+    { property: "og:image", content: ogImage },
+    { property: "og:image:secure_url", content: ogImage },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:alt", content: ogTitle },
+    {
+      property: "article:published_time",
+      content: () => page.value?.date || "",
+    },
+    { property: "article:author", content: "Vishnu Jayadevan" },
+    { property: "article:section", content: () => page.value?.category || "" },
+    { name: "twitter:title", content: ogTitle },
+    { name: "twitter:description", content: ogDescription },
+    { name: "twitter:image", content: ogImage },
+    { name: "twitter:card", content: "summary_large_image" },
   ],
 });
 </script>
