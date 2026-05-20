@@ -26,7 +26,7 @@
             <a href="https://www.linkedin.com/in/vishnujayadevan/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-slate-700">
               <Icon name="mdi:linkedin" class="w-5 h-5" />
             </a>
-            <a href="mailto:hi@vishnujayadevan.com" aria-label="Email" class="hover:text-slate-700">
+            <a href="mailto:hey@vishnujayadevan.com" aria-label="Email" class="hover:text-slate-700">
               <Icon name="mdi:email-outline" class="w-5 h-5" />
             </a>
           </div>

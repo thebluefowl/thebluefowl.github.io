@@ -17,14 +17,19 @@ groups:
     title: For people
     rows:
       - label: Email
-        handle: hi@vishnujayadevan.com
+        handle: hey@vishnujayadevan.com
         hint: Best way to reach me. Plain text preferred.
-        href: mailto:hi@vishnujayadevan.com
+        href: mailto:hey@vishnujayadevan.com
         external: false
       - label: LinkedIn
         handle: /in/vishnujayadevan
         hint: The long-form CV.
         href: https://www.linkedin.com/in/vishnujayadevan/
+        external: true
+      - label: X
+        handle: "@thebluefowl"
+        hint: Mostly lurking these days.
+        href: https://x.com/thebluefowl
         external: true
   - num: III
     title: For the rest

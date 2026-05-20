@@ -38,6 +38,6 @@ elsewhere:
     external: true
   - label: Email
     hint: ഹായ് പറയാൻ ആഗ്രഹിക്കുന്നുണ്ടെങ്കിൽ
-    href: mailto:hi@vishnujayadevan.com
+    href: mailto:hey@vishnujayadevan.com
     external: false
 ---
