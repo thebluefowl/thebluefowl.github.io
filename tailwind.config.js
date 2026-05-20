@@ -12,7 +12,6 @@ export default {
     extend: {
       fontFamily: {
         'garamond' : ['"EB Garamond"', 'serif'],
-        'malayalam': ['"Noto Serif Malayalam"', 'sans-serif'],
         'plex': ['"IBM Plex Sans"', 'sans-serif'],
       },
       keyframes: {

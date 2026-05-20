@@ -75,7 +75,7 @@ const ogImage = computed(() =>
   absUrl(page.value?.ogImage || (slug.value ? `/og/${slug.value}.png` : undefined)),
 );
 const ogUrl = computed(() => {
-  const p = route.path.endsWith("/") ? route.path : `${route.path}/`;
+  const p = route.path.replace(/\/$/, "");
   return `${SITE}${p}`;
 });
 const ogTitle = computed(() => page.value?.title || "Blog Post");

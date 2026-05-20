@@ -82,3 +82,9 @@ useSeoMeta({
 
 const introHtml = computed(() => useInlineMd((page.value as any)?.intro));
 </script>
+
+<style>
+.font-malayalam {
+  font-family: "Noto Serif Malayalam", serif;
+}
+</style>

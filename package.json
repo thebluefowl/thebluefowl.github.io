@@ -8,8 +8,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "og:build": "node scripts/build-og.mjs",
+    "flatten:blog": "node scripts/flatten-blog.mjs",
     "prebuild": "npm run og:build",
-    "pregenerate": "npm run og:build"
+    "pregenerate": "npm run og:build",
+    "postbuild": "npm run flatten:blog",
+    "postgenerate": "npm run flatten:blog"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
