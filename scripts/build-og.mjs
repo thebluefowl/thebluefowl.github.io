@@ -126,11 +126,13 @@ async function main() {
 
   for (const file of files) {
     const raw = await readFile(resolve(BLOG_DIR, file), "utf8");
-    const { data } = matter(raw);
+    const { data, content } = matter(raw);
     const slug = basename(file, ".md");
+    const h1Match = content.match(/^#\s+(.+)$/m);
+    const firstParaMatch = content.replace(/^#.+$/m, "").match(/\n\n([^\n#`>][^\n]+)/);
     const svg = buildSvg({
-      title: data.title || slug,
-      description: data.description || "",
+      title: data.title || (h1Match && h1Match[1]) || slug,
+      description: data.description || (firstParaMatch && firstParaMatch[1]) || "",
       date: data.date,
       category: data.category || "",
     });

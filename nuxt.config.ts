@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ["~/assets/css/tailwind.css"],
+  css: ["~/assets/css/tailwind.css", "katex/dist/katex.min.css"],
 
   app: {
     head: {
@@ -55,6 +55,10 @@ export default defineNuxtConfig({
 
   content: {
     documentDriven: false,
+    markdown: {
+      remarkPlugins: ["remark-math"],
+      rehypePlugins: ["rehype-katex"],
+    },
     highlight: {
       theme: "min-light",
       preload: [

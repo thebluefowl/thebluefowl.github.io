@@ -10,10 +10,10 @@
         {{ page.title }}
       </h1>
       <p
-        v-if="page.description"
+        v-if="page.subtitle"
         class="font-garamond italic text-[22px] md:text-[26px] leading-[1.4] text-gray-600 m-0 mt-10 max-w-[60ch] mx-auto text-center"
       >
-        {{ page.description }}
+        {{ page.subtitle }}
       </p>
     </div>
 
