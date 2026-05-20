@@ -74,7 +74,10 @@ const slug = computed(() => route.path.replace(/^\/blog\//, "").replace(/\/$/, "
 const ogImage = computed(() =>
   absUrl(page.value?.ogImage || (slug.value ? `/og/${slug.value}.png` : undefined)),
 );
-const ogUrl = computed(() => `${SITE}${route.path}`);
+const ogUrl = computed(() => {
+  const p = route.path.endsWith("/") ? route.path : `${route.path}/`;
+  return `${SITE}${p}`;
+});
 const ogTitle = computed(() => page.value?.title || "Blog Post");
 const ogDescription = computed(
   () => page.value?.description || "Blog Post"
