@@ -1,6 +1,6 @@
 ---
 title: "Jump Hash: A Rigged Coin Toss That Actually Works"
-description: "Consistent hashing without the ring."
+description: "Consistent hashing without the ring. Maps a key to one of N buckets in O(ln N), and only 1/N keys move when N changes."
 cover: "/images/about.jpg"
 category: "Software Engineering"
 date: "2026-04-09"

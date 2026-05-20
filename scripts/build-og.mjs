@@ -140,7 +140,7 @@ async function main() {
         loadSystemFonts: false,
         defaultFontFamily: "EB Garamond",
       },
-      fitTo: { mode: "width", value: 1200 },
+      fitTo: { mode: "width", value: 2400 },
     });
     const png = resvg.render().asPng();
     await writeFile(resolve(OUT_DIR, `${slug}.png`), png);

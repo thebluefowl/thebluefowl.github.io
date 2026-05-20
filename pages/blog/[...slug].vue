@@ -94,8 +94,8 @@ useHead({
     { property: "og:url", content: ogUrl },
     { property: "og:image", content: ogImage },
     { property: "og:image:secure_url", content: ogImage },
-    { property: "og:image:width", content: "1200" },
-    { property: "og:image:height", content: "630" },
+    { property: "og:image:width", content: "2400" },
+    { property: "og:image:height", content: "1260" },
     { property: "og:image:alt", content: ogTitle },
     {
       property: "article:published_time",
