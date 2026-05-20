@@ -1,6 +1,6 @@
 ---
 title: "Jump Hash: A Rigged Coin Toss That Actually Works"
-description: "How jump consistent hashing minimizes remapping when scaling cache nodes, and why the math works"
+description: "Consistent hashing without the ring."
 cover: "/images/about.jpg"
 category: "Software Engineering"
 date: "2026-04-09"
@@ -176,6 +176,38 @@ Breaking it down:
 ## The trade-off
 
 Jump hash only supports appending/removing the **last** bucket. You can't remove an arbitrary bucket from the middle. But if your nodes are numbered 0..N-1 and you always add/remove from the end, it's a natural fit.
+
+## Jump hash vs ring hashing
+
+Ring-based consistent hashing (Karger et al., 1997) solves the same problem with a different shape. Both move ~1/N keys on resize. They differ everywhere else.
+
+|                         | Ring + vnodes              | Jump hash         |
+| ----------------------- | -------------------------- | ----------------- |
+| Remap on resize         | ~1/N                       | ~1/N              |
+| Lookup                  | O(log(N·V)) binary search  | O(ln N)           |
+| Memory                  | O(N·V) sorted ring         | O(1)              |
+| Remove arbitrary node   | yes                        | no, last only     |
+| Weighted nodes          | trivial (more vnodes)      | needs a wrapper   |
+| Replica fallback        | walk the ring clockwise    | extra logic       |
+| Load variance           | depends on V               | provably uniform  |
+
+`V` is the number of virtual nodes per physical node. Rings need vnodes to get acceptable load balance, typically 100 to 200 per node. That is where the memory and lookup cost come from.
+
+### Use jump hash when
+
+- **Nodes are numbered 0..N-1 and you scale by appending or removing from the end.** A stateless worker pool behind a load balancer. A cache pod set you grow by raising a replica count.
+- **Every node carries equal load.** No "beefier host takes 2x traffic."
+- **One node per key is enough.** No replica walking, no "if A is down, try B then C."
+- **You want zero state.** The function is the data structure. No ring to gossip, no vnode table to keep consistent across clients.
+
+### Use ring hashing when
+
+- **You need to remove a specific node mid-cluster.** A bad host needs draining without renumbering everyone after it.
+- **You need N-way replication with predictable replica placement.** Walking the ring clockwise gives you the next N-1 nodes for free. Cassandra, Riak, DynamoDB-style replication is built on this.
+- **You need weighted nodes.** Bigger hosts get more vnodes and more keys.
+- **Your nodes are named, not numbered.** Service discovery hands you `shard-bom-3`, not `5`. Mapping names to a stable 0..N-1 is its own problem.
+
+When jump hash's constraints fit, it is strictly better: smaller, faster, zero state, provably uniform load. The constraints rule it out for a lot of real systems. Stateful databases with replication, heterogeneous fleets, and clusters where any node can fail and need draining are ring territory. Stateless shard pools you scale up and down are jump territory.
 
 ## Further reading
 
