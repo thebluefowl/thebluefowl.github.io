@@ -23,8 +23,8 @@
       <ol class="list-none m-0 p-0 border-t border-gray-200">
         <li v-for="(p, i) in group.posts" :key="p._path" class="grid grid-cols-[56px_1fr] items-baseline border-b border-gray-200 group">
           <span class="font-garamond italic text-[18px] text-gray-500 py-5">{{ romans[i] }}.</span>
-          <NuxtLink :to="p._path" class="flex flex-col gap-2 py-5 no-underline text-inherit transition-transform duration-200 group-hover:translate-x-1.5">
-            <span class="font-garamond text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.005em] text-black transition-colors group-hover:italic group-hover:text-slate-500">
+          <NuxtLink :to="p._path" class="flex flex-col gap-2 py-5 no-underline text-inherit">
+            <span class="font-garamond text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.005em] text-black transition-colors duration-300 group-hover:text-slate-500">
               {{ p.title }}
             </span>
             <span class="flex flex-wrap gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500">
@@ -40,6 +40,7 @@
     <Signoff><em>subscribe via <a href="/rss.xml" class="hover:text-slate-500 transition-colors">/rss.xml</a></em></Signoff>
   </ManuscriptShell>
 </template>
+
 
 <script setup lang="ts">
 import type { ParsedContent } from "@nuxt/content";
