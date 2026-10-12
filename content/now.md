@@ -1,7 +1,7 @@
 ---
 title: Now
 description: What I'm up to right now.
-updated: 15 May 2026
+updated: 12 Oct 2026
 location: Bangalore
 lede: |
   A snapshot of the present tense. Inspired by [Derek Sivers'](https://nownownow.com/about) /now page.
@@ -10,7 +10,7 @@ currently:
   - k: Working on
     v: A novel-writing app
   - k: Reading
-    v: "<em>Eurotrash</em> by Christian Kracht"
+    v: "<em>The Snow Leopard</em> by Peter Matthiessen"
   - k: Writing
     v: A long post on jump consistent hashing
   - k: Listening to
@@ -18,6 +18,9 @@ currently:
   - k: Living in
     v: Bangalore, Indiranagar mostly
 recently:
+  - d: Oct 12
+    k: Finished
+    v: "<em>Eurotrash</em> by Christian Kracht. Three and a half stars."
   - d: Apr 18
     k: Wrote
     v: Notes on jump hash, pinned to the front page.

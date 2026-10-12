@@ -1,6 +1,6 @@
 <template>
   <ManuscriptShell>
-    <Folio page-label="Reading" subtitle="On the shelf" />
+    <Folio page-label="Reading" subtitle="What I've been reading, and what's next" />
 
     <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
       <span
@@ -33,6 +33,17 @@
       </ol>
     </div>
 
+    <hr class="border-0 border-t border-gray-300 my-14" />
+
+    <div>
+      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
+        On the shelf
+      </div>
+      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
+        <ContentRenderer :value="readingShelf" />
+      </ol>
+    </div>
+
     <Signoff><em>updated as I go</em></Signoff>
   </ManuscriptShell>
 </template>
@@ -40,6 +51,9 @@
 <script setup lang="ts">
 const { data: reading2025 } = await useAsyncData("reading-2025", () =>
   queryContent("/reading-2025").findOne()
+);
+const { data: readingShelf } = await useAsyncData("reading-shelf", () =>
+  queryContent("/reading-shelf").findOne()
 );
 
 useSeoMeta({
