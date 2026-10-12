@@ -8,20 +8,16 @@
             aria-hidden="true"
           >H</span>
           <p class="font-garamond text-[24px] md:text-[28px] leading-[1.35] text-black m-0">
-            <span class="italic">i, I am</span>
-            <span class="font-semibold">Vishnu Jayadevan</span><span class="font-semibold">.</span>
-            A software engineer based out of Bangalore, India. I lead product engineering at
-            <a href="https://deepsource.com" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">DeepSource</a>,
-            where we build tools for code quality and security. Previously at
-            <a href="https://exotel.com" class="text-black underline underline-offset-[3px] decoration-1 hover:text-slate-500 transition-colors">Exotel</a>,
-            building enterprise telephony.
+            <span class="sr-only">H</span>
+            <span class="italic">i, I’m </span>
+            <span class="font-semibold">Vishnu Jayadevan</span>, a software engineer and
+            engineering leader based in Bangalore, India.
           </p>
         </div>
 
         <p class="font-garamond text-[18px] md:text-[19px] leading-[1.6] text-gray-800 mt-8 max-w-[560px] md:pl-[228px]">
-          I write here about distributed systems and software architecture, with the
-          occasional detour through aquariums and slow trains. Some posts are in Malayalam,
-          for folks back home.
+          I build systems, lead teams, and care about making software reliable and
+          understandable. My work spans distributed systems, developer tools, and AI.
         </p>
 
         <div class="relative my-10 md:my-12 h-px bg-gray-200">
@@ -81,11 +77,11 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Vishnu Jayadevan | Software Engineer & Writer",
+  title: "Vishnu Jayadevan | Software Engineer & Engineering Leader",
   description:
-    "Software engineer in Bangalore, India. Writing about distributed systems and software architecture, with occasional detours through aquariums and slow trains.",
-  ogTitle: "Vishnu Jayadevan | Software Engineer & Writer",
+    "Software engineer and engineering leader in Bangalore, India. I build systems, lead teams, and work across distributed systems, developer tools, and AI.",
+  ogTitle: "Vishnu Jayadevan | Software Engineer & Engineering Leader",
   ogDescription:
-    "Software engineer in Bangalore, India. Writing about distributed systems and software architecture, with occasional detours through aquariums and slow trains.",
+    "Software engineer and engineering leader in Bangalore, India. I build systems, lead teams, and work across distributed systems, developer tools, and AI.",
 });
 </script>
