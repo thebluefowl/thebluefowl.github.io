@@ -13,7 +13,7 @@
         alt="വിഷ്ണു ജയദേവന്റെ ചിത്രം"
         width="640"
         height="800"
-        class="self-end w-full max-w-[320px] aspect-[4/5] object-cover"
+        class="self-end mx-auto w-full max-w-[320px] aspect-[4/5] object-cover"
       />
     </section>
 
