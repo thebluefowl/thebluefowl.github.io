@@ -8,7 +8,7 @@
       <div class="flex flex-wrap gap-x-8 gap-y-2 mt-12 font-mono text-[13px] text-gray-600">
         <span>Staff Software Engineer, Harness</span>
         <span>Previously DeepSource, six years</span>
-        <span>Bangalore, IN · <a href="https://www.google.com/maps?q=12.97,77.59" target="_blank" rel="noopener" class="underline decoration-1 underline-offset-[3px] hover:text-slate-500 transition-colors">12.97° N</a></span>
+        <span>Bangalore, IN · <a href="https://www.google.com/maps/place/12.97,77.59/@12.97,77.59,5z" target="_blank" rel="noopener" class="underline decoration-1 underline-offset-[3px] hover:text-slate-500 transition-colors">12.97° N, 77.59° E</a></span>
       </div>
     </section>
 
