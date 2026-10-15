@@ -1,24 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#ffffff"/>
-
-  <!-- Top chrome: name caps, dotted rule, page label -->
-  <g font-family="EB Garamond" font-size="18" fill="#6b7280" letter-spacing="3">
-    <text x="80" y="70" font-weight="500">VISHNU JAYADEVAN</text>
-    <text x="1120" y="70" text-anchor="end" font-weight="500">VISHNUJAYADEVAN.COM</text>
+  <rect width="1200" height="630" fill="#fbfaf7"/>
+  <g font-family="IBM Plex Mono" font-size="16" letter-spacing="2.56">
+    <text x="72" y="84" font-weight="500" fill="#111111">VISHNU JAYADEVAN</text>
+    <text x="1128" y="84" text-anchor="end" fill="#555555">VISHNUJAYADEVAN.COM</text>
   </g>
-  <line x1="80" y1="90" x2="1120" y2="90" stroke="#d1d5db" stroke-width="1" stroke-dasharray="2 6"/>
-
-  <!-- Name centered -->
-  <text x="600" y="335" text-anchor="middle" font-family="EB Garamond" font-weight="500" font-size="140" fill="#000000" letter-spacing="-3">Vishnu Jayadevan</text>
-
-  <!-- Italic subtitle -->
-  <text x="600" y="405" text-anchor="middle" font-family="EB Garamond" font-style="italic" font-size="36" fill="#374151">Software engineer, Bangalore</text>
-
-  <!-- Ornament -->
-  <text x="600" y="480" text-anchor="middle" font-family="EB Garamond" font-size="28" fill="#9ca3af">❦</text>
-
-  <!-- Bottom chrome: dotted rule + tagline -->
-  <line x1="80" y1="540" x2="1120" y2="540" stroke="#d1d5db" stroke-width="1" stroke-dasharray="2 6"/>
-  <text x="600" y="585" text-anchor="middle" font-family="EB Garamond" font-style="italic" font-size="22" fill="#6b7280">Distributed systems, software architecture, aquariums, slow trains.</text>
+  <rect x="72" y="106" width="1056" height="1" fill="#111111"/>
+  <text font-family="EB Garamond" font-size="64" letter-spacing="-1" fill="#111111">
+    <tspan x="72" y="262">Hello, I am <tspan font-style="italic">Vishnu Jayadevan.</tspan></tspan>
+    <tspan x="72" y="334" fill="#555555">I build software. I have opinions about</tspan>
+    <tspan x="72" y="406" fill="#555555">how it should be built.</tspan>
+  </text>
+  <rect x="72" y="530" width="1056" height="1" fill="#ddd8cf"/>
+  <g font-family="IBM Plex Mono" font-size="17" fill="#555555">
+    <text x="72" y="568">Staff Software Engineer, Harness</text>
+    <text x="440" y="568">Bangalore, IN · 12.97° N, 77.59° E</text>
+  </g>
 </svg>
