@@ -1,7 +1,7 @@
 <template>
   <ManuscriptShell wide>
-    <section class="pt-6 md:pt-10 flex flex-wrap gap-12">
-      <div class="flex-[1_1_480px] min-w-0 pb-16">
+    <section class="pt-6 md:pt-10 flex flex-wrap gap-8 lg:gap-12">
+      <div class="flex-[1_1_480px] min-w-0 lg:pb-16">
         <h1 class="font-garamond font-normal text-[40px] md:text-[60px] lg:text-[76px] leading-[1.04] tracking-[-0.02em] max-w-[980px] m-0 [&_strong]:font-normal [&_strong]:italic" v-html="heroHtml"></h1>
         <p v-for="(para, i) in page?.intro" :key="i" :class="['font-garamond text-[20px] leading-[1.5] text-[#333] mb-0 max-w-[62ch]', i ? 'mt-4' : 'mt-8']" v-html="useInlineMd(para)"></p>
         <p class="mt-5 mb-0 text-[20px]">
@@ -13,7 +13,7 @@
         alt="Portrait of Vishnu Jayadevan"
         width="640"
         height="800"
-        class="self-end mx-auto w-full max-w-[320px] aspect-[4/5] object-cover"
+        class="self-end mx-auto mb-14 lg:mb-0 w-full max-w-[320px] aspect-[4/5] object-cover"
       />
     </section>
 
