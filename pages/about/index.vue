@@ -1,121 +1,69 @@
 <template>
-  <ManuscriptShell>
-    <Folio page-label="About" subtitle="A longer introduction" />
-
-    <p
-      class="font-garamond text-[22px] md:text-[24px] leading-[1.5] text-black m-0 max-w-[56ch]"
-      v-html="introHtml"
-    ></p>
-
-    <div
-      class="flex items-center gap-4 mt-8 pt-4 border-t border-gray-200 font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500"
-    >
-      <span>Read in</span>
-      <span class="flex-1 border-b border-dotted border-gray-300 h-px"></span>
-      <div class="flex gap-1">
-        <NuxtLink
-          to="/about"
-          class="px-2 py-1 border border-black bg-black text-white"
-          >EN</NuxtLink
-        >
-        <NuxtLink
-          to="/about/malayalam"
-          class="px-2 py-1 border border-transparent hover:border-gray-300 hover:text-black transition-colors"
-          >ML</NuxtLink
-        >
+  <ManuscriptShell wide>
+    <section class="pt-6 md:pt-10 pb-16 flex flex-wrap gap-12">
+      <div class="flex-[1_1_480px] min-w-0">
+        <h1 class="font-garamond font-normal text-[40px] md:text-[60px] lg:text-[76px] leading-[1.04] tracking-[-0.02em] max-w-[980px] m-0 [&_strong]:font-normal [&_strong]:italic" v-html="heroHtml"></h1>
+        <p v-for="(para, i) in page?.intro" :key="i" :class="['font-garamond text-[20px] leading-[1.5] text-[#333] mb-0 max-w-[62ch]', i ? 'mt-4' : 'mt-8']" v-html="useInlineMd(para)"></p>
+        <p class="mt-5 mb-0 text-[20px]">
+          <NuxtLink to="/about/malayalam" class="font-garamond italic text-black border-b border-[#ddd8cf] hover:text-gray-600 transition-colors">Read this in Malayalam (മലയാളം)</NuxtLink>
+        </p>
       </div>
-    </div>
+      <img
+        src="/images/about.jpg"
+        alt="Portrait of Vishnu Jayadevan"
+        width="640"
+        height="800"
+        class="w-full max-w-[320px] aspect-[4/5] object-cover bg-[#ebe6dc]"
+      />
+    </section>
 
-    <SectionHead num="I" title="Career" />
-    <div class="flex flex-col gap-9">
+    <section class="border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">Work</h2>
       <div
         v-for="job in page?.jobs"
         :key="job.co"
-        class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-14 items-start"
+        class="flex flex-wrap gap-x-12 gap-y-3 py-7 border-b border-[#ddd8cf]"
       >
-        <div class="flex flex-col gap-1.5">
-          <h3
-            class="font-garamond font-semibold text-[28px] leading-none tracking-[-0.01em] m-0"
-          >
-            {{ job.co }}
-          </h3>
-          <div
-            class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500"
-          >
-            {{ job.years }}
-          </div>
+        <div class="flex-[1_1_240px] min-w-0">
+          <div class="font-garamond text-[28px] leading-[1.1]">{{ job.co }}</div>
+          <div class="font-mono text-[12px] text-gray-600 mt-2">{{ job.years }}</div>
         </div>
-        <div class="flex flex-col gap-[18px] font-garamond">
-          <div
-            v-for="role in job.roles"
-            :key="role.title"
-            class="flex flex-col gap-1"
-          >
-            <div class="flex items-baseline">
-              <span
-                class="font-garamond italic font-medium text-[19px] text-black shrink-0"
-                >{{ role.title }}</span
-              >
-              <span
-                class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"
-              ></span>
-              <span
-                class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0"
-                >{{ role.tag }}</span
-              >
+        <div class="flex-[3_1_400px] min-w-0 flex flex-col gap-5">
+          <div v-for="role in job.roles" :key="role.title">
+            <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span class="font-garamond text-[22px] font-medium">{{ role.title }}</span>
+              <span class="font-mono text-[12px] text-gray-600">{{ role.tag }}</span>
             </div>
-            <p
-              class="text-[17px] leading-[1.55] text-gray-800 m-0 max-w-[60ch]"
-            >
-              {{ role.body }}
-            </p>
+            <p v-for="(para, i) in role.body" :key="i" :class="['font-garamond text-[18px] leading-[1.5] text-[#333] mb-0', i ? 'mt-2.5' : 'mt-1.5']">{{ para }}</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <SectionHead num="II" title="Beyond work" />
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
-      <div v-for="b in page?.beyond" :key="b.h" class="flex flex-col gap-1.5">
-        <div class="flex items-baseline">
-          <h3 class="font-garamond font-semibold text-[22px] m-0 shrink-0">
-            {{ b.h }}
-          </h3>
-          <span
-            class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"
-          ></span>
+    <section class="mt-16 md:mt-24 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">Beyond work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-16">
+        <div v-for="b in page?.beyond" :key="b.h" class="py-5 border-b border-[#ddd8cf]">
+          <h3 class="font-garamond font-normal text-[28px] leading-[1.1] m-0">{{ b.h }}</h3>
+          <p class="font-garamond text-[18px] leading-[1.5] text-[#333] mt-2.5 mb-0 max-w-[62ch]">{{ b.p }}</p>
         </div>
-        <p
-          class="font-garamond text-[16px] leading-[1.55] text-gray-800 m-1 mt-1 max-w-[60ch]"
-        >
-          {{ b.p }}
-        </p>
       </div>
-    </div>
+    </section>
 
-    <SectionHead num="III" title="Elsewhere" />
-    <ul
-      class="list-none m-0 p-0 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-3.5"
-    >
-      <li v-for="e in page?.elsewhere" :key="e.label" class="flex items-baseline">
-        <a
-          :href="e.href"
-          :target="e.external ? '_blank' : undefined"
-          :rel="e.external ? 'noopener' : undefined"
-          class="font-garamond text-[24px] font-medium text-black no-underline shrink-0 hover:text-slate-500 transition-colors"
-          >{{ e.label }}</a
-        >
-        <span
-          class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"
-        ></span>
-        <span
-          class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0"
-          >{{ e.hint }}</span
-        >
-      </li>
-    </ul>
-
-    <Signoff><em>V.J., Bangalore</em></Signoff>
+    <section class="mt-16 md:mt-24 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">Elsewhere</h2>
+      <a
+        v-for="e in page?.elsewhere"
+        :key="e.label"
+        :href="e.href"
+        :target="e.external ? '_blank' : undefined"
+        :rel="e.external ? 'noopener' : undefined"
+        class="flex flex-wrap items-baseline gap-x-6 gap-y-1.5 py-[18px] border-b border-[#ddd8cf] text-black no-underline hover:text-slate-500 transition-colors"
+      >
+        <span class="font-garamond text-[28px] leading-[1.1] flex-[0_0_160px]">{{ e.label }}</span>
+        <span class="italic text-gray-600 text-[18px] flex-[1_1_240px] text-right">{{ e.hint }}</span>
+      </a>
+    </section>
   </ManuscriptShell>
 </template>
 
@@ -133,5 +81,5 @@ useSeoMeta({
   ogDescription: () => page.value?.description ?? "A longer introduction.",
 });
 
-const introHtml = computed(() => useInlineMd((page.value as any)?.intro));
+const heroHtml = computed(() => useInlineMd((page.value as any)?.hero));
 </script>

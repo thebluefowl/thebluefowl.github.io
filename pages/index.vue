@@ -1,73 +1,53 @@
 <template>
-  <ManuscriptShell>
-    <Folio page-label="Page i" subtitle="Ch. I. A short introduction" />
+  <ManuscriptShell wide>
+    <section class="pt-6 md:pt-10 pb-[72px]">
+      <h1 class="font-garamond font-normal text-[clamp(30px,3.8vw,48px)] leading-[1.2] tracking-[-0.012em] max-w-[960px] m-0">
+        Hello, I am <em>Vishnu Jayadevan.</em>
+        <span class="text-gray-600">I build software. I have opinions about how it should be built. Sometimes I write those opinions down. <em>Occasionally, I ramble about other things.</em></span>
+      </h1>
+      <div class="flex flex-wrap gap-x-8 gap-y-2 mt-12 font-mono text-[13px] text-gray-600">
+        <span>Staff Software Engineer, Harness</span>
+        <span>Previously DeepSource, six years</span>
+        <span>Bangalore, IN · 12.97° N</span>
+      </div>
+    </section>
 
-    <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
-          <span
-            class="font-garamond font-medium text-[160px] md:text-[200px] lg:text-[240px] leading-[0.78] tracking-[-0.04em] text-black -mt-2 select-none"
-            aria-hidden="true"
-          >H</span>
-          <p class="font-garamond text-[24px] md:text-[28px] leading-[1.35] text-black m-0">
-            <span class="sr-only">H</span>
-            <span class="italic">i, I’m </span>
-            <span class="font-semibold">Vishnu Jayadevan</span>, a software engineer and
-            engineering leader based in Bangalore, India.
-          </p>
-        </div>
+    <div class="grid gap-12 md:grid-cols-3 border-t border-black pt-7">
+      <section>
+        <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">Latest writing</h2>
+        <NuxtLink v-if="latest" :to="latest._path" class="block">
+          <span class="block text-[28px] leading-[1.15] font-medium">{{ latest.title }}</span>
+        </NuxtLink>
+        <template v-if="latest">
+          <p class="text-[18px] leading-[1.5] text-gray-800 mt-3.5">{{ latest.description }}</p>
+          <p class="font-mono text-[12px] text-gray-600 mt-3.5">{{ usePrettyDate(latest.date) }} · {{ latest.category }}</p>
+        </template>
+      </section>
 
-        <p class="font-garamond text-[18px] md:text-[19px] leading-[1.6] text-gray-800 mt-8 max-w-[560px] md:pl-[228px]">
-          I build systems, lead teams, and care about making software reliable and
-          understandable. My work spans distributed systems, developer tools, and AI.
+      <section>
+        <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">Now · {{ now?.updated }}</h2>
+        <p class="text-[18px] leading-[1.5] text-[#333] m-0">{{ now?.summary }}</p>
+        <NuxtLink to="/now" class="inline-block mt-3.5 font-mono text-[12px] text-gray-600 hover:text-slate-500 transition-colors">Read more &rarr;</NuxtLink>
+      </section>
+
+      <section>
+        <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">On the shelf</h2>
+        <p v-for="b in books" :key="b.title" class="text-[18px] leading-[1.35] mb-4">
+          <em class="text-[22px]">{{ b.title }}</em><br /><span class="text-gray-600">{{ b.by }}</span>
         </p>
+      </section>
+    </div>
 
-        <div class="relative my-10 md:my-12 h-px bg-gray-200">
-          <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-gray-500 text-sm">❦</span>
-        </div>
-
-        <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-4">
-          Contents of this site
-        </div>
-
-        <ol class="list-none m-0 p-0 flex flex-col gap-3.5">
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">i.</span>
-            <NuxtLink to="/about" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">About</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">A longer version of the above.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">ii.</span>
-            <NuxtLink to="/blog" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Blog</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Notes on systems, software, and the rest.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">iii.</span>
-            <NuxtLink to="/reading" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Reading</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">A running list, with stars.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">iv.</span>
-            <NuxtLink to="/now" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Now</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">What I&rsquo;m up to this month.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">v.</span>
-            <NuxtLink to="/uses" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Uses</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">Tools, software, and hardware I reach for every day.</span>
-          </li>
-          <li class="group flex items-baseline">
-            <span class="font-garamond italic text-[18px] text-gray-600 w-9 shrink-0">vi.</span>
-            <NuxtLink to="/elsewhere" class="font-garamond text-[32px] md:text-[40px] font-medium leading-none text-black shrink-0 transition-colors group-hover:italic group-hover:text-slate-500">Elsewhere</NuxtLink>
-            <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-            <span class="font-garamond italic text-[16px] text-gray-600 shrink-0">The rest of the internet.</span>
-          </li>
-        </ol>
-
-    <Signoff><em>V.J., Bangalore</em></Signoff>
+    <section class="mt-24 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-7">Contents</h2>
+      <div class="grid md:grid-cols-2 md:gap-x-16">
+        <NuxtLink v-for="([to, label, desc], i) in contents" :key="to" :to="to" class="flex items-baseline gap-5 py-4 border-b border-gray-200 group">
+          <span class="font-mono text-[12px] text-gray-600 w-6 shrink-0">{{ String(i + 1).padStart(2, "0") }}</span>
+          <span class="font-garamond text-[34px] leading-none text-black group-hover:text-slate-500 transition-colors">{{ label }}</span>
+          <span class="hidden sm:inline ml-auto italic text-gray-600 text-[17px] text-right">{{ desc }}</span>
+        </NuxtLink>
+      </div>
+    </section>
   </ManuscriptShell>
 </template>
 
@@ -75,6 +55,29 @@
 definePageMeta({
   documentDriven: { page: false, surround: false },
 });
+
+const { data: latest } = await useAsyncData("home-latest", () =>
+  queryContent("/blog").sort({ date: -1 }).limit(1).find().then((r) => r[0]),
+);
+const { data: now } = await useAsyncData("home-now", () => queryContent("/now").findOne());
+const { data: reading } = await useAsyncData("home-reading", () => queryContent("/reading").findOne());
+
+const books = computed(() =>
+  (reading.value?.body?.children ?? []).filter((n: any) => n.tag === "book").slice(0, 2).map((n: any) => {
+    const { title, author, status, stars } = n.props;
+    const trail = status === "in-progress" ? "in progress" : stars ? "★".repeat(Math.floor(stars)) + (stars % 1 ? "½" : "") : "";
+    return { title, by: [author, trail].filter(Boolean).join(" · ") };
+  }),
+);
+
+const contents = [
+  ["/about", "About", "The longer version"],
+  ["/blog", "Blog", "Systems, software, the rest"],
+  ["/reading", "Reading", "A running list, with stars"],
+  ["/now", "Now", "What I'm focused on"],
+  ["/uses", "Uses", "Tools I reach for"],
+  ["/elsewhere", "Elsewhere", "The rest of the internet"],
+];
 
 useSeoMeta({
   title: "Vishnu Jayadevan | Software Engineer & Engineering Leader",

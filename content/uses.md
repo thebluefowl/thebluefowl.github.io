@@ -2,7 +2,7 @@
 title: Uses
 description: Tools, software, and hardware I reach for every day.
 lede: |
-  A [/uses](https://uses.tech) page. The setup behind everything else on this site.
+  The setup behind everything else on this site.
 updated: April 2026
 groups:
   - num: I

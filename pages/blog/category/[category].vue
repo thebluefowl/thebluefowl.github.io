@@ -1,26 +1,16 @@
 <template>
-  <ManuscriptShell>
-    <Folio page-label="Blog" :subtitle="`Filed under ${category}`" />
+  <ManuscriptShell wide>
+    <section class="pt-6 md:pt-10 pb-10">
+      <h1 class="font-garamond font-normal text-[40px] md:text-[56px] lg:text-[64px] leading-[1.06] tracking-[-0.02em] max-w-[900px] m-0">{{ category }}</h1>
+      <NuxtLink to="/blog" class="inline-block mt-6 font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 hover:text-slate-500 transition-colors">&larr; All posts</NuxtLink>
+    </section>
 
-    <ol class="list-none m-0 p-0 border-t border-gray-200 mt-6">
-      <li v-for="(p, i) in posts" :key="p._path" class="grid grid-cols-[56px_1fr] items-baseline border-b border-gray-200 group">
-        <span class="font-garamond italic text-[18px] text-gray-500 py-5">{{ romans[i] }}.</span>
-        <NuxtLink :to="p._path" class="flex flex-col gap-2 py-5 no-underline text-inherit">
-          <span class="font-garamond text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.005em] text-black transition-colors duration-300 group-hover:text-slate-500">
-            {{ p.title }}
-          </span>
-          <span class="flex flex-wrap gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500">
-            <span>{{ usePrettyDate(p.date) }}</span>
-            <span class="text-gray-300">&middot;</span>
-            <span>{{ p.category }}</span>
-          </span>
-        </NuxtLink>
-      </li>
-    </ol>
-
-    <div class="mt-8">
-      <NuxtLink to="/blog" class="font-sans text-[12px] tracking-[0.04em] text-black no-underline border-b border-black pb-0.5 inline-block hover:text-slate-500 hover:border-slate-500 transition-colors">
-        &larr; All posts
+    <div class="border-t border-black">
+      <NuxtLink v-for="p in posts" :key="p._path" :to="p._path" class="block group border-b border-gray-200 py-6">
+        <span class="block font-mono text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-2.5">{{ p.kind === 'personal' ? 'Personal' : 'Software' }}</span>
+        <span class="block text-[24px] md:text-[28px] leading-[1.15] font-medium group-hover:text-slate-500 transition-colors">{{ p.title }}</span>
+        <span v-if="p.description" class="block text-[17px] md:text-[18px] leading-[1.5] text-gray-800 mt-3 max-w-[760px]">{{ p.description }}</span>
+        <span class="block font-mono text-[12px] md:text-[13px] text-gray-600 mt-3">{{ usePrettyDate(p.date) }} · {{ p.category }}</span>
       </NuxtLink>
     </div>
 
@@ -45,6 +35,4 @@ useSeoMeta({
 const { data: posts } = await useAsyncData(`blog-cat-${category}`, () =>
   queryContent("/blog").where({ category: { $icontains: category } }).sort({ date: -1 }).find()
 );
-
-const romans = ["i","ii","iii","iv","v","vi","vii","viii","ix","x","xi","xii","xiii","xiv","xv"];
 </script>

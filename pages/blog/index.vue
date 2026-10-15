@@ -1,43 +1,31 @@
 <template>
-  <ManuscriptShell>
-    <Folio page-label="Blog" subtitle="All posts, in chronological order" />
+  <ManuscriptShell wide>
+    <section class="pt-6 md:pt-10 pb-10">
+      <h1 class="font-garamond font-normal text-[clamp(40px,6vw,76px)] leading-[1.04] tracking-[-0.02em] max-w-[980px] m-0">
+        Notes on software, systems, and whatever else I’m thinking about.
+      </h1>
+    </section>
 
-    <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
-      <span
-        class="font-garamond font-medium text-[140px] md:text-[200px] leading-[0.78] tracking-[-0.04em] text-black -mt-2 select-none"
-        aria-hidden="true"
-      >F</span>
-      <p class="font-garamond text-[22px] md:text-[26px] leading-[1.4] text-black m-0">
-        <span class="italic">ragments</span> collected since 2018. Long-form when the topic earns it,
-        short when it doesn't. Distributed systems mostly, with the occasional detour into
-        <em class="italic">biology</em>, <em class="italic">aquariums</em>, or <em class="italic">trains</em>.
-      </p>
+    <div role="group" aria-label="Filter posts" class="flex flex-wrap items-center gap-2 mb-10 font-mono text-[12px] uppercase tracking-[0.08em]">
+      <button
+        v-for="f in filters" :key="f.value" type="button" :aria-pressed="kind === f.value" @click="setKind(f.value)"
+        :class="['min-h-[44px] px-4 rounded-full border border-black transition-colors', kind === f.value ? 'bg-black text-paper' : 'bg-transparent text-black hover:bg-black/5']"
+      >{{ f.label }} <span class="opacity-70">{{ f.count }}</span></button>
     </div>
 
-    <div v-for="(group, gi) in years" :key="group.year" :class="{ 'mt-14 pt-10 border-t border-gray-300': gi > 0, 'mt-14': gi === 0 }">
-      <div class="flex items-baseline mb-2">
-        <span class="font-garamond italic text-[22px] text-gray-600 shrink-0">{{ group.year }}</span>
-        <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-        <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0">{{ group.posts.length }} {{ group.posts.length === 1 ? 'entry' : 'entries' }}</span>
-      </div>
-      <ol class="list-none m-0 p-0 border-t border-gray-200">
-        <li v-for="(p, i) in group.posts" :key="p._path" class="grid grid-cols-[56px_1fr] items-baseline border-b border-gray-200 group">
-          <span class="font-garamond italic text-[18px] text-gray-500 py-5">{{ romans[i] }}.</span>
-          <NuxtLink :to="p._path" class="flex flex-col gap-2 py-5 no-underline text-inherit">
-            <span class="font-garamond text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.005em] text-black transition-colors duration-300 group-hover:text-slate-500">
-              {{ p.title }}
-            </span>
-            <span class="flex flex-wrap gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500">
-              <span>{{ usePrettyDate(p.date) }}</span>
-              <span class="text-gray-300">&middot;</span>
-              <span>{{ p.category }}</span>
-            </span>
-          </NuxtLink>
-        </li>
-      </ol>
-    </div>
+    <section v-for="(group, gi) in years" :key="group.year" :class="['border-t border-black pt-7', gi > 0 && 'mt-16 md:mt-24']">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-5">
+        {{ group.year }}
+      </h2>
+      <NuxtLink v-for="p in group.posts" :key="p._path" :to="p._path" class="block group border-b border-[#ddd8cf] py-5">
+        <span class="block font-mono text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-2.5">{{ p.kind === 'personal' ? 'Personal' : 'Software' }}</span>
+        <span class="block text-[28px] leading-[1.15] font-medium group-hover:text-slate-500 transition-colors">{{ p.title }}</span>
+        <span v-if="p.description" class="block text-[18px] leading-[1.5] text-[#333] mt-3.5 max-w-[760px]">{{ p.description }}</span>
+        <span class="block font-mono text-[12px] text-gray-600 mt-3.5">{{ usePrettyDate(p.date) }}</span>
+      </NuxtLink>
+    </section>
 
-    <Signoff><em>subscribe via <a href="/rss.xml" class="hover:text-slate-500 transition-colors">/rss.xml</a></em></Signoff>
+    <p v-if="!shown.length" class="m-0 py-5 text-[20px] italic text-gray-600 border-b border-[#ddd8cf]">Nothing personal here yet.</p>
   </ManuscriptShell>
 </template>
 
@@ -58,11 +46,26 @@ const { data: posts } = await useAsyncData("blog-index", () =>
   queryContent("/blog").sort({ date: -1 }).find()
 );
 
-const romans = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv"];
+const kindOf = (p: ParsedContent) => (p.kind === "personal" ? "personal" : "software");
+// Hydration starts at the prerendered path (/blog, no query); the router then moves to the real URL, so derive from it.
+const route = useRoute();
+const kind = computed(() => {
+  const q = route.query.kind;
+  return q === "personal" || q === "software" ? q : "all";
+});
+const setKind = (v: string) =>
+  navigateTo({ query: v === "all" ? {} : { kind: v } }, { replace: true });
+const filters = computed(() =>
+  [["all", "All"], ["software", "Software"], ["personal", "Personal"]].map(([value, label]) => ({
+    value, label,
+    count: value === "all" ? posts.value?.length ?? 0 : posts.value?.filter((p) => kindOf(p) === value).length ?? 0,
+  }))
+);
+const shown = computed(() => (posts.value ?? []).filter((p: ParsedContent) => kind.value === "all" || kindOf(p) === kind.value));
 
 const years = computed(() => {
   const map = new Map<string, ParsedContent[]>();
-  posts.value?.forEach((p: ParsedContent) => {
+  shown.value.forEach((p: ParsedContent) => {
     const y = p.date ? new Date(p.date).getFullYear().toString() : "Undated";
     if (!map.has(y)) map.set(y, []);
     map.get(y)!.push(p);

@@ -3,7 +3,7 @@
     <h2 class="font-garamond font-medium text-[44px] md:text-[56px] leading-none tracking-[-0.02em] m-0">
       <slot>{{ title }}</slot>
     </h2>
-    <span class="font-sans text-[11px] uppercase tracking-[0.2em] text-gray-500">§ {{ num }}</span>
+    <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-600">{{ num }}</span>
   </div>
 </template>
 

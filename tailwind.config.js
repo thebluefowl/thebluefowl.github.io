@@ -10,9 +10,13 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        paper: '#fbfaf7'
+      },
       fontFamily: {
         'garamond' : ['"EB Garamond"', 'serif'],
         'plex': ['"IBM Plex Sans"', 'sans-serif'],
+        'mono': ['"IBM Plex Mono"', 'monospace'],
       },
       keyframes: {
         fadeIn: {

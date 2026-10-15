@@ -1,50 +1,31 @@
 <template>
-  <ManuscriptShell>
-    <Folio page-label="Reading" subtitle="What I've been reading, and what's next" />
+  <ManuscriptShell wide>
+    <section class="pt-10 md:pt-24 pb-6">
+      <h1 class="font-garamond font-normal text-[clamp(40px,6vw,76px)] leading-[1.04] tracking-[-0.02em] max-w-[980px] m-0">Books I'm reading, have read, or have on the shelf.</h1>
+    </section>
+    <p class="font-garamond italic text-[22px] leading-[1.45] text-gray-800 m-0 mb-6">Stars are personal, not advice.</p>
 
-    <div class="grid grid-cols-[auto_1fr] gap-7 items-start">
-      <span
-        class="font-garamond font-medium text-[140px] md:text-[200px] leading-[0.78] tracking-[-0.04em] text-black -mt-2 select-none"
-        aria-hidden="true"
-      >B</span>
-      <p class="font-garamond text-[24px] md:text-[28px] leading-[1.35] text-black m-0">
-        <span class="italic">ooks I'm reading,</span> have read, or have on the shelf.
-        Stars are personal, not advice. The list goes back to 2025; older years live in my notes.
-      </p>
-    </div>
-
-    <div class="mt-12">
-      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
-        2026
-      </div>
-      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
+    <section class="mt-14 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">2026</h2>
+      <ol class="list-none m-0 p-0">
         <ContentDoc />
       </ol>
-    </div>
+    </section>
 
-    <hr class="border-0 border-t border-gray-300 my-14" />
-
-    <div>
-      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
-        2025
-      </div>
-      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
+    <section class="mt-14 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">2025</h2>
+      <ol class="list-none m-0 p-0">
         <ContentRenderer :value="reading2025" />
       </ol>
-    </div>
+    </section>
 
-    <hr class="border-0 border-t border-gray-300 my-14" />
-
-    <div>
-      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">
-        On the shelf
-      </div>
-      <ol class="reading-list list-none m-0 p-0 flex flex-col gap-6">
+    <section class="mt-14 border-t border-black pt-7">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">On the shelf</h2>
+      <ol class="list-none m-0 p-0">
         <ContentRenderer :value="readingShelf" />
       </ol>
-    </div>
+    </section>
 
-    <Signoff><em>updated as I go</em></Signoff>
   </ManuscriptShell>
 </template>
 

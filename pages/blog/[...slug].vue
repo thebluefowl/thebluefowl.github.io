@@ -1,41 +1,33 @@
 <template>
-  <ManuscriptShell>
-    <div class="mb-14">
-      <div class="flex items-center font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 gap-4 pb-[18px]">
-        <span>Vishnu Jayadevan</span>
-        <span class="flex-1 border-b border-dotted border-gray-300 self-end mb-1 h-px"></span>
-        <span>{{ usePrettyDate(page.date) }} . {{ page.category }}</span>
-      </div>
-      <h1 class="font-garamond font-normal text-[clamp(48px,7.5vw,112px)] leading-[0.96] tracking-[-0.03em] m-0 pb-7 border-b border-black">
+  <ManuscriptShell wide>
+    <header class="pt-6 md:pt-10 pb-10 mb-10 border-b border-black">
+      <p class="font-mono text-[12px] text-gray-600 m-0">
+        {{ usePrettyDate(page.date) }} ·
+        <NuxtLink :to="`/blog/category/${encodeURIComponent(page.category)}`" class="hover:text-slate-500 transition-colors">{{ page.category }}</NuxtLink>
+      </p>
+      <h1 class="font-garamond font-normal text-[clamp(36px,5.5vw,56px)] leading-[1.08] tracking-[-0.02em] max-w-[900px] mt-6 mb-0">
         {{ page.title }}
       </h1>
-      <p
-        v-if="page.subtitle"
-        class="font-garamond italic text-[22px] md:text-[26px] leading-[1.4] text-gray-600 m-0 mt-10 max-w-[60ch] mx-auto text-center"
-      >
-        {{ page.subtitle }}
+      <p v-if="page.description || page.subtitle" class="text-[22px] leading-[1.45] italic text-[#333] max-w-[760px] mt-6 mb-0">
+        {{ page.description || page.subtitle }}
       </p>
-    </div>
+    </header>
 
     <ContentDoc class="prose-post" />
 
-    <section v-if="related && related.length" class="mt-16 pt-10 border-t border-black">
-      <div class="font-sans text-[11px] uppercase tracking-[0.18em] text-gray-500 font-medium mb-6">Continued in</div>
-      <ol class="list-none m-0 p-0 flex flex-col gap-3">
-        <li v-for="(p, i) in related" :key="p._path" class="flex items-baseline">
-          <span class="font-garamond italic text-[18px] text-gray-500 w-9 shrink-0">{{ romans[i] }}.</span>
-          <NuxtLink :to="p._path" class="font-garamond text-[20px] md:text-[22px] font-medium leading-tight text-black shrink-0 no-underline hover:italic hover:text-slate-500 transition-colors">
-            {{ p.title }}
-          </NuxtLink>
-          <span class="flex-1 border-b border-dotted border-gray-300 mx-3 self-center h-px"></span>
-          <span class="font-sans text-[11px] uppercase tracking-[0.16em] text-gray-500 shrink-0">
-            {{ usePrettyDate(p.date) }} . {{ p.category }}
-          </span>
-        </li>
-      </ol>
+    <section v-if="related && related.length" class="mt-16 pt-7 border-t border-black">
+      <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-2">Continued in</h2>
+      <NuxtLink v-for="p in related" :key="p._path" :to="p._path" class="block group border-b border-gray-200 py-6">
+        <span class="block font-mono text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-2.5">{{ p.kind === 'personal' ? 'Personal' : 'Software' }}</span>
+        <span class="block text-[24px] md:text-[28px] leading-[1.15] font-medium group-hover:text-slate-500 transition-colors">{{ p.title }}</span>
+        <span v-if="p.description" class="block text-[17px] md:text-[18px] leading-[1.5] text-gray-800 mt-2">{{ p.description }}</span>
+        <span class="block font-mono text-[12px] md:text-[13px] text-gray-600 mt-2">{{ usePrettyDate(p.date) }} · {{ p.category }}</span>
+      </NuxtLink>
     </section>
 
-    <Signoff><em>V.J., {{ usePrettyDate(page.date) }}</em></Signoff>
+    <div class="flex flex-wrap justify-end items-baseline gap-x-6 gap-y-3 mt-16 pt-5 border-t border-[#ddd8cf] font-mono text-[12px] uppercase tracking-[0.08em]">
+      <NuxtLink to="/blog" class="hover:text-slate-500 transition-colors">&larr; Back to Blog</NuxtLink>
+    </div>
   </ManuscriptShell>
 </template>
 
@@ -60,8 +52,6 @@ const { data: related } = await useAsyncData(
       .find(),
   { watch: [() => route.path] }
 );
-
-const romans = ["i", "ii", "iii", "iv", "v"];
 
 const SITE = "https://vishnujayadevan.com";
 const absUrl = (path?: string) => {
@@ -113,12 +103,13 @@ useHead({
 
 <style>
 .prose-post {
-  margin: 24px auto 0;
-  max-width: 88ch;
+  width: 100%; /* auto margins in the flex-col article disable stretch */
+  margin: 0;
+  max-width: 680px;
   font-family: "EB Garamond", Georgia, serif;
-  font-size: 19px;
-  line-height: 1.7;
-  color: #1f2937;
+  font-size: 20px;
+  line-height: 1.65;
+  color: #111;
 }
 .prose-post h1 a,
 .prose-post h2 a,
@@ -134,17 +125,7 @@ useHead({
 .prose-post h4 a:hover {
   color: #64748b;
 }
-.prose-post > * + * { margin-top: 0.7em; }
-.prose-post > p:first-of-type::first-letter {
-  font-family: "EB Garamond", Georgia, serif;
-  font-weight: 500;
-  font-size: 5.4em;
-  line-height: 0.86;
-  float: left;
-  padding: 4px 12px 0 0;
-  margin-top: 6px;
-  color: #000;
-}
+.prose-post > * { margin: 0 0 1.1em; }
 .prose-post > h2:first-child,
 .prose-post > h3:first-child {
   margin-top: 0;
@@ -152,11 +133,10 @@ useHead({
 .prose-post h2 {
   font-family: "EB Garamond", Georgia, serif;
   font-weight: 500;
-  font-size: 36px;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin: 1.4em 0 0.4em;
-  color: #000;
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 1.8em 0 0.6em;
+  color: #111;
 }
 .prose-post h3 {
   font-family: "EB Garamond", Georgia, serif;
@@ -177,34 +157,31 @@ useHead({
 }
 .prose-post a:hover { color: #64748b; }
 .prose-post pre {
-  border: 1px solid #e5e7eb;
-  padding: 16px 18px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 13px;
-  line-height: 1.55;
-  margin: 1.4em 0;
+  border: 1px solid #e7e2d8;
+  padding: 18px 20px;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 1.4em;
   overflow: auto;
 }
 /* Shiki applies a background via inline style on <pre>; if it's missing fall back to ours */
 .prose-post pre:not([style*="background"]) {
-  background: #f9fafb;
+  background: #f4f1ea;
 }
 .prose-post :not(pre) > code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.85em;
-  background: #fdf6f0;
-  border: 1px solid #ead9c8;
-  padding: 1px 6px;
-  border-radius: 3px;
-  color: #6b3f2a;
-  white-space: nowrap;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8em;
+  background: #f4f1ea;
+  padding: 1px 5px;
+  overflow-wrap: anywhere;
 }
 .prose-post pre {
   /* reset for nested pre code */
 }
 .prose-post pre code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 13px;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
   background: transparent;
   border: 0;
   padding: 0;
@@ -246,12 +223,12 @@ useHead({
   border-bottom: 1px solid #000;
 }
 .prose-post th {
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #6b7280;
+  color: #4b5563;
   text-align: left;
   padding: 10px 12px;
 }
@@ -273,8 +250,8 @@ useHead({
 }
 .prose-post td code {
   font-size: 0.88em;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: #f4f1ea;
+  border: 1px solid #e7e2d8;
   padding: 1px 5px;
   border-radius: 2px;
 }

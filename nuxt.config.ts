@@ -91,6 +91,7 @@ export default defineNuxtConfig({
     families: [
       { name: "EB Garamond", provider: "google", weights: [400, 500, 700], styles: ["normal", "italic"], preload: true },
       { name: "IBM Plex Sans", provider: "google", weights: [500], styles: ["normal"], preload: false },
+      { name: "IBM Plex Mono", provider: "google", weights: [400, 500], styles: ["normal"], preload: false },
       { name: "Noto Serif Malayalam", provider: "google", weights: [400, 700], styles: ["normal"], preload: false, global: false },
     ],
   },

@@ -2,6 +2,7 @@
 title: "Jump consistent hashing: consistent hashing without the ring."
 description: "When you need to spread keys across a cluster and can't afford a full ring, jump consistent hashing gives you optimal redistribution in ten lines of code, zero memory, and O(ln N) lookups."
 category: "Software Engineering"
+kind: software
 date: "2026-04-09"
 ---
 
@@ -29,7 +30,7 @@ Bucket 1: 50% chance you move here
 Bucket 2: 33% chance you move here
 Bucket 3: 25% chance you move here
 ...
-Bucket k: $\frac{1}{k+1}$ chance you move here
+Bucket k: 1/(k+1) chance you move here
 ```
 
 Your final answer is the last bucket you moved to.
