@@ -10,7 +10,7 @@ jobs:
   - co: Harness
     years: 2026 – ഇപ്പോൾ
     roles:
-      - title: Staff Software Engineer II
+      - title: Senior Staff Software Engineer
         tag: 2026 – ഇപ്പോൾ
         body:
           - DeepSource-നെ Harness ഏറ്റെടുത്തപ്പോൾ ഞാനും ഇവിടെയെത്തി. സ്റ്റാർട്ടപ്പുകളുടെ ചെറിയ ലോകത്തുനിന്ന് വലിയൊരു കമ്പനിയുടെ തിരക്കുകളിലേക്ക്. പുതിയ ഇടവുമായി പരിചയപ്പെട്ടുവരുന്നതേയുള്ളൂ.

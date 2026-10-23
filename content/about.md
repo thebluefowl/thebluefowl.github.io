@@ -1,6 +1,6 @@
 ---
 title: About
-description: A longer introduction. Staff software engineer at Harness, based in Bangalore.
+description: A longer introduction. Senior staff software engineer at Harness, based in Bangalore.
 hero: I'm **Vishnu Jayadevan**, a software engineer based in Bangalore, India.
 intro:
   - I've spent the better part of the last decade building software, occasionally managing the people who build it, and developing opinions about both.
@@ -10,7 +10,7 @@ jobs:
   - co: Harness
     years: 2026 – Present
     roles:
-      - title: Staff Software Engineer II
+      - title: Senior Staff Software Engineer
         tag: September 2026 – Present
         body:
           - Joined following Harness's acquisition of DeepSource. Still finding my way around.

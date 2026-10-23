@@ -95,8 +95,8 @@ function siteSvg() {
   </text>
   <rect x="72" y="530" width="1056" height="1" fill="${HAIRLINE}"/>
   <g font-family="${MONO}" font-size="17" fill="${MUTED}">
-    <text x="72" y="568">Staff Software Engineer, Harness</text>
-    <text x="440" y="568">Bangalore, IN · 12.97° N, 77.59° E</text>
+    <text x="72" y="568">Senior Staff Software Engineer, Harness</text>
+    <text x="512" y="568">Bangalore, IN · 12.97° N, 77.59° E</text>
   </g>
 </svg>`;
 }
