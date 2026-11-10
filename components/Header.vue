@@ -48,7 +48,6 @@ const navLinks = [
   { to: "/blog", label: "Blog" },
   { to: "/reading", label: "Reading" },
   { to: "/now", label: "Now" },
-  { to: "/uses", label: "Uses" },
   { to: "/elsewhere", label: "Elsewhere" },
 ];
 

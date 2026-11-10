@@ -75,7 +75,6 @@ const contents = [
   ["/blog", "Blog", "Systems, software, the rest"],
   ["/reading", "Reading", "A running list, with stars"],
   ["/now", "Now", "What I'm focused on"],
-  ["/uses", "Uses", "Tools I reach for"],
   ["/elsewhere", "Elsewhere", "The rest of the internet"],
 ];
 
