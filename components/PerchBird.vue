@@ -133,9 +133,9 @@ onMounted(async () => {
     }) ?? null;
   };
 
-  // ---- state machine: fly in once, then always on screen hopping between perches
+  // ---- state machine: fly in once, then stays perched until the pointer startles it to a new perch
   let state: "hidden" | "flying" | "perched" = "hidden";
-  let wait = 1, t = 0, dur = 1, target: Perch | null = null, glide = 0, stay = 0, bob = 0, hop = 0, face = 1;
+  let wait = 1, t = 0, dur = 1, target: Perch | null = null, glide = 0, bob = 0, hop = 0, face = 1;
   const S = { x: 0, y: 0 };
   let mouse = { x: -999, y: -999 };
 
@@ -169,7 +169,6 @@ onMounted(async () => {
       if (hop > 0) hop -= dt;
       if (hop <= 0 && Math.random() < dt * 0.3) { hop = 0.15; if (Math.random() < 0.5) face = -face; }
       pos.y -= hop > 0 ? Math.sin((1 - hop / 0.15) * Math.PI) * 6 : 0;
-      if ((stay -= dt) < 0) takeoff();
     } else {
       // flying: quadratic bezier to the live target; retarget if it scrolls away
       const e = perchPoint(target!);
@@ -186,7 +185,7 @@ onMounted(async () => {
       head.rotation.z = 0;
       if (glide > 0) { glide -= dt; flap(0.2); }
       else { flap(Math.sin(now * 28) * 0.9); if (Math.random() < dt * 0.5) glide = 0.4; }
-      if (lin >= 1) { state = "perched"; stay = R(3, 9); bob = R(0.8, 1.4); hop = 0; }
+      if (lin >= 1) { state = "perched"; bob = R(0.8, 1.4); hop = 0; }
     }
     outer.position.set(pos.x, -pos.y, 0);
     outer.scale.x = face;
