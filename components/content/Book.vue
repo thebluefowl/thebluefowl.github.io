@@ -14,6 +14,10 @@ const props = defineProps<{
   author: string;
   stars?: string;
   status?: "completed" | "in-progress" | "shelf" | "dnf";
+  // used by the 3D shelf only; declared so they don't fall through as <li> attributes
+  year?: string | number;
+  pages?: string | number;
+  subjects?: string;
 }>();
 
 const trail = computed(() => {

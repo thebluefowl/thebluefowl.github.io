@@ -1,10 +1,10 @@
-::book{title="All the Light We Cannot See" author="Anthony Doerr" stars=4.5}
+::book{title="All the Light We Cannot See" author="Anthony Doerr" stars=4.5 year=2014 pages=544 subjects="Literary fiction · Second World War"}
 ::
-::book{title="A Man Called Ove" author="Fredrik Backman" stars=4.5}
+::book{title="A Man Called Ove" author="Fredrik Backman" stars=4.5 year=2012 pages=346 subjects="Novel · Translation · Neighbours"}
 ::
-::book{title="The Great Railway Bazaar" author="Paul Theroux" stars=4}
+::book{title="The Great Railway Bazaar" author="Paul Theroux" stars=4 year=1975 pages=354 subjects="Travel · Railways"}
 ::
-::book{title="A Month in Siena" author="Hisham Matar" status="dnf"}
+::book{title="A Month in Siena" author="Hisham Matar" status="dnf" year=2019 pages=144 subjects="Memoir · Art · Siena"}
 ::
-::book{title="The Sea" author="John Banville" status="dnf"}
+::book{title="The Sea" author="John Banville" status="dnf" year=2005 pages=233 subjects="Booker Prize winner · Memory · Grief"}
 ::
