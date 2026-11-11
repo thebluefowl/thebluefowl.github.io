@@ -22,7 +22,8 @@
     "katex": "^0.16.47",
     "nuxt": "^3.13.0",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@nuxt/fonts": "^0.7.2",
