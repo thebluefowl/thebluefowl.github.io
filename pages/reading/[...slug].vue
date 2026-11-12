@@ -73,7 +73,7 @@ const booksIn = (doc: any) =>
 // the shelf is arranged the way a library would: Dewey classes in order, fiction after, then by author surname
 const CLASSES: Record<string, string> = {
   "0": "000 Computing", "1": "100 Philosophy & psychology", "2": "200 Religion", "3": "300 Social sciences",
-  "4": "400 Language", "5": "500 Science", "6": "600 Technology", "7": "700 Arts",
+  "4": "400 Language", "5": "500 Science", "6": "600 Applied sciences", "7": "700 Arts",
   "8": "800 Literature", "9": "900 History & travel", F: "Fiction",
 };
 const surname = (a: string) => String(a).split(/,| and /)[0].trim().split(/\s+/).pop() ?? "";

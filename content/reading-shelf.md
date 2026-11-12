@@ -4,7 +4,7 @@
 ::
 ::book{title="Anxious People" author="Fredrik Backman" status="shelf" year=2020 pages=352 subjects="Humorous fiction · Sweden" call="FIC"}
 ::
-::book{title="നീർമാതളം പൂത്ത കാലം" author="മാധവിക്കുട്ടി" status="shelf" year=1993 pages=264 subjects="Memoir · Childhood · Kerala" call="894.812"}
+::book{title="നീർമാതളം പൂത്ത കാലം" author="മാധവിക്കുട്ടി" status="shelf" year=1993 pages=264 subjects="Memoir · Childhood · Kerala" call="894.8123"}
 ::
 ::book{title="On the Road" author="Jack Kerouac" status="shelf" year=1957 pages=310 subjects="Beat generation · Autobiographical fiction" call="FIC"}
 ::
@@ -14,11 +14,11 @@
 ::
 ::book{title="So Long, See You Tomorrow" author="William Keepers Maxwell Jr." status="shelf" year=1980 pages=135 subjects="Fathers and sons · Illinois" call="FIC"}
 ::
-::book{title="Full Tilt" author="Dervla Murphy" status="shelf" year=1965 pages=235 subjects="Travel · Cycling · Ireland to India" call="915.804"}
+::book{title="Full Tilt" author="Dervla Murphy" status="shelf" year=1965 pages=235 subjects="Travel · Cycling · Ireland to India" call="910.4"}
 ::
 ::book{title="Sonny Boy" author="Al Pacino" status="shelf" year=2024 pages=352 subjects="Memoir · Acting · Hollywood" call="791.43"}
 ::
-::book{title="Maus" author="Art Spiegelman" status="shelf" year=1986 pages=296 subjects="Graphic novel · Holocaust · Fathers and sons" call="741.5"}
+::book{title="Maus" author="Art Spiegelman" status="shelf" year=1986 pages=296 subjects="Graphic novel · Holocaust · Fathers and sons" call="741.5973"}
 ::
 ::book{title="The Glass Palace" author="Amitav Ghosh" status="shelf" year=2000 pages=560 subjects="Historical fiction · Burma · Empire" call="FIC"}
 ::
@@ -28,11 +28,11 @@
 ::
 ::book{title="The Tipping Point" author="Malcolm Gladwell" status="shelf" year=2000 pages=288 subjects="Social psychology · Epidemics of ideas" call="302"}
 ::
-::book{title="The Vanishing Point" author="Paul Theroux" status="shelf" subjects="Travel" call="910.4"}
+::book{title="The Vanishing Point" author="Paul Theroux" status="shelf" year=2025 pages=336 subjects="Short stories" call="FIC"}
 ::
 ::book{title="The Making of a Manager" author="Julie Zhuo" status="shelf" year=2019 pages=312 subjects="Management · Leadership" call="658.409"}
 ::
-::book{title="The Essential Chomsky" author="Noam Chomsky" status="shelf" year=2008 pages=496 subjects="Politics · Linguistics · Essays" call="320"}
+::book{title="The Essential Chomsky" author="Noam Chomsky" status="shelf" year=2008 pages=496 subjects="Politics · Linguistics · Essays" call="410"}
 ::
 ::book{title="The Diary of a Young Girl" author="Anne Frank" status="shelf" year=1947 pages=283 subjects="Diary · Holocaust · Amsterdam" call="940.53"}
 ::
@@ -42,9 +42,9 @@
 ::
 ::book{title="Radical Candor" author="Kim Scott" status="shelf" year=2017 pages=297 subjects="Management · Feedback" call="658.409"}
 ::
-::book{title="Masters of Scale" author="Reid Hoffman" status="shelf" year=2021 pages=288 subjects="Entrepreneurship · Startups" call="658.421"}
+::book{title="Masters of Scale" author="Reid Hoffman" status="shelf" year=2021 pages=288 subjects="Entrepreneurship · Startups" call="338.04"}
 ::
-::book{title="Atomic Habits" author="James Clear" status="shelf" year=2018 pages=320 subjects="Habits · Self-help" call="158.1"}
+::book{title="Atomic Habits" author="James Clear" status="shelf" year=2018 pages=320 subjects="Habits · Self-help" call="155.24"}
 ::
 ::book{title="Thinking, Fast and Slow" author="Daniel Kahneman" status="shelf" year=2011 pages=499 subjects="Psychology · Decision making" call="153.42"}
 ::
@@ -54,7 +54,7 @@
 ::
 ::book{title="The Anarchy" author="William Dalrymple" status="shelf" year=2019 pages=576 subjects="History · East India Company" call="954.029"}
 ::
-::book{title="Elon Musk" author="Walter Isaacson" status="shelf" year=2023 pages=688 subjects="Biography · Technology" call="338.76"}
+::book{title="Elon Musk" author="Walter Isaacson" status="shelf" year=2023 pages=688 subjects="Biography · Technology" call="338.04092"}
 ::
 ::book{title="A Promised Land" author="Barack Obama" status="shelf" year=2020 pages=768 subjects="Memoir · Politics · Presidency" call="973.932"}
 ::
@@ -66,13 +66,13 @@
 ::
 ::book{title="The Suriani Kitchen" author="Lathika George" status="shelf" year=2009 subjects="Cookbook · Syrian Christian · Kerala" call="641.5954"}
 ::
-::book{title="Why We Die" author="Venki Ramakrishnan" status="shelf" year=2024 pages=320 subjects="Biology · Ageing · Death" call="612.67"}
+::book{title="Why We Die" author="Venki Ramakrishnan" status="shelf" year=2024 pages=320 subjects="Biology · Ageing · Death" call="612.68"}
 ::
-::book{title="Database Internals" author="Alex Petrov" status="shelf" year=2019 pages=370 subjects="Databases · Distributed systems" call="005.74"}
+::book{title="Database Internals" author="Alex Petrov" status="shelf" year=2019 pages=370 subjects="Databases · Distributed systems" call="005.7565"}
 ::
 ::book{title="The Manager's Path" author="Camille Fournier" status="shelf" year=2017 pages=244 subjects="Engineering management" call="658.4"}
 ::
-::book{title="The Phoenix Project" author="Gene Kim, Kevin Behr and George Spafford" status="shelf" year=2013 pages=345 subjects="Business novel · IT · DevOps" call="004.068"}
+::book{title="The Phoenix Project" author="Gene Kim, Kevin Behr and George Spafford" status="shelf" year=2013 pages=345 subjects="Business novel · IT · DevOps" call="FIC"}
 ::
 ::book{title="The Emperor of All Maladies" author="Siddhartha Mukherjee" status="shelf" year=2010 pages=571 subjects="Cancer · History of medicine" call="616.994"}
 ::
@@ -84,7 +84,7 @@
 ::
 ::book{title="Pachinko" author="Min Jin Lee" status="shelf" year=2017 pages=490 subjects="Historical fiction · Korea · Japan" call="FIC"}
 ::
-::book{title="The Prince and The Art of War" author="Niccolò Machiavelli" status="shelf" subjects="Political philosophy · Strategy" call="320.1"}
+::book{title="The Prince and The Art of War" author="Niccolò Machiavelli" status="shelf" subjects="Political philosophy · Strategy" call="355.02"}
 ::
 ::book{title="Tess of the d'Urbervilles" author="Thomas Hardy" status="shelf" year=1891 pages=480 subjects="Victorian novel · Wessex" call="FIC"}
 ::
@@ -126,13 +126,13 @@
 ::
 ::book{title="The Pragmatic Programmer" author="Andrew Hunt and David Thomas" status="shelf" year=1999 pages=352 subjects="Software craft" call="005.1"}
 ::
-::book{title="The Intelligent Investor" author="Benjamin Graham" status="shelf" year=1949 pages=640 subjects="Investing · Value investing" call="332.632"}
+::book{title="The Intelligent Investor" author="Benjamin Graham" status="shelf" year=1949 pages=640 subjects="Investing · Value investing" call="332.67"}
 ::
 ::book{title="Man's Search for Meaning" author="Viktor E. Frankl" status="shelf" year=1946 pages=165 subjects="Memoir · Holocaust · Logotherapy" call="150.195"}
 ::
 ::book{title="Chaos" author="James Gleick" status="shelf" year=1987 pages=352 subjects="Science · Chaos theory" call="003.857"}
 ::
-::book{title="Acts of God" author="Kanan Gill" status="shelf" year=2023 subjects="Novel · Comic fiction" call="FIC"}
+::book{title="Acts of God" author="Kanan Gill" status="shelf" year=2024 subjects="Novel · Comic fiction" call="FIC"}
 ::
 ::book{title="High Output Management" author="Andrew S. Grove" status="shelf" year=1983 pages=243 subjects="Management · Intel" call="658.4"}
 ::
@@ -144,7 +144,7 @@
 ::
 ::book{title="The Elegant Universe" author="Brian Greene" status="shelf" year=1999 pages=448 subjects="Physics · String theory" call="539.7258"}
 ::
-::book{title="Shoe Dog" author="Phil Knight" status="shelf" year=2016 pages=386 subjects="Memoir · Nike · Business" call="338.76"}
+::book{title="Shoe Dog" author="Phil Knight" status="shelf" year=2016 pages=386 subjects="Memoir · Nike · Business" call="338.7688"}
 ::
 ::book{title="Masala Lab" author="Krish Ashok" status="shelf" year=2020 pages=280 subjects="Food science · Indian cooking" call="641.5954"}
 ::
