@@ -20,7 +20,7 @@
     <div v-show="mode === 'shelf'" class="mt-7">
       <ClientOnly>
         <ReadingShelf :shelves="shelves" />
-        <template #fallback><div class="h-[540px] md:h-[680px]" /></template>
+        <template #fallback><div class="h-[1600px] md:h-[2200px]" /></template>
       </ClientOnly>
     </div>
 
@@ -66,14 +66,29 @@ const modes = [
 ];
 const mode = ref<"shelf" | "list">("shelf");
 
-// the ::book entries in each content file, top shelf first
+// the ::book entries in a content file
 const booksIn = (doc: any) =>
   (doc?.body?.children ?? []).filter((n: any) => n.tag === "book").map((n: any) => n.props);
-const shelves = computed(() => [
-  { label: "2026", books: booksIn(reading2026.value) },
-  { label: "2025", books: booksIn(reading2025.value) },
-  { label: "On the shelf", books: booksIn(readingShelf.value) },
-]);
+
+// the shelf is arranged the way a library would: Dewey classes in order, fiction after, then by author surname
+const CLASSES: Record<string, string> = {
+  "0": "000 Computing", "1": "100 Philosophy & psychology", "2": "200 Religion", "3": "300 Social sciences",
+  "4": "400 Language", "5": "500 Science", "6": "600 Technology", "7": "700 Arts",
+  "8": "800 Literature", "9": "900 History & travel", F: "Fiction",
+};
+const surname = (a: string) => String(a).split(/,| and /)[0].trim().split(/\s+/).pop() ?? "";
+const classOf = (b: any) => (b.call === "FIC" ? "F" : b.call ? String(b.call)[0] : "?");
+const shelves = computed(() => {
+  const all = [reading2026.value, reading2025.value, readingShelf.value].flatMap(booksIn).sort(
+    (a: any, b: any) =>
+      String(a.call ?? "~").localeCompare(String(b.call ?? "~")) ||
+      surname(a.author).localeCompare(surname(b.author)) ||
+      (Number(a.year) || 0) - (Number(b.year) || 0) ||
+      a.title.localeCompare(b.title),
+  );
+  const keys = [...new Set(all.map(classOf))].sort((a, b) => (a === "?" ? 1 : b === "?" ? -1 : a === "F" ? 1 : b === "F" ? -1 : a.localeCompare(b)));
+  return keys.map((k) => ({ label: CLASSES[k] ?? "Uncatalogued", books: all.filter((b: any) => classOf(b) === k) }));
+});
 
 useSeoMeta({
   title: "Reading | Vishnu Jayadevan",

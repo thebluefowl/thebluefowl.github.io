@@ -18,6 +18,7 @@ const props = defineProps<{
   year?: string | number;
   pages?: string | number;
   subjects?: string;
+  call?: string;
 }>();
 
 const trail = computed(() => {

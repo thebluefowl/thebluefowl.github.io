@@ -1,20 +1,15 @@
 <template>
   <div>
-    <div role="group" aria-label="Jump to section" class="flex flex-wrap items-baseline gap-x-1 gap-y-1 mb-3 font-mono text-[11px] tracking-[0.12em] uppercase">
-      <button
-        v-for="(sec, s) in geo.sections"
-        :key="sec.label"
-        type="button"
-        class="min-h-[44px] px-3 border border-black hover:bg-black hover:text-paper transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        @click="goTo(s)"
-      >{{ sec.label }} <span class="opacity-60">· {{ sec.count }}</span></button>
+    <div role="group" aria-label="Camera" class="ml-auto mb-3 w-fit flex border border-black bg-paper font-mono">
+      <button type="button" class="min-h-[44px] px-3 border-r border-[#ddd8cf] text-[11px] tracking-[0.12em] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="resetView">RESET</button>
+      <button type="button" aria-label="Zoom out" class="w-11 min-h-[44px] border-r border-[#ddd8cf] text-[16px] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="zoomBy(1 / 1.25)">−</button>
+      <button type="button" aria-label="Zoom in" class="w-11 min-h-[44px] text-[16px] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="zoomBy(1.25)">+</button>
     </div>
-
-    <div ref="wrap" class="relative overflow-hidden h-[460px] md:h-[clamp(380px,58vh,560px)] bg-paper text-black shelf-grid">
+    <div ref="wrap" class="relative overflow-hidden [--s:4.6px] md:[--s:6.4px] bg-paper text-black shelf-grid" :style="{ height: `calc(${geo.HT + 22} * var(--s))` }">
       <canvas
         ref="canvas"
         role="img"
-        :aria-label="`Line drawing of a long bookshelf holding ${books.length} books in ${geo.sections.length} sections. Switch to List for the titles.`"
+        :aria-label="`Line drawing of a bookcase holding ${books.length} books in ${geo.sections.length} sections. Switch to List for the titles.`"
         class="absolute inset-0 w-full h-full block"
         :style="{ cursor, touchAction: 'pan-y' }"
       />
@@ -27,12 +22,6 @@
           :style="{ left: d.x + 'px', top: d.y + 'px', transform: `translate(-50%, -50%) rotate(${d.deg}deg)` }"
         >{{ d.text }}</div>
         <div
-          v-for="n in ov.notes"
-          :key="n.label"
-          class="absolute -translate-y-full text-[11px] tracking-[0.12em] uppercase whitespace-nowrap"
-          :style="{ left: n.x + 'px', top: n.y + 'px' }"
-        >{{ n.label }} <span class="text-gray-600">· {{ n.count }}</span></div>
-        <div
           v-if="ov.tip"
           class="absolute max-w-[260px] border border-black bg-paper px-2.5 py-1.5 font-garamond leading-tight"
           :style="{ left: ov.tip.x + 'px', top: ov.tip.y + 'px', transform: 'translate(-50%, calc(-100% - 10px))' }"
@@ -43,8 +32,9 @@
       </div>
 
       <div
-        v-if="detail"
-        class="absolute left-3 right-3 bottom-3 max-h-[62%] overflow-auto md:left-5 md:right-auto md:bottom-auto md:top-5 md:w-[300px] md:max-h-[calc(100%-40px)] border border-black bg-paper px-[18px] pt-4 pb-[18px]"
+        v-if="detail && ov.card"
+        class="absolute left-3 right-3 max-h-[330px] overflow-auto md:right-auto md:w-[300px] border border-black bg-paper px-[18px] pt-4 pb-[18px]"
+        :style="{ top: ov.card.top + 'px', left: ov.card.left != null ? ov.card.left + 'px' : undefined }"
       >
         <div class="flex items-start justify-between gap-3">
           <div class="font-garamond italic text-[26px] leading-[1.15]">{{ detail.title }}</div>
@@ -67,15 +57,10 @@
         </dl>
       </div>
 
-      <div role="group" aria-label="Camera" class="absolute right-4 top-4 flex border border-black bg-paper font-mono">
-        <button type="button" class="min-h-[44px] px-3 border-r border-[#ddd8cf] text-[11px] tracking-[0.12em] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="resetView">RESET</button>
-        <button type="button" aria-label="Zoom out" class="w-11 min-h-[44px] border-r border-[#ddd8cf] text-[16px] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="zoomBy(1 / 1.25)">−</button>
-        <button type="button" aria-label="Zoom in" class="w-11 min-h-[44px] text-[16px] hover:text-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black" @click="zoomBy(1.25)">+</button>
-      </div>
     </div>
     <p class="flex flex-wrap justify-between gap-x-6 gap-y-1.5 mt-3 mb-0 font-mono text-[11px] tracking-[0.08em] text-gray-600">
-      <span>Pulled forward: reading now · Dashed, leaning: did not finish</span>
-      <span>Drag or scroll sideways to move along · select a book to take it out</span>
+      <span>Orange band: read · Grey lettering: not read yet · Pulled forward: reading now · Dashed, leaning: did not finish</span>
+      <span>Shelved by call number, then author · drag to move · select a book to take it out</span>
     </p>
   </div>
 </template>
@@ -89,9 +74,8 @@ const props = defineProps({ shelves: { type: Array, required: true } });
 const INK = "#1b1b1b", FILL = "#fbfaf7", FILL_HI = "#f4e2d4", ACCENT = "#b8410c", HATCH = "rgba(27,27,27,0.4)";
 const statusWord = { "in-progress": "Reading now", dnf: "Did not finish", shelf: "Not read yet" };
 const YAW = 0.3, PITCH = 0.14;
-
-// Scene units are cm. One long shelf run: an upright at least every MAX_BAY, each section starts a new bay.
-const COMP = 29, BOARD = 2, DEPTH = 26, LEAN = 0.24, MIN_BAY = 24, MAX_BAY = 90;
+// Scene units are cm. One bookcase; shelves share boards; a shelf is at most MAX_ROW long.
+const COMP = 29, BOARD = 2, DEPTH = 26, LEAN = 0.24, MIN_ROW = 90, MAX_ROW = 170;
 const H = COMP + 2 * BOARD, Z = DEPTH / 2;
 
 const hash = (s, k) => {
@@ -116,45 +100,59 @@ const books = props.shelves.flatMap((sh, s) =>
   }),
 );
 
-// Lay every book out along the run. Returns bays, each book's x, section starts, overall width.
+// Shelve like a library: classes in call-number order, each in its own compartment sized to its books.
+// Compartments pack left to right into shelves (top first) and stretch so every shelf is the case's width.
+// A class longer than a shelf continues in a second compartment on the next shelf.
 function plan() {
-  const bays = [], pos = [], sections = [];
-  let x = BOARD;
+  const chunks = [];
   props.shelves.forEach((sh, s) => {
-    let bayStart = x, cur = x + 0.4;
-    const close = (extra) => {
-      const bw = Math.max(MIN_BAY, cur - bayStart + extra);
-      bays.push({ x: bayStart, w: bw });
-      x = bayStart + bw + BOARD; bayStart = x; cur = x + 0.4;
-    };
     const ids = books.map((_, i) => i).filter((i) => books[i].shelf === s);
+    if (!ids.length) return;
     const standing = ids.filter((i) => books[i].status !== "dnf");
     const leaning = ids.filter((i) => books[i].status === "dnf");
-    const sec = { label: sh.label, count: ids.length, x0: x, bookend: null };
-    standing.forEach((i) => {
-      if (cur + books[i].t - bayStart > MAX_BAY - 1) close(0.4);
-      pos[i] = cur + books[i].t / 2;
-      cur += books[i].t + 0.25;
-    });
+    const units = standing.map((i) => ({ w: books[i].t + 0.25, i }));
     if (leaning.length) {
-      const last = books[leaning[leaning.length - 1]];
-      const span = 25 * Math.sin(LEAN) + leaning.reduce((a, i) => a + books[i].t / Math.cos(LEAN) + 0.2, 0) + last.t;
-      if (cur + span - bayStart > MAX_BAY) close(0.4);
-      let p = null;
-      leaning.forEach((i) => {
-        p = p == null ? cur + books[i].h * Math.sin(LEAN) + 0.3 : p + books[i].t / Math.cos(LEAN) + 0.2;
-        pos[i] = p;
-      });
-      cur = p + last.t * Math.cos(LEAN) + 0.4;
-    } else if (ids.length) {
-      if (cur + 8 - bayStart > MAX_BAY) close(0.4);
-      sec.bookend = cur + 0.3;
-      cur += 8;
-    }
-    close(3);
-    sections.push(sec);
+      const span = 25 * Math.sin(LEAN) + leaning.reduce((a, i) => a + books[i].t / Math.cos(LEAN) + 0.2, 0) + books[leaning.at(-1)].t;
+      units.push({ w: span + 0.4, lean: leaning });
+    } else units.push({ w: 8, end: true });
+    const sec = { label: sh.label, count: ids.length };
+    let c = null;
+    units.forEach((u) => {
+      if (!c || c.len + u.w > MAX_ROW) { c = { sec: c ? null : sec, units: [], len: 0.8 }; chunks.push(c); }
+      c.units.push(u); c.len += u.w;
+    });
   });
-  return { bays, pos, sections, W: x };
+  const inner = Math.max(MIN_ROW, Math.min(MAX_ROW, Math.max(...chunks.map((c) => c.len))));
+  const rows = [];
+  chunks.forEach((c) => {
+    const last = rows.at(-1);
+    if (last && last.reduce((a, x) => a + x.len + BOARD, 0) + c.len <= inner) last.push(c);
+    else rows.push([c]);
+  });
+  const sections = [], pos = [], row = [], ends = [], bays = [];
+  rows.forEach((cs, r) => {
+    const sum = cs.reduce((a, c) => a + c.len, 0);
+    const extra = inner - sum - BOARD * (cs.length - 1);
+    let x = BOARD;
+    cs.forEach((c) => {
+      const w = c.len + (extra * c.len) / sum;
+      bays.push({ x, w, r });
+      if (c.sec) sections.push({ ...c.sec, r, x0: x + 0.4 });
+      let cur = x + 0.4;
+      c.units.forEach((u) => {
+        if (u.i != null) { pos[u.i] = cur + books[u.i].t / 2; row[u.i] = r; }
+        else if (u.lean) {
+          let p = null;
+          u.lean.forEach((i) => { p = p == null ? cur + books[i].h * Math.sin(LEAN) + 0.3 : p + books[i].t / Math.cos(LEAN) + 0.2; pos[i] = p; row[i] = r; });
+        } else ends.push({ x: cur + 0.3, r });
+        cur += u.w;
+      });
+      x += w + BOARD;
+    });
+  });
+  const R = rows.length;
+  const base = (k) => (R - 1 - k) * (H - BOARD); // neighbouring shelves share a board
+  return { bays, pos, row, sections, ends, W: inner + 2 * BOARD, R, base, HT: R * (H - BOARD) + BOARD };
 }
 const geo = plan();
 
@@ -163,12 +161,13 @@ const canvas = ref(null);
 const hover = ref(null);
 const focus = ref(null);
 const cursor = ref("grab");
-const ov = shallowRef({ dims: [], notes: [], tip: null });
+const ov = shallowRef({ dims: [], tip: null, card: null });
 const detail = computed(() => (focus.value == null ? null : books[focus.value]));
 
 let renderer, scene, cam, ray, root, items = [], raf = 0, ro, detach, dirty = true, ovKey = "";
 let w = 0, h = 0, halfW = 1, halfH = 1;
-const v = { zoom: 1, cx: 0, cy: H / 2 - 1, cz: 0 };
+const CY = geo.HT / 2 - 1;
+const v = { zoom: 1, cx: 0, cy: CY, cz: 0 };
 const goal = { ...v };
 const reduceMotion = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -181,17 +180,18 @@ function clampCx(cx, zoom = goal.zoom) {
   const lo = -16 + half, hi = geo.W + 8 - half;
   return lo > hi ? (geo.W - 8) / 2 : Math.min(hi, Math.max(lo, cx));
 }
+function clampCy(cy, zoom = goal.zoom) {
+  const half = halfH / zoom;
+  const lo = -14 + half, hi = geo.HT + 14 - half;
+  return lo > hi ? CY : Math.min(hi, Math.max(lo, cy));
+}
 function setZoom(z) {
   goal.zoom = Math.min(4, Math.max(minZoom(), z));
   goal.cx = clampCx(goal.cx);
+  goal.cy = clampCy(goal.cy);
 }
 function zoomBy(f) { setZoom(goal.zoom * f); }
-function resetView() { focus.value = null; Object.assign(goal, { zoom: 1, cy: H / 2 - 1, cz: 0 }); goal.cx = clampCx(-Infinity, 1); }
-function goTo(s) {
-  focus.value = null;
-  Object.assign(goal, { zoom: Math.max(goal.zoom, 1), cy: H / 2 - 1, cz: 0 });
-  goal.cx = clampCx(geo.sections[s].x0 - 10 + w / 2 / pxPerCm(goal.zoom));
-}
+function resetView() { focus.value = null; Object.assign(goal, { zoom: 1, cy: CY, cz: 0 }); goal.cx = clampCx(-Infinity, 1); }
 function toggleFocus(i) { focus.value = i == null || focus.value === i ? null : i; }
 
 function resize() {
@@ -199,7 +199,7 @@ function resize() {
   w = wrap.value.clientWidth; h = wrap.value.clientHeight;
   if (!w || !h) return;
   renderer.setSize(w, h, false);
-  halfH = (H + 30) / 2; // the shelf fills the height: labels above, dimensions below
+  halfH = (geo.HT + 22) / 2; // the case fills the height: labels above, dimensions below
   halfW = halfH * (w / h);
   if (first) { goal.cx = v.cx = clampCx(-Infinity, 1); } else { goal.cx = clampCx(goal.cx); }
   dirty = true;
@@ -219,12 +219,14 @@ function spineTex(bk) {
   const cv = document.createElement("canvas"); cv.width = W; cv.height = Hh;
   const x = cv.getContext("2d");
   x.fillStyle = FILL; x.fillRect(0, 0, W, Hh);
+  // read books carry a solid band at the head of the spine; unread ones are lettered in grey
+  if (bk.status === "read") { x.fillStyle = ACCENT; x.fillRect(0, Hh * 0.02, W, Hh * 0.05); }
   x.strokeStyle = INK; x.lineWidth = 1;
-  [0.055, 0.07, 0.93, 0.945].forEach((p) => { x.beginPath(); x.moveTo(0, Hh * p); x.lineTo(W, Hh * p); x.stroke(); });
-  x.fillStyle = INK;
+  [0.07, 0.93, 0.945].forEach((p) => { x.beginPath(); x.moveTo(0, Hh * p); x.lineTo(W, Hh * p); x.stroke(); });
+  x.fillStyle = bk.status === "shelf" ? "#8a8780" : INK;
   x.translate(W / 2, 0); x.rotate(Math.PI / 2); // text runs top to bottom, as on a real spine
   x.textBaseline = "middle";
-  const top = Hh * 0.11, bottom = Hh * 0.89;
+  const top = Hh * 0.11, bottom = Hh * (bk.call ? 0.76 : 0.89);
   const mono = `500 ${Math.min(W * 0.26, 9)}px "IBM Plex Mono", "Noto Serif Malayalam", monospace`;
   x.font = mono;
   const au = String(bk.author).toUpperCase();
@@ -235,6 +237,38 @@ function spineTex(bk) {
   if (tw > room) { fs = Math.max(6, (fs * room) / tw); x.font = `italic ${fs}px "EB Garamond", "Noto Serif Malayalam", serif`; }
   x.textAlign = "left"; x.fillText(bk.title, top, W * 0.04);
   x.font = mono; x.textAlign = "right"; x.fillText(au, bottom, W * 0.04);
+  if (bk.call) {
+    // library label: call number over the first letters of the author's surname
+    x.setTransform(1, 0, 0, 1, 0, 0);
+    const lw = W * 0.84, lh = Hh * 0.1, ly = Hh * 0.8;
+    x.fillStyle = "#fff"; x.fillRect((W - lw) / 2, ly, lw, lh);
+    x.strokeRect((W - lw) / 2, ly, lw, lh);
+    x.fillStyle = INK; x.textAlign = "center"; x.textBaseline = "middle";
+    const sn = String(bk.author).split(/,| and /)[0].trim().split(/\s+/).pop().slice(0, 3).toUpperCase();
+    const fit = (str, max) => { x.font = `500 ${max}px "IBM Plex Mono", "Noto Serif Malayalam", monospace`; const m = x.measureText(str).width; if (m > lw * 0.9) x.font = `500 ${(max * lw * 0.9) / m}px "IBM Plex Mono", "Noto Serif Malayalam", monospace`; };
+    fit(bk.call, Math.min(lh * 0.32, 13)); x.fillText(bk.call, W / 2, ly + lh * 0.32);
+    fit(sn, Math.min(lh * 0.32, 13)); x.fillText(sn, W / 2, ly + lh * 0.7);
+  }
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return tex;
+}
+
+function edgeTex(bay, labels) {
+  const k = 24, W = Math.round(bay.w * k), Hh = Math.round(BOARD * k);
+  const cv = document.createElement("canvas"); cv.width = W; cv.height = Hh;
+  const x = cv.getContext("2d");
+  x.fillStyle = FILL; x.fillRect(0, 0, W, Hh);
+  x.fillStyle = INK; x.textBaseline = "middle";
+  x.font = `600 ${Math.round(Hh * 0.72)}px "IBM Plex Mono", monospace`;
+  labels.forEach((sec, n) => {
+    const at = (sec.x0 - bay.x) * k, room = ((labels[n + 1]?.x0 ?? bay.x + bay.w) - sec.x0 - 0.6) * k;
+    const name = sec.label.toUpperCase();
+    // a short section gets a shorter label: full, then name only, then just the class number
+    const text = [`${name} · ${sec.count}`, name, name.split(" ")[0]].find((t) => x.measureText(t).width <= room) ?? name.split(" ")[0];
+    x.fillText(text, at, Hh / 2);
+  });
   const tex = new THREE.CanvasTexture(cv);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
@@ -262,10 +296,10 @@ function build() {
     return t;
   };
 
-  const box = (bw, bh, bd, x, y, z, hatch) => {
+  const box = (bw, bh, bd, x, y, z, hatch, front) => {
     const g = new THREE.BoxGeometry(bw, bh, bd);
     const f = fillMat();
-    const m = new THREE.Mesh(g, [f, f, f, f, hatch ? fillMat(hatchFor(bw, bh)) : f, f]);
+    const m = new THREE.Mesh(g, [f, f, f, f, front ? fillMat(front) : hatch ? fillMat(hatchFor(bw, bh)) : f, f]);
     m.position.set(x, y, z); root.add(m);
     const eg = new THREE.EdgesGeometry(g, 1);
     m.add(new THREE.LineSegments(eg, lineMat()));
@@ -273,15 +307,18 @@ function build() {
   };
   const segs = (pts) => root.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts.map((p) => new THREE.Vector3(...p))), lineMat()));
 
-  const W = geo.W;
-  // carcass: full-height uprights, boards spanning between them
-  box(BOARD, H, DEPTH, BOARD / 2, H / 2, 0, true);
+  const W = geo.W, HT = geo.HT;
+  // carcass: full-height sides, a divider after each compartment, a board under every shelf and one on top
+  box(BOARD, HT, DEPTH, BOARD / 2, HT / 2, 0, true);
+  box(BOARD, HT, DEPTH, W - BOARD / 2, HT / 2, 0, true);
+  // section names are lettered on the front edge of the board under the books, like library shelf labels
   geo.bays.forEach((b) => {
-    box(BOARD, H, DEPTH, b.x + b.w + BOARD / 2, H / 2, 0, true);
-    box(b.w, BOARD, DEPTH, b.x + b.w / 2, BOARD / 2, 0, true);
-    box(b.w, BOARD, DEPTH, b.x + b.w / 2, H - BOARD / 2, 0, true);
+    const labels = geo.sections.filter((sec) => sec.r === b.r && sec.x0 >= b.x && sec.x0 < b.x + b.w);
+    box(b.w, BOARD, DEPTH, b.x + b.w / 2, geo.base(b.r) + BOARD / 2, 0, true, labels.length ? edgeTex(b, labels) : null);
+    if (b.x + b.w + BOARD < W - 0.5) box(BOARD, COMP, DEPTH, b.x + b.w + BOARD / 2, geo.base(b.r) + BOARD + COMP / 2, 0, true);
+    if (b.r === 0) box(b.w, BOARD, DEPTH, b.x + b.w / 2, HT - BOARD / 2, 0, true);
   });
-  box(W - 2 * BOARD, H - 2 * BOARD, 0.8, W / 2, H / 2, -Z + 0.4, false);
+  box(W - 2 * BOARD, HT - 2 * BOARD, 0.8, W / 2, HT / 2, -Z + 0.4, false);
 
   // dimension lines with arrowheads: length (below), height (left end)
   const a = 1.6, b = 0.55, dx = -6;
@@ -289,9 +326,9 @@ function build() {
     [0, -1, Z], [0, -8, Z], [W, -1, Z], [W, -8, Z], [0, -6, Z], [W, -6, Z],
     [0, -6, Z], [a, -6 + b, Z], [0, -6, Z], [a, -6 - b, Z],
     [W, -6, Z], [W - a, -6 + b, Z], [W, -6, Z], [W - a, -6 - b, Z],
-    [-1, 0, Z], [dx - 2, 0, Z], [-1, H, Z], [dx - 2, H, Z], [dx, 0, Z], [dx, H, Z],
+    [-1, 0, Z], [dx - 2, 0, Z], [-1, HT, Z], [dx - 2, HT, Z], [dx, 0, Z], [dx, HT, Z],
     [dx, 0, Z], [dx + b, a, Z], [dx, 0, Z], [dx - b, a, Z],
-    [dx, H, Z], [dx + b, H - a, Z], [dx, H, Z], [dx - b, H - a, Z],
+    [dx, HT, Z], [dx + b, HT - a, Z], [dx, HT, Z], [dx - b, HT - a, Z],
   ]);
 
   // books; did-not-finish books lean against their neighbours at the end of their section
@@ -309,7 +346,7 @@ function build() {
     const grp = new THREE.Group();
     grp.add(mesh);
     const z0 = Z - 1.4 - d / 2 + (bk.status === "in-progress" ? 4.5 : 0);
-    grp.position.set(geo.pos[i], BOARD, z0);
+    grp.position.set(geo.pos[i], geo.base(geo.row[i]) + BOARD, z0);
     if (dnf) { mesh.position.set(t / 2, bh / 2, 0); grp.rotation.z = LEAN; }
     else mesh.position.set(0, bh / 2, 0);
     if (bk.status === "in-progress") {
@@ -320,10 +357,10 @@ function build() {
     root.add(grp);
     return { grp, mesh, side, em, z0, goalZ: z0, h: bh, d };
   });
-  geo.sections.forEach((sec) => {
-    if (sec.bookend == null) return;
-    box(0.4, 13, 10, sec.bookend + 0.2, BOARD + 6.5, Z - 6.5, false);
-    box(7, 0.4, 10, sec.bookend + 3.5, BOARD + 0.2, Z - 6.5, false);
+  geo.ends.forEach((e) => {
+    const y = geo.base(e.r);
+    box(0.4, 13, 10, e.x + 0.2, y + BOARD + 6.5, Z - 6.5, false);
+    box(7, 0.4, 10, e.x + 3.5, y + BOARD + 0.2, Z - 6.5, false);
   });
   ovKey = "";
   applyHighlight();
@@ -343,22 +380,6 @@ function applyHighlight() {
 function syncFocus(instant) {
   const f = focus.value;
   items.forEach((it, i) => { it.goalZ = it.z0 + (i === f ? 9 : 0); if (instant) it.grp.position.z = it.goalZ; });
-  if (f != null && items[f]) {
-    scene.updateMatrixWorld();
-    const p = items[f].mesh.getWorldPosition(new THREE.Vector3());
-    p.z += 9;
-    const zoom = 2.2;
-    // on wide screens the card covers the left; move the camera so the book sits right of it
-    if (w >= 768) {
-      const shift = 170 / ((h * zoom) / (2 * halfH));
-      p.x -= Math.cos(YAW) * shift;
-      p.z += Math.sin(YAW) * shift;
-    }
-    Object.assign(goal, { cx: p.x, cy: p.y, cz: p.z, zoom });
-  } else if (!instant) {
-    Object.assign(goal, { cy: H / 2 - 1, cz: 0 });
-    setZoom(1);
-  }
   dirty = true;
 }
 
@@ -380,11 +401,8 @@ function pushOverlay() {
   const W = geo.W;
   const dims = [
     dim("w", String(Math.round(W * 10)), [0, -6, Z], [W, -6, Z]),
-    dim("h", String(H * 10), [-6, 0, Z], [-6, H, Z]),
+    dim("h", String(Math.round(geo.HT * 10)), [-6, 0, Z], [-6, geo.HT, Z]),
   ].filter((d) => d.x > -60 && d.x < w + 60);
-  const notes = geo.sections
-    .map((sec) => { const [x, y] = P(sec.x0, H + 1, Z); return { label: sec.label, count: sec.count, x, y: y - 4 }; })
-    .filter((n) => n.x > -200 && n.x < w);
   let tip = null;
   const hv = hover.value;
   if (hv != null && hv !== focus.value && items[hv]) {
@@ -393,7 +411,15 @@ function pushOverlay() {
     const [x, y] = P(p.x, p.y, p.z);
     tip = { x: Math.min(w - 140, Math.max(140, x)), y, title: books[hv].title, author: books[hv].author };
   }
-  const next = { dims, notes, tip };
+  // the details card sits beside the selected book: right of it, or left when the book is on the right half
+  let card = null;
+  if (focus.value != null && items[focus.value]) {
+    const it = items[focus.value];
+    const p = it.mesh.localToWorld(new THREE.Vector3(0, it.h / 2, it.d / 2));
+    const [x, y] = P(p.x, p.y, p.z);
+    card = w < 768 ? { top: Math.max(12, Math.min(h - 340, y + 60)) } : { top: Math.max(12, Math.min(h - 340, y - 120)), left: x < w / 2 ? x + 40 : x - 340 };
+  }
+  const next = { dims, tip, card };
   const key = JSON.stringify(next);
   if (key !== ovKey) { ovKey = key; ov.value = next; }
 }
@@ -431,7 +457,11 @@ function attach() {
     const hit = ray.intersectObjects(items.map((it) => it.mesh), false)[0];
     return hit ? hit.object.userData.i : null;
   };
-  const pan = (dxPx) => { goal.cx = v.cx = clampCx(goal.cx - dxPx / pxPerCm(goal.zoom)); dirty = true; };
+  const pan = (dxPx, dyPx = 0) => {
+    goal.cx = v.cx = clampCx(goal.cx - dxPx / pxPerCm(goal.zoom));
+    if (dyPx) goal.cy = v.cy = clampCy(goal.cy + (dyPx * 2 * halfH) / (h * goal.zoom));
+    dirty = true;
+  };
   // two fingers on the canvas = pinch zoom; touch-action: pan-y leaves pinches and sideways drags to us
   const pts = new Map();
   let pinch = null;
@@ -446,14 +476,15 @@ function attach() {
     if (pts.has(e.pointerId)) pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pinch && pts.size === 2) {
       setZoom((pinch.zoom * gap()) / pinch.d);
-      v.zoom = goal.zoom; v.cx = goal.cx; dirty = true;
+      v.zoom = goal.zoom; v.cx = goal.cx; v.cy = goal.cy; dirty = true;
       return;
     }
     if (drag) {
-      const ddx = e.clientX - drag.x;
-      drag.moved += Math.abs(ddx) + Math.abs(e.clientY - drag.y);
+      const ddx = e.clientX - drag.x, ddy = e.clientY - drag.y;
+      drag.moved += Math.abs(ddx) + Math.abs(ddy);
       drag.x = e.clientX; drag.y = e.clientY;
-      if (drag.moved > 4) { pan(ddx); cursor.value = "grabbing"; hover.value = null; }
+      // touch keeps vertical drags for page scrolling (touch-action: pan-y)
+      if (drag.moved > 4) { pan(ddx, e.pointerType === "touch" ? 0 : ddy); cursor.value = "grabbing"; hover.value = null; }
       return;
     }
     if (e.pointerType !== "mouse") return; // no hover labels for touch
@@ -473,7 +504,7 @@ function attach() {
     if (e.ctrlKey) {
       e.preventDefault();
       setZoom(goal.zoom * Math.exp(-e.deltaY * 0.01));
-      v.zoom = goal.zoom;
+      v.zoom = goal.zoom; v.cx = goal.cx; v.cy = goal.cy;
       dirty = true;
       return;
     }
