@@ -87,7 +87,6 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ["/rss.xml"],
     },
-    preset: process.env.NODE_ENV === "production" ? "github" : undefined,
   },
 
   fonts: {
