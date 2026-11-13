@@ -28,21 +28,21 @@
       <section class="pt-7">
         <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">2026</h2>
         <ol class="list-none m-0 p-0">
-          <ContentRenderer :value="reading2026" />
+          <ContentRenderer :value="reading2026 ?? undefined" />
         </ol>
       </section>
 
       <section class="mt-14 border-t border-black pt-7">
         <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">2025</h2>
         <ol class="list-none m-0 p-0">
-          <ContentRenderer :value="reading2025" />
+          <ContentRenderer :value="reading2025 ?? undefined" />
         </ol>
       </section>
 
       <section class="mt-14 border-t border-black pt-7">
         <h2 class="font-mono font-medium text-[11px] uppercase tracking-[0.16em] text-gray-600 mb-3">On the shelf</h2>
         <ol class="list-none m-0 p-0">
-          <ContentRenderer :value="readingShelf" />
+          <ContentRenderer :value="readingShelf ?? undefined" />
         </ol>
       </section>
     </div>
@@ -63,7 +63,7 @@ const { data: readingShelf } = await useAsyncData("reading-shelf", () =>
 const modes = [
   { key: "shelf", label: "Shelf" },
   { key: "list", label: "List" },
-];
+] as const;
 const mode = ref<"shelf" | "list">("shelf");
 
 // the ::book entries in a content file

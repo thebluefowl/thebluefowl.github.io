@@ -1,6 +1,6 @@
 <template>
   <ManuscriptShell wide>
-    <header class="pt-6 md:pt-10 pb-10 mb-10 border-b border-black">
+    <header v-if="page" class="pt-6 md:pt-10 pb-10 mb-10 border-b border-black">
       <p class="font-mono text-[12px] text-gray-600 m-0">
         {{ usePrettyDate(page.date) }} ·
         <NuxtLink :to="`/blog/category/${encodeURIComponent(page.category)}`" class="hover:text-slate-500 transition-colors">{{ page.category }}</NuxtLink>
