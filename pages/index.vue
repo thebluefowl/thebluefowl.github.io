@@ -48,7 +48,6 @@
         </NuxtLink>
       </div>
     </section>
-    <PerchBird />
   </ManuscriptShell>
 </template>
 
