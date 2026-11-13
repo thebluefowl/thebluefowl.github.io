@@ -26,7 +26,6 @@ export default defineNuxtConfig({
         { name: "twitter:image", content: "https://vishnujayadevan.com/og.png" },
       ],
       link: [
-        { rel: "canonical", href: "https://vishnujayadevan.com" },
         { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
         { rel: "icon", type: "image/png", href: "/icon-512.png", sizes: "512x512" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
